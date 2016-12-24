@@ -93,7 +93,6 @@
 109 History & collected biography
 110 Metaphysics
 111 Ontology
-112 No longer used—formerly Methodology
 113 Cosmology (Philosophy of nature)
 114 Space
 115 Time
@@ -106,18 +105,14 @@
 122 Causation
 123 Determinism and indeterminism
 124 Teleology
-125 No longer used—formerly Infinity
 126 The self
 127 The unconscious & the subconscious
 128 Humankind
 129 Origin & destiny of individual souls
 130 Parapsychology & occultism
 131 Parapsychological and occult methods for achieving well-being, happiness, success
-132 No longer used—formerly Mental derangements
 133 Specific topics in parapsychology & occultism
-134 No longer used—formerly Mesmerism & Clairvoyance
 135 Dreams & mysteries
-136 No longer used—formerly Mental characteristics
 137 Divinatory graphology
 138 Physiognomy
 139 Phrenology
@@ -132,7 +127,6 @@
 148 Dogmatism, eclecticism, liberalism, syncretism, & traditionalism
 149 Other philosophical systems & doctrines
 150 Psychology
-151 No longer used—formerly Intellect
 152 Sensory perception, movement, emotions, & physiological drives
 153 Conscious mental processes & intelligence
 154 Subconscious & altered states & processes
@@ -193,10 +187,7 @@
 213 Creation
 214 Theodicy
 215 Science & religion
-216 No longer used—formerly Evil
-217 No longer used—formerly Prayer
 218 Humankind
-219 No longer used—formerly Analogies
 220 Bible
 221 Old Testament (Tanakh)
 222 Historical books of Old Testament
@@ -214,15 +205,12 @@
 234 Salvation & grace
 235 Spiritual beings
 236 Eschatology
-237 No longer used—formerly Future state
 238 Creeds, confessions of faith, covenants, & catechisms
 239 Apologetics & polemics
 240 Christian moral and devotional theology
 241 Christian ethics
 242 Devotional literature
 243 Evangelistic writings for individuals and families
-244 No longer used—formerly Religious fiction
-245 No longer used—formerly Hymnology
 246 Use of art in Christianity
 247 Church furnishings & related articles
 248 Christian experience, practice, life
@@ -233,9 +221,6 @@
 253 Pastoral office and work (Pastoral theology)
 254 Parish administration
 255 Religious congregations & orders
-256 No longer used—formerly Religious societies
-257 No longer used—formerly Parochial schools, libraries, etc.
-258 No longer used—formerly Parochial medicine
 259 Pastoral care of families, of specific groups of people
 260 Christian social and ecclesiastical theology
 261 Social theology and interreligious relations and attitudes
@@ -265,17 +250,14 @@
 285 Presbyterian churches, Reformed churches centered in America, Congregational churches
 286 Baptist, Restoration Movement, Adventist churches
 287 Methodist churches; churches related to Methodism
-288 No longer used—formerly Unitarian
 289 Other denominations & sects
 290 Other religions
-291 No longer used—formerly Comparative religion
 292 Classical religion (Greek & Roman religion)
 293 Germanic religion
 294 Religions of Indic origin
 295 Zoroastrianism (Mazdaism, Parseeism)
 296 Judaism
 297 Islam, Bábism & Bahá'í Faith
-298 No longer used—formerly Mormonism
 299 Religions not provided for elsewhere
 300 Social sciences
 301 Sociology & anthropology
@@ -285,12 +267,7 @@
 305 Groups of people
 306 Culture & institutions
 307 Communities
-308 No longer used—formerly Polygraphy
-309 No longer used—formerly History of sociology
 310 Collections of general statistics
-311 No longer used—formerly Theory and methods
-312 No longer used—formerly Population
-313 No longer used—formerly Special topics
 314 General statistics of Europe
 315 General statistics of Asia
 316 General statistics of Africa
@@ -352,8 +329,6 @@
 373 Secondary education
 374 Adult education
 375 Curricula
-376 No longer used—formerly Education of women
-377 No longer used—formerly Ethical education
 378 Higher education (Tertiary education)
 379 Public policy issues in education
 380 Commerce, communications, transportation
@@ -372,8 +347,6 @@
 393 Death customs
 394 General customs
 395 Etiquette (Manners)
-396 No longer used—formerly Women's position and treatment
-397 No longer used—formerly outcast studies
 398 Folklore
 399 Customs of war & diplomacy
 400 Language
@@ -392,7 +365,6 @@
 413 Dictionaries of standard forms of languages
 414 Phonology & phonetics of standard forms of languages
 415 Grammar of standard forms of languages
-416 No longer used—formerly Prosody
 417 Dialectology & historical linguistics
 418 Standard usage (Prescriptive linguistics)
 419 Sign languages
@@ -400,7 +372,6 @@
 421 Writing system, phonology, phonetics of standard English
 422 Etymology of standard English
 423 Dictionaries of standard English
-424 No longer used—formerly English thesauruses
 425 Grammar of standard English
 427 Historical & geographical variations, modern nongeographic variations of English
 428 Standard English usage (Prescriptive linguistics)
