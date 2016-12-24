@@ -6,22 +6,21 @@
  * Description:   This class defines a book.
  *******************************************************************************/
 
-import java.io.*;
-
-public class Book {
-	private static final String DEWEY_DEC_CLASSES = "Dewey Decimal Classes";
-	private static final int DEWEY_DEC_GENRE_CODE_LENGTH = 3;
-	
+public class Book extends Item {
 	private String title;
 	private String author;
 	private int pages;
 	private double deweyDecNum;
+	private DeweyDecSystem deweySystem;
 	
-	public Book (String title, String author, int pages, double deweyDecNum) {
+	public Book (long id, String status, double price,
+		String title, String author, int pages, double deweyDecNum, DeweyDecSystem deweySystem) {
+		super (id, status, price);
 		this.title = title;
 		this.author = author;
 		this.pages = pages;
 		this.deweyDecNum = deweyDecNum;
+		this.deweySystem = deweySystem;
 	} //Book constructor
 	
 	public String getTitle () {
@@ -42,32 +41,6 @@ public class Book {
 	
 	//getGenre method
 	public String getGenre () {
-		String deweyDecClass = "" + (int)deweyDecNum;
-		String genre = "";
-		
-		while (deweyDecClass.length() < DEWEY_DEC_GENRE_CODE_LENGTH) {
-			deweyDecClass = "0" + deweyDecClass;
-		} //while loop
-	
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(DEWEY_DEC_CLASSES + ".txt"));
-			String input;
-			
-			while ((input = in.readLine()) != null) {
-				if (input.startsWith(deweyDecClass)) {
-					genre = input.substring(deweyDecClass.length() + 1);
-				} //if structure
-			} //while loop
-			
-			in.close();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		} //try-catch structure
-		
-		if (genre.isEmpty()) {
-			System.out.println("The genre could not be found.");
-		} //if structure
-		
-		return genre;
+		return deweySystem.getGenre(deweyDecNum);
 	} //getGenre method
 } //Book class
