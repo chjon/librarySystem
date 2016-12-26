@@ -11,11 +11,20 @@ class Teacher extends Customer{
     spendingAllowance = spendingAllowed;
    
   }
-  public int compareToTeacher (Teacher other){
+  public int compareToTeacherId (Teacher other){
     if (this.id > other.id){
       return 1;
     }
     else if (other.id > this.id){
+      return -1;
+    }
+    return 0;
+  }
+  public int compareToTeacherSpending (Teacher other){
+    if (this.spendingAllowance > other.spendingAllowance){
+      return 1;
+    }
+    else if (other.spendingAllowance > this.spendingAllowance){
       return -1;
     }
     return 0;
