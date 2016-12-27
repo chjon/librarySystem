@@ -24,4 +24,15 @@ abstract class Item {
 	public String getStatus () {
 		return status;
 	} //getStatus method
+	
+	public double getPrice () {
+		return price;
+	} //getPrice method
+	
+	public String toString () {
+		return
+			"ID: " + id + "\n" +
+			"Status: " + status + "\n" +
+			"Price: " + price;
+	} //toString method
 } //Item class
