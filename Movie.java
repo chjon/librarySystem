@@ -44,6 +44,10 @@ public class Movie extends Item {
 		return ageRating;
 	} //getAgeRating method
 	
+	public String getType () {
+		return TYPE;
+	} //getType method
+	
 	public String toString () {
 		return super.toString() + "\n" +
 			"Type: " + TYPE + "\n" +

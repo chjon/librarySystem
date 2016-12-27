@@ -29,10 +29,18 @@ abstract class Item {
 		return price;
 	} //getPrice method
 	
+	abstract String getType ();
+	
 	public String toString () {
 		return
 			"ID: " + id + "\n" +
 			"Status: " + status + "\n" +
 			"Price: " + price;
 	} //toString method
+	
+	public boolean equals (Item other) {
+		return
+			this.getType().equals(other.getType()) &&
+			this.id == other.id;
+	} //equals method
 } //Item class

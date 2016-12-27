@@ -44,13 +44,17 @@ public class Book extends Item {
 		return deweySystem.getGenre(deweyDecNum);
 	} //getGenre method
 	
+	public String getType () {
+		return TYPE;
+	} //getType method
+	
 	public String toString () {
 		return super.toString() + "\n" +
 			"Type: " + TYPE + "\n" +
 			"Title: " + title + "\n" +
 			"Author: " + author + "\n" +
 			"Pages: " + pages + "\n" +
-			"Genre: " + getGenre + "\n" +
+			"Genre: " + getGenre() + "\n" +
 			"Dewey Decimal number: " + deweyDecNum;
 	} //toString method
 } //Book class

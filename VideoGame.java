@@ -7,11 +7,11 @@
  *******************************************************************************/
 
 public class VideoGame extends Item {
-	private static final String TYPE = "Video game";
-	private String title;
-	private String developer;
-	private String genre;
-	private String ageRating;
+	private static final String TYPE = "Video game";	//Item type
+	private String title;										//Title of video game
+	private String developer;									//Name of developer
+	private String genre;										//Genre of video game
+	private String ageRating;									//Age rating of video game
 	
 	public VideoGame (long id, String status, double price,
 		String title, String developer, String genre, String ageRating) {
@@ -37,6 +37,10 @@ public class VideoGame extends Item {
 	public String getAgeRating () {
 		return ageRating;
 	} //getAgeRating method
+	
+	public String getType () {
+		return TYPE;
+	} //getType method
 	
 	public String toString () {
 		return super.toString() + "\n" +
