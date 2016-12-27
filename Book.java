@@ -50,6 +50,7 @@ public class Book extends Item {
 			"Title: " + title + "\n" +
 			"Author: " + author + "\n" +
 			"Pages: " + pages + "\n" +
+			"Genre: " + getGenre + "\n" +
 			"Dewey Decimal number: " + deweyDecNum;
 	} //toString method
 } //Book class
