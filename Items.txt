@@ -1,0 +1,35 @@
+9
+Video Game
+1
+Call of Duty: Black Ops 3
+Treyarch
+Shooter
+17
+Book
+The Great Gatsby
+2
+F. Scott Fitzgerald
+204
+170
+Movie
+Avatar
+3
+James Cameron
+180
+Science Fiction
+13
+Book
+Hamlet
+4
+Shakespeare
+140
+109
+Video Game
+5
+Counter Strike: Global Offensive
+Valve
+Shooter
+17
+Movie
+6
+Superman
