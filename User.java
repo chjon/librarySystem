@@ -12,6 +12,22 @@ class User{
     this.age = age;
     amountOwed = 0;
   }
+  public long getId(){
+    return id;
+  }
+  public int getAge(){
+    return age;
+  }
+  public String getName(){
+    return name;
+  }
+  public Item[] getItems(){
+    return itemList;
+  }
+  public double getAmountOverdue(){
+    return amountOverdue;
+  }
+  
   public String toString(){
     String s = name +"\n User number: " + id + "\nAge: " + age +
       "\nAmount Owed: " + amountOwed+;
