@@ -12,6 +12,9 @@ class User{
     this.age = age;
     amountOwed = 0;
   }
+  public void setAge(int age){
+    this.age = age;
+  }
   public long getId(){
     return id;
   }
