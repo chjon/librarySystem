@@ -8,23 +8,17 @@
 
 public class VideoGame extends Item {
 	private static final String TYPE = "Video game";	//Item type
-	private String title;										//Title of video game
 	private String developer;									//Name of developer
 	private String genre;										//Genre of video game
-	private String ageRating;									//Age rating of video game
+	private int ageRating;										//Age rating of video game
 	
-	public VideoGame (long id, String status, double price,
-		String title, String developer, String genre, String ageRating) {
-		super (id, status, price);
-		this.title = title;
+	public VideoGame (long id, boolean isOut, String title,
+		String developer, String genre, int ageRating) {
+		super (id, isOut, title);
 		this.developer = developer;
 		this.genre = genre;
 		this.ageRating = ageRating;
 	} //VideoGame constructor
-	
-	public String getTitle () {
-		return title;
-	} //getTitle method
 	
 	public String getDeveloper () {
 		return developer;
@@ -34,7 +28,7 @@ public class VideoGame extends Item {
 		return genre;
 	} //getGenre method
 
-	public String getAgeRating () {
+	public int getAgeRating () {
 		return ageRating;
 	} //getAgeRating method
 	
@@ -45,7 +39,6 @@ public class VideoGame extends Item {
 	public String toString () {
 		return super.toString() + "\n" +
 			"Type: " + TYPE + "\n" +
-			"Title: " + title + "\n" +
 			"Developer: " + developer + "\n" +
 			"Genre: " + genre + "\n" +
 			"Age Rating: " + ageRating;
