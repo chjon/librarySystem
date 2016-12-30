@@ -2,20 +2,21 @@
  * File Name:     Movie.java
  * Name:          Jonathan Chung
  * Class:         ICS4U-01
- * Date:          2016/12/26
+ * Date:          2016/12/29
  * Description:   This class defines a movie.
  *******************************************************************************/
 
 public class Movie extends Item {
 	private static final String TYPE = "Movie";	//Item type
+	private static final int MAX_DAYS_OUT = 14;	//Maximum number of days borrowed
 	private String director;							//Name of director
 	private String genre;								//Genre of movie
 	private int length;									//Length of movie in minutes
 	private int ageRating;								//Age rating of movie
 	
-	public Movie (long id, boolean isOut, String title,
+	public Movie (long id, boolean isOut, String title, Date dayBorrowed,
 		String director, String genre, int length, int ageRating) {
-		super (id, isOut, title);
+		super (id, isOut, title, dayBorrowed);
 		this.director = director;
 		this.length = length;
 		this.genre = genre;
@@ -41,6 +42,10 @@ public class Movie extends Item {
 	public String getType () {
 		return TYPE;
 	} //getType method
+	
+	public int getMaxDaysOut () {
+		return MAX_DAYS_OUT;
+	} //daysOverdue method
 	
 	public String toString () {
 		return super.toString() + "\n" +

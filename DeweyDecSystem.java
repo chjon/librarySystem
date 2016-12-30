@@ -6,10 +6,10 @@
  * Description:   This class defines the Dewey Decimal system.
  *******************************************************************************/
 
-import java.util.ArrayList;
 import java.io.*;
 
 public class DeweyDecSystem {
+	private static final String DEWEY_DEC_REF_FILE = "Dewey Decimal Classes";
 	private static final int DEWEY_DEC_GENRE_CODE_LENGTH = 3;
 	private static final int MAX_DEWEY_DEC_NUM = 1000;
 	
@@ -17,15 +17,15 @@ public class DeweyDecSystem {
 	private String[] deweyDecClasses = null;
 	private int[] deweyDecNums = null;
 	
-	//DeweyDecSystem method
-	public DeweyDecSystem (String fileName) {
+	//DeweyDecSystem constructor
+	public DeweyDecSystem () {
 		deweyDecClasses = new String[MAX_DEWEY_DEC_NUM];
 		deweyDecNums = new int[MAX_DEWEY_DEC_NUM];
 		curMaxDeweyDecNum = 0;
 		
-		//Load Dewey Decimal classes from file
+		//Load Dewey Decimal classes from file - File input
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(fileName + ".txt"));
+			BufferedReader in = new BufferedReader(new FileReader(DEWEY_DEC_REF_FILE + ".txt"));
 			String input;
 			
 			while ((input = in.readLine()) != null) {
@@ -33,8 +33,11 @@ public class DeweyDecSystem {
 					0, DEWEY_DEC_GENRE_CODE_LENGTH));
 				input = input.substring(DEWEY_DEC_GENRE_CODE_LENGTH + 1);
 			
-				//Insert classes into the array
-				for (i = curMaxDeweyDecNum; i > 0 && inputDeweyDecNum < deweyDecNums[i - 1]; i--) {
+				//Insert classes into the array - quasi-insertion sort
+				for (i = curMaxDeweyDecNum; i > 0 &&
+					i < deweyDecNums.length &&
+					inputDeweyDecNum < deweyDecNums[i - 1]; i--) {
+					
 					deweyDecClasses[i] = deweyDecClasses[i - 1];
 					deweyDecNums[i] = deweyDecNums[i - 1];
 				} //for loop
@@ -46,7 +49,7 @@ public class DeweyDecSystem {
 			
 			in.close();
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			System.err.println("There was a problem with the file:\t" + e.getMessage());
 		} //try-catch structure
 	} //DeweyDecSystem constructor
 	

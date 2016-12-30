@@ -2,20 +2,21 @@
  * File Name:     Book.java
  * Name:          Jonathan Chung
  * Class:         ICS4U-01
- * Date:          2016/12/26
+ * Date:          2016/12/29
  * Description:   This class defines a book.
  *******************************************************************************/
 
 public class Book extends Item {
 	private static final String TYPE = "Book";	//Item type
+	private static final int MAX_DAYS_OUT = 21;	//Maximum number of days borrowed
 	private String author;								//Name of author
 	private int pages;									//Number of pages
 	private double deweyDecNum;						//Dewey Decimal number
 	private DeweyDecSystem deweySystem;				//Dewey Decimal system
 	
-	public Book (long id, boolean isOut, String title,
+	public Book (long id, boolean isOut, String title, Date dayBorrowed,
 		String author, int pages, double deweyDecNum, DeweyDecSystem deweySystem) {
-		super (id, isOut, title);
+		super (id, isOut, title, dayBorrowed);
 		this.author = author;
 		this.pages = pages;
 		this.deweyDecNum = deweyDecNum;
@@ -41,6 +42,10 @@ public class Book extends Item {
 	public String getType () {
 		return TYPE;
 	} //getType method
+	
+	public int getMaxDaysOut () {
+		return MAX_DAYS_OUT;
+	} //daysOverdue method
 	
 	public String toString () {
 		return super.toString() + "\n" +
