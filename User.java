@@ -59,11 +59,39 @@ class User{
     }
     return false;
   }
-  public boolean payOverdue(){
-    for (int i = 0; i < itemList.length; i ++){
-      if (itemList[i].id
+  public boolean takeOutItem (Item checkOut){
+    if (canBorrow(checkOut)){
+      itemList[currentItems()-1] = checkOut;
+      return true;
+    }
+    return false;
+        
+  }
+  
+  public void takeBack(){
+    int count = currentItems();
+    for (int i = 0; i < count; i ++){
+      itemList[i].isOut = false;
+      itemList[i] = null;
     }
   }
+  public void takeBack(Item returnItem){
+    returnItem.isOut = false;
+    int count = currentItems();
+    for (int i = 0; i < count; i ++){
+      if (itemList[i].id == returnItem.id)
+        itemList[i] = null;
+    }
+  }
+  public boolean payOverdue(){
+    for (int i = 0; i < itemList.length; i ++){
+      if (itemList[i].isOverdue(itemList[i]))
+        return false;
+    }
+    amountOverdue = 0;
+    return true;
+  }
+ 
   
   
   
