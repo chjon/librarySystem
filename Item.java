@@ -7,35 +7,50 @@
  *******************************************************************************/
 
 abstract class Item {
-	private long id;
-	private String status;
-	private double price;
-
-	public Item (long id, String status, double price) {
+	private long id;				//Item identification number
+	private boolean isOut;		//Whether the item is out of the library or not
+	private String title;		//Title of the item
+	
+	public abstract String getType ();
+	
+	public Item (long id, boolean isOut, String title) {
 		this.id = id;
-		this.status = status;
-		this.price = price;
+		this.isOut = isOut;
+		this.title = title;
 	} //Item constructor
 	
 	public long getId () {
 		return id;
 	} //getId method
 	
-	public String getStatus () {
-		return status;
+	public boolean isOut () {
+		return isOut;
 	} //getStatus method
 	
-	public double getPrice () {
-		return price;
+	public String getTitle () {
+		return title;
 	} //getPrice method
 	
-	abstract String getType ();
+	public void setIsOut (boolean isOut) {
+		this.isOut = isOut;
+	} //setIsOut method
 	
 	public String toString () {
-		return
+		String output =
 			"ID: " + id + "\n" +
-			"Status: " + status + "\n" +
-			"Price: " + price;
+			"Status: ";
+		
+		if (isOut) {
+			output += "Out";
+		} else {
+			output += "In";
+		} //if structure
+		
+		output +=
+			"\n" +
+			"Title: " + title;
+			
+		return output;
 	} //toString method
 	
 	public boolean equals (Item other) {
