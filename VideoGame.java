@@ -2,19 +2,20 @@
  * File Name:     VideoGame.java
  * Name:          Jonathan Chung
  * Class:         ICS4U-01
- * Date:          2016/12/26
+ * Date:          2016/12/29
  * Description:   This class defines a video game.
  *******************************************************************************/
 
 public class VideoGame extends Item {
 	private static final String TYPE = "Video game";	//Item type
+	private static final int MAX_DAYS_OUT = 14;			//Maximum number of days borrowed
 	private String developer;									//Name of developer
 	private String genre;										//Genre of video game
 	private int ageRating;										//Age rating of video game
 	
-	public VideoGame (long id, boolean isOut, String title,
+	public VideoGame (long id, boolean isOut, String title, Date dayBorrowed,
 		String developer, String genre, int ageRating) {
-		super (id, isOut, title);
+		super (id, isOut, title, dayBorrowed);
 		this.developer = developer;
 		this.genre = genre;
 		this.ageRating = ageRating;
@@ -35,6 +36,10 @@ public class VideoGame extends Item {
 	public String getType () {
 		return TYPE;
 	} //getType method
+	
+	public int getMaxDaysOut () {
+		return MAX_DAYS_OUT;
+	} //daysOverdue method
 	
 	public String toString () {
 		return super.toString() + "\n" +
