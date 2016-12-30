@@ -31,6 +31,8 @@ public class Printer{
   }//getPaper method
   
   public boolean print(int needed){  //Checks if printing is possible and adds to amount due
+    //missing the add to amount due part, we need to be able to differentiate from BW and COLOUR so either, we need another
+    //variable in the method or two seperate methods
     if(numPaper - needed >= 0){
       return true;
     }
