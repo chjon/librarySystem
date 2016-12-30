@@ -30,9 +30,7 @@ public class Printer{
     return numPaper;
   }//getPaper method
   
-  public boolean print(int needed){  //Checks if printing is possible and adds to amount due
-    //missing the add to amount due part, we need to be able to differentiate from BW and COLOUR so either, we need another
-    //variable in the method or two seperate methods
+  public boolean print(boolean color,int needed){  //Checks if printing is possible and adds to amount due
     if(numPaper - needed >= 0){
       return true;
     }
@@ -44,7 +42,10 @@ public class Printer{
       numPaper = numPaper + sheets;
       return true;
     }
-    return false;
+    else{
+      numPaper = maxPaper;
+      return false;
+    }
   }//addPaper method
   
 }//Printer class
