@@ -28,11 +28,15 @@ abstract class Item {
 	
 	public boolean isOut () {
 		return isOut;
-	} //getStatus method
+	} //isOut method
 	
 	public String getTitle () {
 		return title;
-	} //getPrice method
+	} //getTitle method
+	
+	public Date getDayBorrowed () {
+		return dayBorrowed;
+	} //getDayBorrowed method
 	
 	public void setIsOut (boolean isOut) {
 		this.isOut = isOut;
@@ -41,6 +45,10 @@ abstract class Item {
 	public int getDaysOverdue (Date curDate) {
 		return dayBorrowed.compareTo(curDate) - getMaxDaysOut();
 	} //getDaysOverdue method
+	
+	public boolean isOverdue () {
+		return dayBorrowed.compareTo(curDate) > getMaxDaysOut();
+	} //isOverdue method
 	
 	public String toString () {
 		String output =
@@ -55,7 +63,8 @@ abstract class Item {
 		
 		output +=
 			"\n" +
-			"Title: " + title;
+			"Title: " + title + "\n" +
+			"Day borrowed: " + dayBorrowed;
 			
 		return output;
 	} //toString method
