@@ -28,7 +28,7 @@ class User{
     return itemList;
   }
   public double getAmountOverdue(){
-    return amountOverdue;
+    return amountOwed
   }
   
   public String toString(){
@@ -97,7 +97,7 @@ class User{
       if (itemList[i].isOverdue(itemList[i]))
         return false;
     }
-    amountOverdue = 0;
+    amountOwed = 0;
     return true;
   }
  
