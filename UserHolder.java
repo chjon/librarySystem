@@ -19,6 +19,8 @@ abstract class UserHolder {
 	public long getId () {
 		return id;
 	}
-
+        public boolean addUser(User temp){
+	   
+	}
 	
 }
