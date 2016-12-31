@@ -11,8 +11,13 @@ public class Room extends UserHolder {
 	}
 
 	public boolean isOccupied () {
-
+		if (users != null) {
+			return true;
+		}
+		return false;
 	}
 
-	
+	public boolean remUser (long) {
+		
+	}
 }
