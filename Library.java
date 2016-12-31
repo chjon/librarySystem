@@ -1,10 +1,10 @@
 public class Library {
 	private String name;
 	private User[] users;
-	private Room[] rooms;
-	private Computer[] computers;
+	private UserHolder[] userHolders;
 	private Printer[] printers;
 	private Item[] items;
+	private Calendar cal;
 
 	public Library (String name) {
 		this.name = name;
@@ -35,10 +35,26 @@ public class Library {
 	}
 
 	public Room[] getRooms () {
-		return rooms;
+		Room[] roomList;
+		int roomListSize = 0;
+
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] instanceof Room) {
+				roomListSize ++;
+			}
+		}
+		roomList = new Room[roomListSize];
+
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] instanceof Room) {
+				roomList[i] = items[i];
+			}
+		}
+		return roomList;
 	}
 
 	public Room getRoomById (long id) {
+		Room[] rooms = getRooms();
 		for (int i = 0; i < rooms.length; i++) {
 			if (rooms[i].getId() == id) {
 				return rooms[i];
@@ -47,10 +63,26 @@ public class Library {
 	}
 
 	public Computer[] getComputers () {
-		return computers;
+		Computer[] computerList;
+		int computerListSize = 0;
+
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] instanceof Computer) {
+				computerListSize ++;
+			}
+		}
+		computerList = new Computer[computerListSize];
+
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] instanceof Computer) {
+				computerList[i] = items[i];
+			}
+		}
+		return computerList;
 	}
 
 	public Computer getComputerById (long id) {
+		Computer[] computers = getComputers();
 		for (int i = 0; i < computers.length; i++) {
 			if (computers[i].getId() == id) {
 				return computers[i];
@@ -255,6 +287,6 @@ public class Library {
 	}
 
 	public Item[] getOverdue (Date day) {
-		
+
 	}
 }
