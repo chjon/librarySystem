@@ -101,7 +101,8 @@ class User{
     return true;
   }
  
-  
-  
+  public void setAmountOwed(double amount){
+    amountOwed =  amountOwed + amount;
+  }
   
 }
