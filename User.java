@@ -37,13 +37,19 @@ class User{
     return s;
   }
   
-  public boolean equals (User other){
+  public boolean equalsId (User other){
     if (id == other.id){
       return true;
     }
     
     return false;
   }
+  public boolean equalsName (User other){
+    if (name.equals(other.name))
+      return true;
+    return false;
+  }
+  
   public int currentItems(){
     int count = 0;
     for (int i = 0; i < itemList.length; i ++){
@@ -54,7 +60,7 @@ class User{
     return count;
   }
   public boolean canBorrow(Item libraryItem){
-    if (libraryItem.isOut){
+    if (libraryItem.isOut()){
       if (currentItems() < MAX_ITEMS_OUT)
         return true;
       else
@@ -74,7 +80,7 @@ class User{
   public void takeBack(){
     int count = currentItems();
     for (int i = 0; i < count; i ++){
-      itemList[i].isOut = false;
+      itemList[i].isOut() = false;
       itemList[i] = null;
     }
   }
