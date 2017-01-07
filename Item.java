@@ -74,4 +74,32 @@ abstract class Item {
 			this.getType().equals(other.getType()) &&
 			this.id == other.id;
 	} //equals method
+
+	public Item[] sortItemsById (Item[] list){
+	    for (int i = 0; i < list.length; i ++){
+	      int j = i;
+	      int itemId = list[j].id;
+	      while (j>0 && itemId < list[j-1]){
+		list[j] = list[j-1];
+		j--;   
+	      }
+	      list[j] = itemId;
+
+	    }
+	    return list;
+	}
+	public Item[] sortItemsByTitle (Item[] list){
+		for (int i = 0; i < list.length; i++){
+			int j = i;
+	      		String itemTitle = list[j].title;
+	      		while (j > 0 && itemTitle.compareTo(list[j-1].title) < 0){
+				list[j]= = list[j-1];
+				j --;
+	      		}
+		   	list[j] = itemTitle;
+		   }
+	   return list;
+	}
+	
+	
 } //Item class
