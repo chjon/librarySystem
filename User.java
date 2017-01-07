@@ -132,9 +132,21 @@ class User{
       
     }
     return list;
-
-    
+  }
   
+  public User sortUsersByAge (User[] list){
+    for (int i = 0; i < list.length; i ++){
+      int j = i;
+      int userAge = list[j].age;
+      while (j>0 && userAge < list[j-1]){
+        list[j] = list[j-1];
+        j--;   
+      }
+      list[j] = userAge;
+      
+    }
+    return list;
+
   }
   
 }
