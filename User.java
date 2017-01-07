@@ -105,4 +105,24 @@ class User{
     amountOwed =  amountOwed + amount;
   }
   
+  public User[] sortUsersByName (User[] list){
+    for (int i = 0; i < list.length; i++){
+      int j = i;
+      String x = list[j].name;
+      
+      while (j > 0 && x.compareTo(list[j-1].name) < 0){
+        list[j].name = list[j-1].name;
+        j --;
+      }
+      list[j].name = x;
+    }
+    return list;
+    
+  }
+
+
+    
+  
+  }
+  
 }
