@@ -108,18 +108,30 @@ class User{
   public User[] sortUsersByName (User[] list){
     for (int i = 0; i < list.length; i++){
       int j = i;
-      String x = list[j].name;
+      String userName = list[j].name;
       
-      while (j > 0 && x.compareTo(list[j-1].name) < 0){
-        list[j].name = list[j-1].name;
+      while (j > 0 && userName.compareTo(list[j-1].name) < 0){
+        list[j]= = list[j-1];
         j --;
       }
-      list[j].name = x;
+      list[j] = userName;
     }
     return list;
     
   }
 
+  public User[] sortUsersById (User[] list){
+    for (int i = 0; i < list.length; i ++){
+      int j = i;
+      int userId = list[j].id;
+      while (j>0 && userId < list[j-1]){
+        list[j] = list[j-1];
+        j--;   
+      }
+      list[j] = userId;
+      
+    }
+    return list;
 
     
   
