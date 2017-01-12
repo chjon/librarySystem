@@ -33,3 +33,6 @@ Shooter
 Movie
 6
 Superman
+Richard Donner
+150
+Action
