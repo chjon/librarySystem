@@ -29,12 +29,12 @@ public class Library {
 	}//getUserById method
 
 	public User getUserByName (String name) {
-		for (int i = 0; i < users.length; i++) {
+		for (int i = 0; i < users.length; i++) {	// searches for user by name
 			if (users[i].getName().equals(name)) {
 				return user[i];
 			}
 		}
-		return null;
+		return null;					//returns null if user non existent.
 	}//getUserById method
 
 	public Room[] getRooms () {
