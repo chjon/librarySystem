@@ -57,7 +57,7 @@ class User{
     	return false;
   }//equalsName method
   
-  public int currentItems(){
+  public int currentItems(){			//Returns the amount of items currently checked out by the user
   	int count = 0;
 	for (int i = 0; i < itemList.length; i ++){
       		if (itemList[i] != null){
@@ -67,7 +67,7 @@ class User{
     return count;
   }//currentItems method
   
-  public boolean canBorrow(Item libraryItem){
+  public boolean canBorrow(Item libraryItem){  //Checks if borrowing the item is possible
    	if (libraryItem.isOut()){
       		if (currentItems() < MAX_ITEMS_OUT){
         		return true;
