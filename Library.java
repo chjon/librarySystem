@@ -324,7 +324,7 @@ public class Library {
 	    return items;
   	}
 	
-public static Item[] sortItemById(){
+public static Item[] sortItemsById(){
     boolean sorted = false;
     Item tempItem = items[0];
     for (int i = items.length-1; i >= 1 &&!sorted; i --){
@@ -342,5 +342,25 @@ public static Item[] sortItemById(){
     }
     return items;
   }
+
+public static Item[] sortItemByName(){
+    boolean sorted = false;
+    Item tempItem = items[0];
+    for (int i = items.length-1; i >= 1 &&!sorted; i --){
+      sorted = true;
+      for (int j = 0; j <= i-1; j++){
+        if (items[j].name.compareTo(items[j+1].name) < 0){
+          sorted = false;
+          temp = items[j];
+          items[j] = items[j+1];
+          items[j+1] = temp;
+                          
+        }
+                          
+      }
+    }
+    return items;
+  }
+
 	
 }
