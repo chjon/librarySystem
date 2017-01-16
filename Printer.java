@@ -41,13 +41,19 @@ public class Printer {
 	} //getPaper method
   
 	//Checks if printing is possible and adds to amount due
-	public boolean print (boolean color,int needed) {
+	public boolean print (boolean color, int needed, User account) {
 		if(numPaper - needed >= 0){
 			numPaper -= needed;
+			
+			if (color) {
+				account.setAmountOwed(needed * PRICE_COLOUR);
+			} else {
+				account.setAmountOwed(needed * PRICE_BW;
+			} //if structure
+			
 			return true;
 		} //if structure
 		
-		numPaper = 0;
 		return false;
 	} //print method
 
