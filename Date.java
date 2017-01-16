@@ -12,10 +12,10 @@ public class Date {
 	private static final int DAYS_IN_MONTH = 30;
 	private static final char PAD_CHAR = '0';
 	
-	private int year;			//Year
-	private int month;		//Month
-	private int day;			//Day
-	private Calendar cal;	//Calendar
+	private int year;       //Year
+	private int month;      //Month
+	private int day;        //Day
+	private Calendar cal;   //Calendar
 
 	public Date (int year, int month, int day, Calendar cal) {
 		this.year = year;
