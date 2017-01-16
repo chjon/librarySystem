@@ -291,36 +291,56 @@ public class Library {
 	}
 	 public static User[] userSortByName (){
     		boolean sorted = false;
-    		User temp = list[0];
-    		for (int i = list.length-1; i >= 1 &&!sorted; i --){
+    		User temp = users[0];
+    		for (int i = users.length-1; i >= 1 &&!sorted; i --){
       			sorted = true;
       			for (int j = 0; j <= i-1; j++){
-        			if (list[j].name.compareTo(list[j+1].name) > 0){
+        			if (users[j].name.compareTo(users[j+1].name) > 0){
           			sorted = false;
-          			temp = list[j];
-          			list[j] = list[j+1];
-          			list[j+1] = temp;
+          			temp = users[j];
+          			users[j] = users[j+1];
+          			users[j+1] = temp;
        				}
        			}
     		}
-    		return list;
+    		return items;
   	}
 	public static User[] userSortById(){
 	    boolean sorted = false;
-	    User temp = list[0];
-	    for (int i = list.length-1; i >= 1 &&!sorted; i --){
+	    User temp = users[0];
+	    for (int i = users.length-1; i >= 1 &&!sorted; i --){
 	      sorted = true;
 	      for (int j = 0; j <= i-1; j++){
-		if (list[j].id < list[j+1].id)
+		if (users[j].id < users[j+1].id)
 		  sorted = false;
-		  temp = list[j];
-		  list[j] = list[j+1];
-		  list[j+1] = temp;
+		  temp = users[j];
+		  users[j] = users[j+1];
+		  users[j+1] = temp;
 
 		}
 
 	      }
 	    }
-	    return list;
+	    return items;
+  	}
+	
+public static Item[] sortItemById(){
+    boolean sorted = false;
+    Item tempItem = items[0];
+    for (int i = items.length-1; i >= 1 &&!sorted; i --){
+      sorted = true;
+      for (int j = 0; j <= i-1; j++){
+        if (items[j].id < items[j+1].id)
+          sorted = false;
+          temp = items[j];
+          items[j] = items[j+1];
+          items[j+1] = temp;
+                          
+        }
+                          
+      }
+    }
+    return items;
   }
+	
 }
