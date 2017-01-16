@@ -1,5 +1,5 @@
 public class Room extends UserHolder {
-	private int maxUser;
+	private int maxUser;		//maximum amount of users allowed
 
  public Room (long id, int maxUser) {
   	super(id);
