@@ -22,7 +22,7 @@ public class Printer{
     return false;
   }//equals method
   
-  public long getID(){
+  public long getId(){
     return id;
   }//getID method
   
