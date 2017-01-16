@@ -1,9 +1,9 @@
 public class Printer{
-  protected final double PRICE_BW = 0.15;
-  protected final double PRICE_COLOUR = 0.50;
-  protected long id;
-  protected int maxPaper;
-  protected int numPaper;
+  protected final double PRICE_BW = 0.15:                   //price of black&white paper per sheet
+  protected final double PRICE_COLOUR = 0.50;               //price of color paper per sheet
+  protected long id;                                        //id of printer
+  protected int maxPaper;                                   //max amount of paper(s) allowed in the printer
+  protected int numPaper;                                   //amount of paper currently in the printer
   
   public Printer(long identification, int max, int num){
     id = identification;
