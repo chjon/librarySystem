@@ -1,32 +1,39 @@
+/*******************************************************************************
+ * File Name:     Computer.java
+ * Class:         ICS4U-01
+ * Date:          2017/01/16
+ * Description:   This class defines a Computer.
+ *******************************************************************************/
+
 class Computer extends UserHolder{
   protected boolean occupied;
   
   public Computer(long identification){
     super(identification);
     occupied = false;
-  }//Computer constructor
+  } //Computer constructor
   
   public String toString(){
     return "ID:" + id + "Currently Available:" + id;
-  }//toString method
+  } //toString method
   
   public boolean isOccupied(){
     return occupied;
-  }//isOccupied method
+  } //isOccupied method
   
   public boolean remUser(){
 
-  }//remUser method
+  } //remUser method
   
   public void addPrinter(Printer other){
     
-  }//addPrinter method
+  } //addPrinter method
   
   public void remPrinter(long id){
   
-  }//remPrinter method
+  } //remPrinter method
   
   public boolean print(int amount,User account){
   
-  }//print method
-}//UserHolder class
+  } //print method
+} //UserHolder class
