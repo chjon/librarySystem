@@ -1,5 +1,7 @@
 abstract class UserHolder {
-	private long id;
+	protected long id;
+	protected long [] users;
+	protected int recentUser;
 
 	public UserHolder (long id) {
 		this.id = id;
@@ -20,7 +22,8 @@ abstract class UserHolder {
 		return id;
 	}
         public boolean addUser(User temp){
-	   
+		users [recentUser]  =  temp.getId();
+		recentUser ++;
 	}
 	
 }
