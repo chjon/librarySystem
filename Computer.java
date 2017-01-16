@@ -5,14 +5,13 @@
  * Description:   This class defines a Computer.
  *******************************************************************************/
 
-class Computer extends UserHolder {
-	protected boolean occupied;
-	protected Printer[] printers;
-	private final static int MAXUSERS = 1;
+public class Computer extends UserHolder {
+	private final static int MAX_USERS = 1;
+	private boolean occupied;
+	private Printer[] printers;
 
 	public Computer (long identification) {
-		super(identification);
-		occupied = false;
+		super(MAX_USERS, identification);
 	} //Computer constructor
   
 	public String toString () {
@@ -24,30 +23,40 @@ class Computer extends UserHolder {
 	} //isOccupied method
   
 	public boolean remUser () {
-		users[0] = null;		// Computer only ever has 1 user
-		occupied = false;
+		if (users[0] != null) {
+			users[0] = null;		// Computer only ever has 1 user
+			occupied = false;
+			return true;
+		} //if structure
+		
+		return false;
 	} //remUser method
-  
-	public void addPrinter (Printer other) {
-		Printer[] temp = new Printer[printers.length() + 1];
+	
+	//Add a printer
+	public void addPrinter (Printer toAdd) {
+		Printer[] temp = new Printer[printers.length + 1];
 
-		for (int i = 0; i < temp.length(); i++) {
+		for (int i = 0; i < temp.length; i++) {
 			temp[i] = printers[i];
-		}
+		} //for loop
 
-		temp[temp.length() - 1] = other;
+		temp[temp.length - 1] = toAdd;
 	} //addPrinter method
-  
+	
+	//Remove a printer
 	public void remPrinter (long id) {
-		Printer[] temp = new Printer[printers.length() - 1];
-		// one less than the original length for the removed printer
-
-		for (int i = 0; i < temp.length(); i++) {
-			// if the printer does dot have the id targeted for removal, it is kept
+		int currentIndex = 0;
+		
+		//one less than the original length for the removed printer
+		Printer[] temp = new Printer[printers.length - 1];
+		
+		//Copy only the printers that are not targeted for removal
+		for (int i = 0; i < temp.length; i++) {
 			if (printers[i].getId() != id) {
-				temp[i] = printers[i];
-			}
-		}
+				temp[currentIndex] = printers[i];
+				currentIndex++;
+			} //if structure
+		} //for loop
 
 		printers = temp;
 	} //remPrinter method
@@ -55,12 +64,12 @@ class Computer extends UserHolder {
 	public boolean print (boolean colour, int amount, User account) {
 		Printer mostPaper = printers[0];
 
-		for (int i = 1; i < printers.length(); i++) {
+		for (int i = 1; i < printers.length; i++) {
 			if (printers[i].getNumPaper() > mostPaper.getNumPaper()) {
 				mostPaper = printers[i];
-			}
-		}
+			} //if structure
+		} //for loop
 
-		mostPaper.print(colour, amount);
+		return mostPaper.print(colour, amount, account);
 	} //print method
 } //UserHolder class

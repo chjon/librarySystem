@@ -32,7 +32,7 @@ public class Printer {
 		return false;
 	} //equals method
   
-	public long getID () {
+	public long getId () {
 		return id;
 	} //getID method
   
@@ -48,7 +48,7 @@ public class Printer {
 			if (color) {
 				account.setAmountOwed(needed * PRICE_COLOUR);
 			} else {
-				account.setAmountOwed(needed * PRICE_BW;
+				account.setAmountOwed(needed * PRICE_BW);
 			} //if structure
 			
 			return true;

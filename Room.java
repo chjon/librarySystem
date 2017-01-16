@@ -1,23 +1,48 @@
+/*******************************************************************************
+ * File Name:     Room.java
+ * Class:         ICS4U-01
+ * Date:          2017/01/16
+ * Description:   This class defines a room.
+ *******************************************************************************/
+
 public class Room extends UserHolder {
-	private int maxUser;		//maximum amount of users allowed
+	private static final String TYPE = "Room";
+	private int maxUsers;		//maximum amount of users allowed
 
- public Room (long id, int maxUser) {
-  	super(id);
-  	this.maxUser = maxUser;
- }//Room constructor
+	public Room (long id, int maxUsers) {
+		super(maxUsers, id);
+		maxUsers = maxUsers;
+	} //Room constructor
 
- public String toString () {
-  	return "Max Users: "+maxUser;
- }//toString method
+	public String toString () {
+		return
+			"Type: " + TYPE + "\n" +
+			"Max Users: " + maxUsers;
+	} //toString method
 
- public boolean isOccupied () {
-  	if (users != null) {
-   		return true;
-  	}
-  	return false;
- }//isOccupied method
-
- public boolean remUser (long) {
-   
- }//remUser method
-}//Room class
+	public boolean isOccupied () {
+		int count = 0;
+	
+		for (int i = 0; i < users.length; i++) {
+			if (users[i] != null) {
+				count++;
+			} //if structure
+		} //for loop
+		
+		return count == maxUsers;
+	} //isOccupied method
+	
+	//Remove user from room
+	public boolean remUser (long id) {
+		boolean found = false;
+		
+		for (int i = 0; i < users.length && !found; i++) {
+			if (users[i].getId() == id) {
+				users[i] = null;
+				found = true;
+			} //if structure
+		} //for loop
+		
+		return found;
+	} //remUser method
+} //Room class
