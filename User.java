@@ -104,49 +104,4 @@ class User{
   public void setAmountOwed(double amount){
     amountOwed =  amountOwed + amount;
   }
-  
-  public User[] sortUsersByName (User[] list){
-    for (int i = 0; i < list.length; i++){
-      int j = i;
-      String userName = list[j].name;
-      
-      while (j > 0 && userName.compareTo(list[j-1].name) < 0){
-        list[j]= = list[j-1];
-        j --;
-      }
-      list[j] = userName;
-    }
-    return list;
-    
-  }
-
-  public User[] sortUsersById (User[] list){
-    for (int i = 0; i < list.length; i ++){
-      int j = i;
-      int userId = list[j].id;
-      while (j>0 && userId < list[j-1]){
-        list[j] = list[j-1];
-        j--;   
-      }
-      list[j] = userId;
-      
-    }
-    return list;
-  }
-  
-  public User sortUsersByAge (User[] list){
-    for (int i = 0; i < list.length; i ++){
-      int j = i;
-      int userAge = list[j].age;
-      while (j>0 && userAge < list[j-1]){
-        list[j] = list[j-1];
-        j--;   
-      }
-      list[j] = userAge;
-      
-    }
-    return list;
-
-  }
-  
 }
