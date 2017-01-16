@@ -305,4 +305,22 @@ public class Library {
     		}
     		return list;
   	}
+	public static User[] userSortById(){
+	    boolean sorted = false;
+	    User temp = list[0];
+	    for (int i = list.length-1; i >= 1 &&!sorted; i --){
+	      sorted = true;
+	      for (int j = 0; j <= i-1; j++){
+		if (list[j].id < list[j+1].id)
+		  sorted = false;
+		  temp = list[j];
+		  list[j] = list[j+1];
+		  list[j+1] = temp;
+
+		}
+
+	      }
+	    }
+	    return list;
+  }
 }
