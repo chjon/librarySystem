@@ -1,54 +1,61 @@
 class User{
-  private String name;
-  private long id;
-  private int age;
-  private double amountOwed;
-  private final int MAX_ITEMS_OUT = 5;
-  private Item[] itemList = new Item[MAX_ITEMS_OUT];
+  private String name;                                  //User name
+  private long id;                                      //User id
+  private int age;                                      //User age
+  private double amountOwed;                            //Amount due by the user
+  private final int MAX_ITEMS_OUT = 5;                  //Maximum amount of items allowed out at a single time
+  private Item[] itemList = new Item[MAX_ITEMS_OUT];    //Array of items current signed out
   
-  public User (String name, long id, int age){
+  public User (String name, long id, int age){         
     this.name = name;
     this.id = id;
     this.age = age;
     amountOwed = 0;
-  }
+  }//User constructor
+  
   public void setAge(int age){
     this.age = age;
-  }
+  }//age mutatator
+  
   public long getId(){
     return id;
-  }
+  }//id accessor 
+  
   public int getAge(){
     return age;
-  }
+  }//age accessor
+  
   public String getName(){
     return name;
-  }
+  }//name accessor
+  
   public Item[] getItems(){
     return itemList;
-  }
-  public double getAmountOverdue(){
-    return amountOwed
-  }
+  }//item array accessor
+  
+  public double getAmountOwed(){
+    return amountOwed;
+  }//amountOwed accessor
   
   public String toString(){
     String s = name +"\n User number: " + id + "\nAge: " + age +
       "\nAmount Owed: " + amountOwed+;
     return s;
-  }
+  }//toString method
   
   public boolean equalsId (User other){
     if (id == other.id){
       return true;
     }
-    
     return false;
-  }
+  }//equalsId method
+  
   public boolean equalsName (User other){
-    if (name.equals(other.name))
+    if (name.equals(other.name)){
       return true;
+    }  
     return false;
-  }
+  }//equalsName method
   
   public int currentItems(){
     int count = 0;
@@ -58,24 +65,27 @@ class User{
       }
     }
     return count;
-  }
+  }//currentItems method
+  
   public boolean canBorrow(Item libraryItem){
     if (libraryItem.isOut()){
-      if (currentItems() < MAX_ITEMS_OUT)
+      if (currentItems() < MAX_ITEMS_OUT){
         return true;
-      else
+      }  
+      else{
         return false;
+      }  
     }
     return false;
-  }
+  }//canBorrow method
+  
   public boolean takeOutItem (Item checkOut){
     if (canBorrow(checkOut)){
       itemList[currentItems()-1] = checkOut;
       return true;
     }
-    return false;
-        
-  }
+    return false;    
+  }//takeOutItem method
   
   public void takeBack(){
     int count = currentItems();
@@ -83,7 +93,8 @@ class User{
       itemList[i].isOut() = false;
       itemList[i] = null;
     }
-  }
+  }//takeBack method
+  
   public void takeBack(Item returnItem){
     returnItem.isOut = false;
     int count = currentItems();
@@ -91,7 +102,8 @@ class User{
       if (itemList[i].id == returnItem.id)
         itemList[i] = null;
     }
-  }
+  }//takeBack method
+  
   public boolean payOverdue(){
     for (int i = 0; i < itemList.length; i ++){
       if (itemList[i].isOverdue(itemList[i]))
@@ -99,9 +111,9 @@ class User{
     }
     amountOwed = 0;
     return true;
-  }
+  }//payOverdue method
  
   public void setAmountOwed(double amount){
     amountOwed =  amountOwed + amount;
   }
-}
+}//setAmountOwed method
