@@ -1,12 +1,13 @@
 public class Library {
-	private String name;
-	private User[] users;
-	private UserHolder[] userHolders;
-	private Printer[] printers;
-	private Item[] items;
-	private Calendar cal;
+	private String name; 					//name of library
+	private User[] users;					//array of users
+	private Computer[] computerList;                        //list of computers
+	private Room[] roomList;				//list of rooms
+	private Printer[] printers;				//list of printers
+	private Item[] items;					//list of items in library
+	private Calendar cal;					//
 
-	public Library (String name) {
+	public Library (String name) { //sets the name of the libary
 		this.name = name;
 	}
 
@@ -18,13 +19,14 @@ public class Library {
 		return users;
 	}
 
-	public User getUserById (long id) {
-		for (int i = 0; i < users.length; i++) {
+	public User getUserById (long id) { 
+		for (int i = 0; i < users.length; i++) { 	//finds user with specific id
 			if (users[i].getId() == id) {
 				return user[i];
 			}
 		}
-	}
+		return null;  					//if id non existent, return null 
+	}//getUserById method
 
 	public User getUserByName (String name) {
 		for (int i = 0; i < users.length; i++) {
@@ -32,7 +34,8 @@ public class Library {
 				return user[i];
 			}
 		}
-	}
+		return null;
+	}//getUserById method
 
 	public Room[] getRooms () {
 		Room[] roomList;
