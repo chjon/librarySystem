@@ -295,7 +295,7 @@ public class Library {
     		for (int i = list.length-1; i >= 1 &&!sorted; i --){
       			sorted = true;
       			for (int j = 0; j <= i-1; j++){
-        			if (list[j].name.compareTo(list[j+1].name)){
+        			if (list[j].name.compareTo(list[j+1].name) > 0){
           			sorted = false;
           			temp = list[j];
           			list[j] = list[j+1];
