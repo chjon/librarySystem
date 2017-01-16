@@ -54,7 +54,7 @@ public class Library {
 			}
 		}
 		return roomList;
-	}
+	}//getRooms method
 
 	public Room getRoomById (long id) {
 		Room[] rooms = getRooms();
@@ -63,7 +63,7 @@ public class Library {
 				return rooms[i];
 			}
 		}
-	}
+	}//getRoomById method
 
 	public Computer[] getComputers () {
 		Computer[] computerList;
@@ -82,7 +82,7 @@ public class Library {
 			}
 		}
 		return computerList;
-	}
+	}//getComputers method
 
 	public Computer getComputerById (long id) {
 		Computer[] computers = getComputers();
@@ -91,11 +91,11 @@ public class Library {
 				return computers[i];
 			}
 		}
-	}
+	}//getComputerById method
 
 	public Printer[] getPrinters () {
 		return printers;
-	}
+	}//getPrinters method
 
 	public Printer getPrinterById (long id) {
 		for (int i = 0; i < printers.length; i++) {
@@ -107,7 +107,7 @@ public class Library {
 
 	public Item[] getItems () {
 		return items;
-	}
+	}//getItems method
 
 	public Item getItemById (long id) {
 		for (int i = 0; i < items.length; i++) {
@@ -115,7 +115,7 @@ public class Library {
 				return items[i];
 			}
 		}
-	} 
+	}//getItemById method
 
 	public Item[] getItemsByTitle (String title) {
 		Item[] temp;
@@ -135,7 +135,7 @@ public class Library {
 		}
 
 		return temp;
-	}
+	}//getItemsByTitle method
 
 	public Book[] getBooks () {
 		Book[] bookList;
@@ -154,7 +154,7 @@ public class Library {
 			}
 		}
 		return bookList;
-	}
+	}//getBooks method
 
 	public Book[] getBooksByAuthor (String author) {
 		Book[] bookList;
@@ -173,7 +173,7 @@ public class Library {
 			}
 		}
 		return bookList;
-	}
+	}//getBooksByAuthor method
 
 	public VideoGame[] getVideoGames () {
 		VideoGame[] gameList;
@@ -192,7 +192,7 @@ public class Library {
 			}
 		}
 		return gameList;
-	}
+	}//getVideoGames method
 
 	public VideoGame[] getVideosGameByDev (String dev) {
 		VideoGame[] gameList;
@@ -211,7 +211,7 @@ public class Library {
 			}
 		}
 		return gameList;
-	}
+	}//getVidoesGameByDev method
 
 	public VideoGame[] getVideoGamesByGenre (String genre) {
 		VideoGame[] gameList;
@@ -230,7 +230,7 @@ public class Library {
 			}
 		}
 		return gameList;
-	}
+	}//getVideoGamesByGenre
 
 	public VideoGame[] getVideoGamesByRating (String rating) {
 		VideoGame[] gameList;
@@ -249,7 +249,7 @@ public class Library {
 			}
 		}
 		return gameList;
-	}
+	}//getVideosByRating method
 
 	public Movie[] getMoviesByDirector (String director) {
 		Movie[] movieList;
@@ -268,9 +268,9 @@ public class Library {
 			}
 		}
 		return movieList;
-	}
+	}//getMoviesByDirector method
 
-	public Movie[] getMovies () {
+	public Movie[] getMovies () {					
 		Movie[] movieList;
 		int movieListSize = 0;
 
@@ -287,12 +287,13 @@ public class Library {
 			}
 		}
 		return movieList;
-	}
+	}//getMovies method
 
 	public Item[] getOverdue (Date day) {
 
-	}
-	 public static User[] userSortByName (){
+	}//getOverdue method
+	
+	 public static User[] userSortByName (){			//Sort users in order by name
     		boolean sorted = false;
     		User temp = users[0];
     		for (int i = users.length-1; i >= 1 &&!sorted; i --){
@@ -307,8 +308,9 @@ public class Library {
        			}
     		}
     		return items;
-  	}
-	public static User[] userSortById(){
+  	}//userSortByName method
+	
+	public static User[] userSortById(){				//Sort users in order by id
 	    boolean sorted = false;
 	    User temp = users[0];
 	    for (int i = users.length-1; i >= 1 &&!sorted; i --){
@@ -325,9 +327,9 @@ public class Library {
 	      }
 	    }
 	    return items;
-  	}
+  	}//userSortById method
 	
-public static Item[] sortItemsById(){
+public static Item[] sortItemsById(){				//Sort items in order by id
     boolean sorted = false;
     Item tempItem = items[0];
     for (int i = items.length-1; i >= 1 &&!sorted; i --){
@@ -344,9 +346,9 @@ public static Item[] sortItemsById(){
       }
     }
     return items;
-  }
+  }//sortItemById method
 
-public static Item[] sortItemByName(){
+public static Item[] sortItemByName(){				//Sort items in order by name
     boolean sorted = false;
     Item tempItem = items[0];
     for (int i = items.length-1; i >= 1 &&!sorted; i --){
@@ -363,7 +365,6 @@ public static Item[] sortItemByName(){
       }
     }
     return items;
-  }
+  }//sortItemByName method	
 
-	
-}
+}//Library class
