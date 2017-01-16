@@ -289,4 +289,20 @@ public class Library {
 	public Item[] getOverdue (Date day) {
 
 	}
+	 public static User[] userSortByName (){
+    		boolean sorted = false;
+    		User temp = list[0];
+    		for (int i = list.length-1; i >= 1 &&!sorted; i --){
+      			sorted = true;
+      			for (int j = 0; j <= i-1; j++){
+        			if (list[j].name.compareTo(list[j+1].name)){
+          			sorted = false;
+          			temp = list[j];
+          			list[j] = list[j+1];
+          			list[j+1] = temp;
+       				}
+       			}
+    		}
+    		return list;
+  	}
 }
