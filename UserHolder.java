@@ -1,6 +1,6 @@
 abstract class UserHolder {
 	protected long id;
-	protected long [] users;
+	protected User [] users;
 	protected int recentUser;
 
 	public UserHolder (long id) {
