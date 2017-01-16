@@ -2,15 +2,15 @@
  * File Name:     Item.java
  * Name:          Jonathan Chung
  * Class:         ICS4U-01
- * Date:          2016/12/29
+ * Date:          2017/01/16
  * Description:   This class defines an item.
  *******************************************************************************/
 
 abstract class Item {
-	private long id;					//Item identification number
-	private boolean isOut;			//Whether the item is out of the library or not
-	private String title;			//Title of the item
-	private Date dayBorrowed;		//Day item was borrowed
+	private long id;              //Item identification number
+	private boolean isOut;        //Whether the item is out of the library or not
+	private String title;         //Title of the item
+	private Date dayBorrowed;     //Day item was borrowed
 	
 	public Item (long id, boolean isOut, String title, Date dayBorrowed) {
 		this.id = id;
@@ -76,30 +76,34 @@ abstract class Item {
 	} //equals method
 
 	public Item[] sortItemsById (Item[] list){
-	    for (int i = 0; i < list.length; i ++){
-	      int j = i;
-	      int itemId = list[j].id;
-	      while (j>0 && itemId < list[j-1]){
-		list[j] = list[j-1];
-		j--;   
-	      }
-	      list[j] = itemId;
-
-	    }
-	    return list;
-	}
+		for (int i = 0; i < list.length; i ++){
+			int j = i;
+			int itemId = list[j].id;
+			
+			while (j > 0 && itemId < list[j - 1]) {
+				list[j] = list[j - 1];
+				j--;
+	      } //while loop
+	      
+			list[j] = itemId;
+		} //for loop
+		
+		return list;
+	} //sortItemsById method
+	
 	public Item[] sortItemsByTitle (Item[] list){
 		for (int i = 0; i < list.length; i++){
 			int j = i;
-	      		String itemTitle = list[j].title;
-	      		while (j > 0 && itemTitle.compareTo(list[j-1].title) < 0){
-				list[j]= = list[j-1];
-				j --;
-	      		}
-		   	list[j] = itemTitle;
-		   }
-	   return list;
-	}
-	
-	
+			String itemTitle = list[j].title;
+			
+			while (j > 0 && itemTitle.compareTo(list[j - 1].title) < 0){
+				list[j] = list[j - 1];
+				j--;
+	      } //while loop
+			
+			list[j] = itemTitle;
+		} //for loop
+		
+		return list;
+	} //sortItemsByTitle method
 } //Item class
