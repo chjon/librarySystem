@@ -8,19 +8,19 @@
 import java.io.*;
 
 public class Library {
-	private static final long MAX_ID = 99999999;	//maximum allowed ID number
-	private String name; 								//name of library
-	private User[] users;								//list of users
-	private Computer[] computerList;    			//list of computers
-	private Room[] roomList;							//list of rooms
-	private Printer[] printers;						//list of printers
-	private Item[] items;								//list of items in library
-	private Calendar cal;								//library calendar system
+	private static final long MAX_ID = 99999999;			//maximum allowed ID number
+	private String name; 						//name of library
+	private User[] users;						//list of users
+	private Computer[] computerList;    				//list of computers
+	private Room[] roomList;					//list of rooms
+	private Printer[] printers;					//list of printers
+	private Item[] items;						//list of items in library
+	private Calendar cal;						//library calendar system
 	private DeweyDecSystem deweySystem;				//library Dewey Decimal system
 	
 	//New Library constructor
 	public Library () {
-		name = "Your Library";
+		name = "JURR Library";
 		users = new User[0];
 		computerList = new Computer[0];
 		roomList = new Room[0];
@@ -33,11 +33,11 @@ public class Library {
 	public void setName (String name) {
 		this.name = name;
 	} //setName method
-
+	
 	public String getName () {
 		return name;
 	} //getName method
-
+	
 	public User[] getUsers () {
 		return users;
 	} //getUsers method
@@ -45,7 +45,6 @@ public class Library {
 	private long genId () {
 		long id;
 		boolean isUnused;
-	
 		do {
 			id = (long)(Math.floor(Math.random() * (1 + MAX_ID)));
 			
@@ -140,7 +139,8 @@ public class Library {
 	public Computer[] getComputers () {
 		return computerList;
 	} //getComputers method
-
+	
+	//finds computer with given id
 	public Computer getComputerById (long id) {
 		Computer[] computers = getComputers();
 		for (int i = 0; i < computers.length; i++) {
@@ -151,11 +151,13 @@ public class Library {
 		
 		return null;
 	} //getComputerById method
-
+	
+	//accessor for printers
 	public Printer[] getPrinters () {
 		return printers;
 	} //getPrinters method
-
+	
+	//returns printer with specific id
 	public Printer getPrinterById (long id) {
 		for (int i = 0; i < printers.length; i++) {
 			if (printers[i].getId() == id) {
@@ -169,7 +171,8 @@ public class Library {
 	public Item[] getItems () {
 		return items;
 	} //getItems method
-
+	
+	//searches for item with given id
 	public Item getItemById (long id) {
 		Item.sortById(items);
 		return Item.searchById(items, id);
@@ -180,7 +183,8 @@ public class Library {
 		Item.sortByTitle(items);
 		return Item.searchByTitle(items, title);
 	} //getItemsByTitle method
-
+	
+	//returns all books in the library
 	public Book[] getBooks () {
 		Book[] bookList;
 		int bookListSize = 0;
@@ -201,8 +205,9 @@ public class Library {
 		
 		return bookList;
 	} //getBooks method
-
-	public Book[] getBooksByAuthor (String author) {
+	
+	//returns all books with specific author
+	public Book[] getBooksByAuthor (String author) {		
 		Book[] bookList;
 		int bookListSize = 0;
 
@@ -222,8 +227,9 @@ public class Library {
 		
 		return bookList;
 	} //getBooksByAuthor method
-
-	public VideoGame[] getVideoGames () {
+	
+	//returns all video games
+	public VideoGame[] getVideoGames () { 			
 		VideoGame[] gameList;
 		int gameListSize = 0;
 
@@ -243,8 +249,9 @@ public class Library {
 		
 		return gameList;
 	} //getVideoGames method
-
-	public VideoGame[] getVideoGamesByDev (String dev) {
+	
+	//gets all video games with specific developer
+	public VideoGame[] getVideoGamesByDev (String dev) {			
 		VideoGame[] gameList;
 		int gameListSize = 0;
 
@@ -264,8 +271,9 @@ public class Library {
 		
 		return gameList;
 	} //getVideoGamesByDev method
-
-	public VideoGame[] getVideoGamesByGenre (String genre) {
+	
+	// return all video games with specific genre
+	public VideoGame[] getVideoGamesByGenre (String genre) { 		
 		VideoGame[] gameList;
 		int gameListSize = 0;
 
@@ -285,8 +293,9 @@ public class Library {
 		
 		return gameList;
 	} //getVideoGamesByGenre
-
-	public VideoGame[] getVideoGamesByRating (int rating) {
+	
+	//returns all video games with specific age rating
+	public VideoGame[] getVideoGamesByRating (int rating) {			
 		VideoGame[] gameList;
 		int gameListSize = 0;
 
@@ -306,8 +315,9 @@ public class Library {
 		
 		return gameList;
 	} //getVideosByRating method
-
-	public Movie[] getMoviesByDirector (String director) {
+	
+	// returns all movies with specific director
+	public Movie[] getMoviesByDirector (String director) { 		
 		Movie[] movieList;
 		int movieListSize = 0;
 
@@ -327,8 +337,9 @@ public class Library {
 		
 		return movieList;
 	} //getMoviesByDirector method
-
-	public Movie[] getMovies () {					
+	
+	// returns all the movies in the library
+	public Movie[] getMovies () {							
 		Movie[] movieList;
 		int movieListSize = 0;
 
@@ -348,8 +359,9 @@ public class Library {
 		
 		return movieList;
 	} //getMovies method
-
-	public Item[] getOverdue (Date curDate) {
+	
+	// finds items that are overdue by the given Date object
+	public Item[] getOverdue (Date curDate) {   		
 		int numOverdue = 0, curIndex = 0;
 	
 		for (int i = 0; i < items.length; i++) {
@@ -369,4 +381,24 @@ public class Library {
 		
 		return overdueItems;
 	} //getOverdue method
+	
+	//searches for users with x items
+	public User[] searchUsersByAmount(int amount){			
+	  User[] amountArray = new User[users.length];
+	  for (int i = 0; i < amountArray.length; i ++){
+	    for (int r = 0; r < amount; r ++){
+	      boolean theseItems = false;
+	      if (users[i].itemsList[r] == null){
+		r = amount;
+		theseItems = false;
+	      }
+	      else
+		theseItems = true;
+	    }
+	    if (theseItems)
+	      amountArray[i] = users[i];
+
+	  }
+	  return amountArray;
+	} //searchUsersByAmount method
 } //Library class
