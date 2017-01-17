@@ -8,9 +8,9 @@
 import java.io.*;
 
 public class Calendar {
-	private static final String MONTH_DAYS_REF_FILE = "Days at start of months";
-	private static final int NUM_MONTHS = 12;
-	private static final int DAYS_IN_YEAR = 365;
+	private static final String MONTH_DAYS_REF_FILE = "Days at start of months";		//file used for calendar
+	private static final int NUM_MONTHS = 12;						//number of months in a year
+	private static final int DAYS_IN_YEAR = 365;						//number of days in a year
 	
 	private int[] daysByMonth;
 	
