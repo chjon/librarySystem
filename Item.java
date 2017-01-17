@@ -172,8 +172,8 @@ abstract class Item {
 				top = middle - 1;
 			} else {
 				bottom = middle + 1;
-         } //if structure
-      } //while loop
+			} //if structure
+		} //while loop
       
 		//Check if a match has been found
 		if (foundIndex != -1) {
@@ -201,7 +201,7 @@ abstract class Item {
 		
 		//return null if no match is found
 		return null;
-   } //searchByTitle method
+	} //searchByTitle method
 	
 	//Search an item array by genre alphabetically
 	public static Item[] searchByGenre (Item[] items, String genre) {
