@@ -20,8 +20,12 @@ public class Library {
 	
 	public Library (String userFiletext, String userHolderText, String itemFileText, 
 			String printerFileText){
+		
 		try{
-			BufferedReader in = new BufferedReader (new FileReader ("users.txt"));
+			BufferedReader itemIn =  new BufferedReader(new FileReader("items.txt"));
+			int itemAmount = Integer.parseInt(itemIn.readline());
+			items = new Item[itemAmount];
+			BufferedReader userIn = new BufferedReader (new FileReader ("users.txt"));
 			int userAmount = Integer.parseInt(in.readLine());
 			users = new User[userAmount];
 			for (int i = 0; i < userAmount; i ++){
@@ -30,10 +34,16 @@ public class Library {
 				long userId = Long.parseLong(in.readLine());
 				int userAge = Integer.parseint(in.readLine());
 				double amountOwed = Double.parseDouble(in.readLine());
-				long[] itemId = in.readLine().spl
-				users[i] = new User (userName, userId, userAge, amountOwed,
 			}
+			BufferedReader holderIn =  new BufferedReader(new FileReader("userHolder.txt"));
+			int userHolderAmount = Integer.parseInt(holderIn.readLine());
+			computerList =  new Computer[userHolderAmount];
+			roomList = new Room[userHolderAmount];
+			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
+			int printerAmount = Integer.parseINt(printerIn.readLine());
+			printers = new Printer[printerAmount];
 		}
+						 
 	}
 	
 	//New Library constructor
