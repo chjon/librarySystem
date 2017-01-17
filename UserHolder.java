@@ -24,6 +24,7 @@ public abstract class UserHolder {
 		return id;
 	} //getId method
 	
+	//Adds user to the Userholder
 	public boolean addUser(User toAdd) {
 		boolean added = false;
 	
@@ -39,20 +40,20 @@ public abstract class UserHolder {
 	
 	//Sort a UserHolder array by ID
 	public static void sortById (UserHolder[] userHolders) {
-      UserHolder temp;
-      boolean swapped = true;
+      		UserHolder temp;
+		boolean swapped = true;
       
-      for (int i = 0; i < userHolders.length && swapped; i++) {
-         swapped = false;
+		for (int i = 0; i < userHolders.length && swapped; i++) {
+			swapped = false;
          
-         for (int j = userHolders.length - 1; j > i; j--) {
-            if (userHolders[j].id < userHolders[j - 1].id) {
-               temp = userHolders[j];
-               userHolders[j] = userHolders[j - 1];
-               userHolders[j - 1] = temp;
-               swapped = true;
-            } //if structure
-         } //for loop
-      } //for loop
-   } //sortById method
+			for (int j = userHolders.length - 1; j > i; j--) {
+				if (userHolders[j].id < userHolders[j - 1].id) {
+					temp = userHolders[j];
+					userHolders[j] = userHolders[j - 1];
+					userHolders[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	} //sortById method
 } //UserHolder class
