@@ -11,10 +11,10 @@ public class User {
 	private int age;                                      //User age
 	private double amountOwed;                            //Amount due by the user
 	private final int MAX_ITEMS_OUT = 5;                  //Maximum amount of items allowed out at a single time
-	private Item[] itemList = new Item[MAX_ITEMS_OUT];    //Array of items current signed out
+	private Item[] items = new Item[MAX_ITEMS_OUT];    //Array of items current signed out
 	
 	//Constructor for loading users
-	public User (String name, long id, int age, double amountOwed) {         
+	public User (String name, long id, int age, double amountOwed, Item[] itemList) {         
 		this.name = name;
 		this.id = id;
 		this.age = age;
