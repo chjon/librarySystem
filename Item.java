@@ -33,19 +33,19 @@ abstract class Item {
 	
 	public String getTitle () {
 		return title;
-	} //getTitle accessor
+	} //title accessor
 	
 	public Date getDayBorrowed () {
 		return dayBorrowed;
-	} //getDayBorrowed accessor
+	} //dayBorrowed accessor
 	
 	public void setIsOut (boolean isOut) {
 		this.isOut = isOut;
-	} //setIsOut mutator
+	} //isOut mutator
 	
 	public void setDayBorrowed (Date dayBorrowed) {
 		this.dayBorrowed = dayBorrowed;
-	} //setDayBorrowed mutator
+	} //dayBorrowed mutator
 	
 	//Checks the items amount of days overdue
 	public int getDaysOverdue (Date curDate) {
