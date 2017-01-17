@@ -1,97 +1,77 @@
+/*******************************************************************************
+ * File Name:     Library.java
+ * Class:         ICS4U-01
+ * Date:          2017/01/16
+ * Description:   This class defines a library.
+ *******************************************************************************/
+
 public class Library {
 	private String name; 					//name of library
 	private User[] users;					//array of users
-	private Computer[] computerList;                        //list of computers
+	private Computer[] computerList;    //list of computers
 	private Room[] roomList;				//list of rooms
-	private Printer[] printers;				//list of printers
+	private Printer[] printers;			//list of printers
 	private Item[] items;					//list of items in library
-	private Calendar cal;					//
-
-	public Library (String name) { //sets the name of the libary
+	private Calendar cal;					//library calendar system
+	private DeweyDecSystem deweySystem;	//library Dewey Decimal system
+	
+	public void setName (String name) {
 		this.name = name;
-	}
+	} //setName method
 
 	public String getName () {
 		return name;
-	}
+	} //getName method
 
 	public User[] getUsers () {
 		return users;
-	}
+	} //getUsers method
+	
+	//finds user with specific id
+	public User getUserById (long id) {
+		User.sortById(users);
+		return User.searchById(users, id);
+	} //getUserById method
 
-	public User getUserById (long id) { 
-		for (int i = 0; i < users.length; i++) { 	//finds user with specific id
-			if (users[i].getId() == id) {
-				return user[i];
-			}
-		}
-		return null;  					//if id non existent, return null 
-	}//getUserById method
-
-	public User getUserByName (String name) {
-		for (int i = 0; i < users.length; i++) {	// searches for user by name
-			if (users[i].getName().equals(name)) {
-				return user[i];
-			}
-		}
-		return null;					//returns null if user non existent.
-	}//getUserById method
+	//searches for user by name
+	public User[] getUserByName (String name) {
+		User.sortByName(users);
+		return User.searchByName(users, name);
+	} //getUserByName method
 
 	public Room[] getRooms () {
-		Room[] roomList;
-		int roomListSize = 0;
-
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Room) {
-				roomListSize ++;
-			}
-		}
-		roomList = new Room[roomListSize];
-
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Room) {
-				roomList[i] = items[i];
-			}
-		}
 		return roomList;
-	}//getRooms method
+	} //getRooms method
 
+	//Search for a room by ID
 	public Room getRoomById (long id) {
+		
 		Room[] rooms = getRooms();
+		
 		for (int i = 0; i < rooms.length; i++) {
 			if (rooms[i].getId() == id) {
 				return rooms[i];
-			}
-		}
-	}//getRoomById method
+			} //if structure
+		} //for loop
+		
+		//return null if room not found
+		return null;
+	} //getRoomById method
 
 	public Computer[] getComputers () {
-		Computer[] computerList;
-		int computerListSize = 0;
-
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Computer) {
-				computerListSize ++;
-			}
-		}
-		computerList = new Computer[computerListSize];
-
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Computer) {
-				computerList[i] = items[i];
-			}
-		}
 		return computerList;
-	}//getComputers method
+	} //getComputers method
 
 	public Computer getComputerById (long id) {
 		Computer[] computers = getComputers();
 		for (int i = 0; i < computers.length; i++) {
 			if (computers[i].getId() == id) {
 				return computers[i];
-			}
-		}
-	}//getComputerById method
+			} //if structure
+		} //for loop
+		
+		return null;
+	} //getComputerById method
 
 	public Printer[] getPrinters () {
 		return printers;
@@ -101,40 +81,25 @@ public class Library {
 		for (int i = 0; i < printers.length; i++) {
 			if (printers[i].getId() == id) {
 				return printers[i];
-			}
-		}
-	}
+			} //if structure
+		} //for loop
+		
+		return null;
+	} //getPrinterById method
 
 	public Item[] getItems () {
 		return items;
 	}//getItems method
 
 	public Item getItemById (long id) {
-		for (int i = 0; i < items.length; i++) {
-			if (items[i].getId() == id) {
-				return items[i];
-			}
-		}
+		Item.sortById(items);
+		return Item.searchById(items, id);
 	}//getItemById method
-
+	
+	//Search for items by title
 	public Item[] getItemsByTitle (String title) {
-		Item[] temp;
-		int tempSize = 0;
-
-		for (int i = 0; i < items.length; i++) {
-			if (items[i].getTitle().equals(title)) {
-				tempSize ++;
-			}
-		}
-		temp = new Item[tempSize];
-
-		for (int i = 0; i < items.length; i++) {
-			if (items[i].getTitle().equals(title)) {
-				temp[i] = items[i];
-			}
-		}
-
-		return temp;
+		Item.sortByTitle(items);
+		return Item.searchByTitle(items, title);
 	}//getItemsByTitle method
 
 	public Book[] getBooks () {
@@ -144,36 +109,40 @@ public class Library {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof Book) {
 				bookListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		bookList = new Book[bookListSize];
 
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof Book) {
-				bookList[i] = items[i];
-			}
-		}
+				bookList[i] = (Book)items[i];
+			} //if structure
+		} //for loop
+		
 		return bookList;
-	}//getBooks method
+	} //getBooks method
 
 	public Book[] getBooksByAuthor (String author) {
 		Book[] bookList;
 		int bookListSize = 0;
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Book && items[i].getAuthor().equals(author)) {
+			if (items[i] instanceof Book && ((Book)items[i]).getAuthor().equals(author)) {
 				bookListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		bookList = new Book[bookListSize];
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Book && items[i].getAuthor().equals(author)) {
-				bookList[i] = items[i];
-			}
-		}
+			if (items[i] instanceof Book && ((Book)items[i]).getAuthor().equals(author)) {
+				bookList[i] = (Book)items[i];
+			} //if structure
+		} //for loop
+		
 		return bookList;
-	}//getBooksByAuthor method
+	} //getBooksByAuthor method
 
 	public VideoGame[] getVideoGames () {
 		VideoGame[] gameList;
@@ -182,36 +151,40 @@ public class Library {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof VideoGame) {
 				gameListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		gameList = new VideoGame[gameListSize];
 
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof VideoGame) {
-				gameList[i] = items[i];
-			}
-		}
+				gameList[i] = (VideoGame)items[i];
+			} //if structure
+		} //for loop
+		
 		return gameList;
 	}//getVideoGames method
 
-	public VideoGame[] getVideosGameByDev (String dev) {
+	public VideoGame[] getVideoGamesByDev (String dev) {
 		VideoGame[] gameList;
 		int gameListSize = 0;
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof VideoGame && items[i].getPublisher().equals(dev)) {
+			if (items[i] instanceof VideoGame && ((VideoGame)items[i]).getDeveloper().equals(dev)) {
 				gameListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		gameList = new VideoGame[gameListSize];
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof VideoGame && items[i].getPublisher().equals(dev)) {
-				gameList[i] = items[i];
-			}
-		}
+			if (items[i] instanceof VideoGame && ((VideoGame)items[i]).getDeveloper().equals(dev)) {
+				gameList[i] = (VideoGame)items[i];
+			} //if structure
+		} //for loop
+		
 		return gameList;
-	}//getVidoesGameByDev method
+	}//getVideoGamesByDev method
 
 	public VideoGame[] getVideoGamesByGenre (String genre) {
 		VideoGame[] gameList;
@@ -220,34 +193,38 @@ public class Library {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof VideoGame && items[i].getGenre().equals(genre)) {
 				gameListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		gameList = new VideoGame[gameListSize];
 
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof VideoGame && items[i].getGenre().equals(genre)) {
-				gameList[i] = items[i];
-			}
-		}
+				gameList[i] = (VideoGame)items[i];
+			} //if structure
+		} //for loop
+		
 		return gameList;
 	}//getVideoGamesByGenre
 
-	public VideoGame[] getVideoGamesByRating (String rating) {
+	public VideoGame[] getVideoGamesByRating (int rating) {
 		VideoGame[] gameList;
 		int gameListSize = 0;
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof VideoGame && items[i].getAgeRating().equals(rating)) {
+			if (items[i] instanceof VideoGame && ((VideoGame)items[i]).getAgeRating() == rating) {
 				gameListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		gameList = new VideoGame[gameListSize];
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof VideoGame && items[i].getAgeRating().equals(rating)) {
-				gameList[i] = items[i];
-			}
-		}
+			if (items[i] instanceof VideoGame && ((VideoGame)items[i]).getAgeRating() == rating) {
+				gameList[i] = (VideoGame)items[i];
+			} //if structure
+		} //for loop
+		
 		return gameList;
 	}//getVideosByRating method
 
@@ -256,17 +233,19 @@ public class Library {
 		int movieListSize = 0;
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Movie && items[i].getDirector().equals(director)) {
+			if (items[i] instanceof Movie && ((Movie)items[i]).getDirector().equals(director)) {
 				movieListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		movieList = new Movie[movieListSize];
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] instanceof Movie && items[i].getDirector().equals(director)) {
-				movieList[i] = items[i];
-			}
-		}
+			if (items[i] instanceof Movie && ((Movie)items[i]).getDirector().equals(director)) {
+				movieList[i] = (Movie)items[i];
+			} //if structure
+		} //for loop
+		
 		return movieList;
 	}//getMoviesByDirector method
 
@@ -277,94 +256,38 @@ public class Library {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof Movie) {
 				movieListSize ++;
-			}
-		}
+			} //if structure
+		} //for loop
+		
 		movieList = new Movie[movieListSize];
 
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] instanceof Movie) {
-				movieList[i] = items[i];
-			}
-		}
+				movieList[i] = (Movie)items[i];
+			} //if structure
+		} //for loop
+		
 		return movieList;
 	}//getMovies method
 
-	public Item[] getOverdue (Date day) {
-
-	}//getOverdue method
+	public Item[] getOverdue (Date curDate) {
+		int numOverdue = 0, curIndex = 0;
 	
-	 public static User[] userSortByName (){			//Sort users in order by name
-    		boolean sorted = false;
-    		User temp = users[0];
-    		for (int i = users.length-1; i >= 1 &&!sorted; i --){
-      			sorted = true;
-      			for (int j = 0; j <= i-1; j++){
-        			if (users[j].name.compareTo(users[j+1].name) > 0){
-          			sorted = false;
-          			temp = users[j];
-          			users[j] = users[j+1];
-          			users[j+1] = temp;
-       				}
-       			}
-    		}
-    		return items;
-  	}//userSortByName method
-	
-	public static User[] userSortById(){				//Sort users in order by id
-	    boolean sorted = false;
-	    User temp = users[0];
-	    for (int i = users.length-1; i >= 1 &&!sorted; i --){
-	      sorted = true;
-	      for (int j = 0; j <= i-1; j++){
-		if (users[j].id < users[j+1].id)
-		  sorted = false;
-		  temp = users[j];
-		  users[j] = users[j+1];
-		  users[j+1] = temp;
-
-		}
-
-	      }
-	    }
-	    return items;
-  	}//userSortById method
-	
-public static Item[] sortItemsById(){				//Sort items in order by id
-    boolean sorted = false;
-    Item tempItem = items[0];
-    for (int i = items.length-1; i >= 1 &&!sorted; i --){
-      sorted = true;
-      for (int j = 0; j <= i-1; j++){
-        if (items[j].id < items[j+1].id)
-          sorted = false;
-          temp = items[j];
-          items[j] = items[j+1];
-          items[j+1] = temp;
-                          
-        }
-                          
-      }
-    }
-    return items;
-  }//sortItemById method
-
-public static Item[] sortItemByName(){				//Sort items in order by name
-    boolean sorted = false;
-    Item tempItem = items[0];
-    for (int i = items.length-1; i >= 1 &&!sorted; i --){
-      sorted = true;
-      for (int j = 0; j <= i-1; j++){
-        if (items[j].name.compareTo(items[j+1].name) < 0){
-          sorted = false;
-          temp = items[j];
-          items[j] = items[j+1];
-          items[j+1] = temp;
-                          
-        }
-                          
-      }
-    }
-    return items;
-  }//sortItemByName method	
-
+		for (int i = 0; i < items.length; i++) {
+			if (items[i].isOverdue(curDate)) {
+				numOverdue++;
+			} //if structure
+		} //for loop
+		
+		Item[] overdueItems = new Item[numOverdue];
+		
+		for (int i = 0; i < items.length; i++) {
+			if (items[i].isOverdue(curDate)) {
+				overdueItems[curIndex] = items[i];
+				curIndex++;
+			} //if structure
+		} //for loop
+		
+		return overdueItems;
+	} //getOverdue method
 }//Library class
