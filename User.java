@@ -65,6 +65,7 @@ public class User {
 			"Amount Owed: " + amountOwed;
 	} //toString method
 	
+	//Edit user name and age by id
 	public boolean editUser(long id, String name, int age){
 		if(searchById(id) != null){
 			this.name = name;
