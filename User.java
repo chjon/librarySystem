@@ -28,38 +28,51 @@ public class User {
 		this.age = age;
 		amountOwed = 0;
 	} //User constructor
+ 
+	public void setAge(int age){
+	  this.age = age;
+  	} //age mutator
+	
+	public void setName(String name){
+	  this.name = name;
+  	}//name mutator
+	
+	public long getId(){
+    		return id;
+  	} //id accessor 
+
+	public int getAge(){
+		return age;
+	} //age accessor
   
-  public void setAge(int age){
-    	this.age = age;
-  } //age mutatator
-  
-  public long getId(){
-    	return id;
-  } //id accessor 
-  
-  public int getAge(){
-    	return age;
-  } //age accessor
-  
-  public String getName(){
-    	return name;
-  } //name accessor
-  
-  public Item[] getItems(){
-    	return itemList;
-  } //item array accessor
-  
-  public double getAmountOwed(){
-   	return amountOwed;
-  } //amountOwed accessor
-  
-  public String toString(){
+	public String getName(){
+		return name;
+	} //name accessor
+
+	public Item[] getItems(){
+		return itemList;
+	} //item array accessor
+
+	public double getAmountOwed(){
+		return amountOwed;
+	} //amountOwed accessor
+
+	public String toString(){
 		return
 			"Name: " + name + "\n" +
 			"User number: " + id + "\n" +
 			"Age: " + age + "\n" +
 			"Amount Owed: " + amountOwed;
 	} //toString method
+	
+	public boolean editUser(long id, String name, int age){
+		if(searchById(id) != null){
+			this.name = name;
+			this.age = age;
+			return true;
+		}
+		return false;
+	}//editUser method
   
 	public boolean equalsId (User other) {
 		return id == other.id;
