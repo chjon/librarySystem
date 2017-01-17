@@ -6,7 +6,7 @@
  *******************************************************************************/
 
 abstract class Item {
-	public final static double OVERDUE_PRICE = 0.25;	//Price per day overdue
+	public final static double OVERDUE_PRICE = 0.25;				//Price per day overdue
 	private long id;              							//Item identification number
 	private boolean isOut;        							//Whether the item is out of the library or not
 	private String title;         							//Title of the item
@@ -25,32 +25,34 @@ abstract class Item {
 	
 	public long getId () {
 		return id;
-	} //getId method
+	} //getId accessor
 	
-	public boolean isOut () {
+	public boolean getIsOut () {
 		return isOut;
-	} //isOut method
+	} //isOut accesssor
 	
 	public String getTitle () {
 		return title;
-	} //getTitle method
+	} //getTitle accessor
 	
 	public Date getDayBorrowed () {
 		return dayBorrowed;
-	} //getDayBorrowed method
+	} //getDayBorrowed accessor
 	
 	public void setIsOut (boolean isOut) {
 		this.isOut = isOut;
-	} //setIsOut method
+	} //setIsOut mutator
 	
 	public void setDayBorrowed (Date dayBorrowed) {
 		this.dayBorrowed = dayBorrowed;
-	} //setDayBorrowed method
+	} //setDayBorrowed mutator
 	
+	//Checks the items amount of days overdue
 	public int getDaysOverdue (Date curDate) {
 		return dayBorrowed.compareTo(curDate) - getMaxDaysOut();
 	} //getDaysOverdue method
 	
+	//Checks if the item is overdue
 	public boolean isOverdue (Date curDate) {
 		return dayBorrowed.compareTo(curDate) > getMaxDaysOut();
 	} //isOverdue method
@@ -102,8 +104,7 @@ abstract class Item {
 	//Search an Item array by ID
 	public static Item searchById (Item[] items, long id) {
 		int bottom = 0, top = items.length, middle;
-      
-      while (bottom <= top) {
+		while (bottom <= top) {
 			middle = (bottom + top) / 2;
 			
 			if (items[middle].getId() == id) {
@@ -120,58 +121,57 @@ abstract class Item {
 	
 	//Sort an item array by title alphabetically
 	public static void sortByTitle (Item[] items) {
-      Item temp;
-      boolean swapped = true;
+		Item temp;
+		boolean swapped = true;
       
-      for (int i = 0; i < items.length && swapped; i++) {
-         swapped = false;
+		for (int i = 0; i < items.length && swapped; i++) {
+			swapped = false;
          
-         for (int j = items.length - 1; j > i; j--) {
-            if (items[j].getTitle().compareTo(items[j - 1].getTitle()) > 1) {
-               temp = items[j];
-               items[j] = items[j - 1];
-               items[j - 1] = temp;
-               swapped = true;
-            } //if structure
-         } //for loop
-      } //for loop
-   } //sortByTitle method
+			for (int j = items.length - 1; j > i; j--) {
+				if (items[j].getTitle().compareTo(items[j - 1].getTitle()) > 1) {
+					temp = items[j];
+					items[j] = items[j - 1];
+					items[j - 1] = temp;
+					swapped = true;
+				} //if structure} //for loop
+			} //for loop
+		} //sortByTitle method
 	
 	//Sort an item array by genre alphabetically
 	public static void sortByGenre (Item[] items) {
-      Item temp;
-      boolean swapped = true;
+		Item temp;
+		boolean swapped = true;
       
-      for (int i = 0; i < items.length && swapped; i++) {
-         swapped = false;
+		for (int i = 0; i < items.length && swapped; i++) {
+			swapped = false;
          
-         for (int j = items.length - 1; j > i; j--) {
-            if (items[j].getGenre().compareTo(items[j - 1].getGenre()) > 1) {
-               temp = items[j];
-               items[j] = items[j - 1];
-               items[j - 1] = temp;
-               swapped = true;
-            } //if structure
-         } //for loop
-      } //for loop
-   } //sortByGenre method
+			for (int j = items.length - 1; j > i; j--) {
+				if (items[j].getGenre().compareTo(items[j - 1].getGenre()) > 1) {
+					temp = items[j];
+					items[j] = items[j - 1];
+					items[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	} //sortByGenre method
 	
 	//Search an item array by title alphabetically
 	public static Item[] searchByTitle (Item[] items, String title) {
-      int bottom = 0, top = items.length, middle;
+		int bottom = 0, top = items.length, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching item
-      while (bottom <= top && foundIndex == -1) {
-         middle = (bottom + top) / 2;
+		while (bottom <= top && foundIndex == -1) {
+			middle = (bottom + top) / 2;
 			String itemTitle = items[middle].getTitle();
          
-         if (itemTitle.equals(title)) {
-            foundIndex = middle;
-         } else if (itemTitle.compareTo(title) > 0) {
-            top = middle - 1;
-         } else {
-            bottom = middle + 1;
+			if (itemTitle.equals(title)) {
+				foundIndex = middle;
+			} else if (itemTitle.compareTo(title) > 0) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
          } //if structure
       } //while loop
       
@@ -205,22 +205,22 @@ abstract class Item {
 	
 	//Search an item array by genre alphabetically
 	public static Item[] searchByGenre (Item[] items, String genre) {
-      int bottom = 0, top = items.length, middle;
+		int bottom = 0, top = items.length, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching item
-      while (bottom <= top && foundIndex == -1) {
-         middle = (bottom + top) / 2;
+		while (bottom <= top && foundIndex == -1) {
+			middle = (bottom + top) / 2;
 			String itemGenre = items[middle].getGenre();
          
-         if (itemGenre.equals(genre)) {
-            foundIndex = middle;
-         } else if (itemGenre.compareTo(genre) > 0) {
-            top = middle - 1;
-         } else {
-            bottom = middle + 1;
-         } //if structure
-      } //while loop
+			if (itemGenre.equals(genre)) {
+				foundIndex = middle;
+			} else if (itemGenre.compareTo(genre) > 0) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
+			} //if structure
+		} //while loop
       
 		//Check if a match has been found
 		if (foundIndex != -1) {
@@ -248,5 +248,5 @@ abstract class Item {
 		
 		//return null if no match is found
 		return null;
-   } //searchByGenre method
+	} //searchByGenre method
 } //Item class
