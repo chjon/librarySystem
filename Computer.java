@@ -41,24 +41,38 @@ public class Computer extends UserHolder {
 		} //for loop
 
 		temp[temp.length - 1] = toAdd;
+		printers = temp;
 	} //addPrinter method
 	
 	//Remove a printer
-	public void remPrinter (long id) {
-		int currentIndex = 0;
+	public boolean remPrinter (long id) {
+		boolean found = false;
 		
-		//one less than the original length for the removed printer
-		Printer[] temp = new Printer[printers.length - 1];
-		
-		//Copy only the printers that are not targeted for removal
-		for (int i = 0; i < temp.length; i++) {
-			if (printers[i].getId() != id) {
-				temp[currentIndex] = printers[i];
-				currentIndex++;
+		//Check if printer is in array
+		for (int i = 0; i < printers.length && !found; i++) {
+			if (printers[i].getId() == id) {
+				found = true;
 			} //if structure
 		} //for loop
-
-		printers = temp;
+		
+		if (found) {
+			int currentIndex = 0;
+			
+			//one less than the original length for the removed printer
+			Printer[] temp = new Printer[printers.length - 1];
+			
+			//Copy only the printers that are not targeted for removal
+			for (int i = 0; i < temp.length; i++) {
+				if (printers[i].getId() != id) {
+					temp[currentIndex] = printers[i];
+					currentIndex++;
+				} //if structure
+			} //for loop
+	
+			printers = temp;
+		} //if structure
+		
+		return found;
 	} //remPrinter method
   
 	public boolean print (boolean colour, int amount, User account) {

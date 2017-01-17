@@ -5,15 +5,30 @@
  * Description:   This class defines a library.
  *******************************************************************************/
 
+import java.io.*;
+
 public class Library {
-	private String name; 					//name of library
-	private User[] users;					//array of users
-	private Computer[] computerList;    //list of computers
-	private Room[] roomList;				//list of rooms
-	private Printer[] printers;			//list of printers
-	private Item[] items;					//list of items in library
-	private Calendar cal;					//library calendar system
-	private DeweyDecSystem deweySystem;	//library Dewey Decimal system
+	private static final long MAX_ID = 99999999;	//maximum allowed ID number
+	private String name; 								//name of library
+	private User[] users;								//list of users
+	private Computer[] computerList;    			//list of computers
+	private Room[] roomList;							//list of rooms
+	private Printer[] printers;						//list of printers
+	private Item[] items;								//list of items in library
+	private Calendar cal;								//library calendar system
+	private DeweyDecSystem deweySystem;				//library Dewey Decimal system
+	
+	//New Library constructor
+	public Library () {
+		name = "Your Library";
+		users = new User[0];
+		computerList = new Computer[0];
+		roomList = new Room[0];
+		printers = new Printer[0];
+		items = new Item[0];
+		cal = new Calendar();
+		deweySystem = new DeweyDecSystem();
+	} //Library constructor
 	
 	public void setName (String name) {
 		this.name = name;
@@ -26,6 +41,70 @@ public class Library {
 	public User[] getUsers () {
 		return users;
 	} //getUsers method
+	
+	private long genId () {
+		long id;
+		boolean isUnused;
+	
+		do {
+			id = (long)(Math.floor(Math.random() * (1 + MAX_ID)));
+			
+			isUnused = true;
+			
+			for (int i = 0; i < users.length && isUnused; i++) {
+				if (users[i].getId() == id) {
+					isUnused = false;
+				} //if structure
+			} //for loop
+		} while (!isUnused);
+		
+		return id;
+	} //genId method
+	
+	//Add new user
+	public void addUser (String name, int age) {
+		User[] temp = new User[users.length + 1];
+		
+		//Copy users to larger array
+		for (int i = 0; i < users.length; i++) {
+			temp[i] = users[i];
+		} //for loop
+		
+		//Insert new user
+		temp[users.length] = new User(name, genId(), age, 0);
+		users = temp;
+	} //addUser method
+	
+	//Remove a user
+	public boolean remUser (long id) {
+		boolean found = false;
+		
+		//Check if printer is in array
+		for (int i = 0; i < users.length && !found; i++) {
+			if (users[i].getId() == id) {
+				found = true;
+			} //if structure
+		} //for loop
+		
+		if (found) {
+			int currentIndex = 0;
+			
+			//one less than the original length for the removed user
+			User[] temp = new User[users.length - 1];
+			
+			//Copy only the users that are not targeted for removal
+			for (int i = 0; i < temp.length; i++) {
+				if (users[i].getId() != id) {
+					temp[currentIndex] = users[i];
+					currentIndex++;
+				} //if structure
+			} //for loop
+	
+			users = temp;
+		} //if structure
+		
+		return found;
+	} //remUser method
 	
 	//finds user with specific id
 	public User getUserById (long id) {
@@ -75,7 +154,7 @@ public class Library {
 
 	public Printer[] getPrinters () {
 		return printers;
-	}//getPrinters method
+	} //getPrinters method
 
 	public Printer getPrinterById (long id) {
 		for (int i = 0; i < printers.length; i++) {
@@ -89,18 +168,18 @@ public class Library {
 
 	public Item[] getItems () {
 		return items;
-	}//getItems method
+	} //getItems method
 
 	public Item getItemById (long id) {
 		Item.sortById(items);
 		return Item.searchById(items, id);
-	}//getItemById method
+	} //getItemById method
 	
 	//Search for items by title
 	public Item[] getItemsByTitle (String title) {
 		Item.sortByTitle(items);
 		return Item.searchByTitle(items, title);
-	}//getItemsByTitle method
+	} //getItemsByTitle method
 
 	public Book[] getBooks () {
 		Book[] bookList;
@@ -163,7 +242,7 @@ public class Library {
 		} //for loop
 		
 		return gameList;
-	}//getVideoGames method
+	} //getVideoGames method
 
 	public VideoGame[] getVideoGamesByDev (String dev) {
 		VideoGame[] gameList;
@@ -184,7 +263,7 @@ public class Library {
 		} //for loop
 		
 		return gameList;
-	}//getVideoGamesByDev method
+	} //getVideoGamesByDev method
 
 	public VideoGame[] getVideoGamesByGenre (String genre) {
 		VideoGame[] gameList;
@@ -205,7 +284,7 @@ public class Library {
 		} //for loop
 		
 		return gameList;
-	}//getVideoGamesByGenre
+	} //getVideoGamesByGenre
 
 	public VideoGame[] getVideoGamesByRating (int rating) {
 		VideoGame[] gameList;
@@ -226,7 +305,7 @@ public class Library {
 		} //for loop
 		
 		return gameList;
-	}//getVideosByRating method
+	} //getVideosByRating method
 
 	public Movie[] getMoviesByDirector (String director) {
 		Movie[] movieList;
@@ -247,7 +326,7 @@ public class Library {
 		} //for loop
 		
 		return movieList;
-	}//getMoviesByDirector method
+	} //getMoviesByDirector method
 
 	public Movie[] getMovies () {					
 		Movie[] movieList;
@@ -268,7 +347,7 @@ public class Library {
 		} //for loop
 		
 		return movieList;
-	}//getMovies method
+	} //getMovies method
 
 	public Item[] getOverdue (Date curDate) {
 		int numOverdue = 0, curIndex = 0;
@@ -290,4 +369,4 @@ public class Library {
 		
 		return overdueItems;
 	} //getOverdue method
-}//Library class
+} //Library class
