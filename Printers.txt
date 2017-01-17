@@ -1,0 +1,22 @@
+3
+
+1256
+50
+37
+
+7129
+60
+23
+
+1936
+35
+0
+
+/*
+Sample
+size (int)
+
+Printer id (long)
+maxPaper (int)
+numPaper (int)
+*/
