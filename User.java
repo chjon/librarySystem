@@ -160,47 +160,46 @@ public class User {
 	
 	//Sort a User array by ID
 	public static void sortById (User[] users) {
-      User temp;
-      boolean swapped = true;
-      
-      for (int i = 0; i < users.length && swapped; i++) {
-         swapped = false;
+		User temp;
+		boolean swapped = true;
+		
+		for (int i = 0; i < users.length && swapped; i++) {
+			swapped = false;
          
-         for (int j = users.length - 1; j > i; j--) {
-            if (users[j].id < users[j - 1].id) {
-               temp = users[j];
-               users[j] = users[j - 1];
-               users[j - 1] = temp;
-               swapped = true;
-            } //if structure
-         } //for loop
-      } //for loop
-   } //sortById method
+			for (int j = users.length - 1; j > i; j--) {
+				if (users[j].id < users[j - 1].id) {
+					temp = users[j];
+					users[j] = users[j - 1];
+					users[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	} //sortById method
 	
 	//Sort an User array by name alphabetically
 	public static void sortByName (User[] users) {
-      User temp;
-      boolean swapped = true;
-      
-      for (int i = 0; i < users.length && swapped; i++) {
-         swapped = false;
-         
-         for (int j = users.length - 1; j > i; j--) {
-            if (users[j].getName().compareTo(users[j - 1].getName()) > 1) {
-               temp = users[j];
-               users[j] = users[j - 1];
-               users[j - 1] = temp;
-               swapped = true;
-            } //if structure
-         } //for loop
-      } //for loop
-   } //sortByName method
+		User temp;
+		boolean swapped = true;
+		
+		for (int i = 0; i < users.length && swapped; i++) {
+			swapped = false;
+			for (int j = users.length - 1; j > i; j--) {
+				if (users[j].getName().compareTo(users[j - 1].getName()) > 1) {
+					temp = users[j];
+					users[j] = users[j - 1];
+					users[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	} //sortByName method
 	
 	//Search a User array by ID
 	public static User searchById (User[] users, long id) {
 		int bottom = 0, top = users.length, middle;
       
-      while (bottom <= top) {
+		while (bottom <= top) {
 			middle = (bottom + top) / 2;
 			
 			if (users[middle].getId() == id) {
@@ -217,22 +216,22 @@ public class User {
 	
 	//Search a User array by name alphabetically
 	public static User[] searchByName (User[] users, String name) {
-      int bottom = 0, top = users.length, middle;
+		int bottom = 0, top = users.length, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching user
-      while (bottom <= top && foundIndex == -1) {
-         middle = (bottom + top) / 2;
+		while (bottom <= top && foundIndex == -1) {
+			middle = (bottom + top) / 2;
 			String userName = users[middle].getName();
          
-         if (userName.equals(name)) {
-            foundIndex = middle;
-         } else if (userName.compareTo(name) > 0) {
-            top = middle - 1;
-         } else {
-            bottom = middle + 1;
-         } //if structure
-      } //while loop
+			if (userName.equals(name)) {
+				foundIndex = middle;
+			} else if (userName.compareTo(name) > 0) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
+			} //if structure
+		} //while loop
       
 		//Check if a match has been found
 		if (foundIndex != -1) {
@@ -260,5 +259,5 @@ public class User {
 		
 		//return null if no match is found
 		return null;
-   } //searchByName method
+	} //searchByName method
 } //User class
