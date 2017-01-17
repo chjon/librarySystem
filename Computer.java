@@ -6,9 +6,9 @@
  *******************************************************************************/
 
 public class Computer extends UserHolder {
-	private final static int MAX_USERS = 1;
-	private boolean occupied;
-	private Printer[] printers;
+	private final static int MAX_USERS = 1;			//max users on a computer is only 1
+	private boolean occupied;				//whether or not a computer is occupied
+	private Printer[] printers;				//array of printers to print to
 
 	public Computer (long identification) {
 		super(MAX_USERS, identification);
