@@ -9,13 +9,13 @@
 import java.io.*;
 
 public class DeweyDecSystem {
-	private static final String DEWEY_DEC_REF_FILE = "Dewey Decimal Classes";
-	private static final int DEWEY_DEC_GENRE_CODE_LENGTH = 3;
-	private static final int MAX_DEWEY_DEC_NUM = 1000;
+	private static final String DEWEY_DEC_REF_FILE = "Dewey Decimal Classes";	//Name of dewey decimal classes file
+	private static final int DEWEY_DEC_GENRE_CODE_LENGTH = 3;			//Genre code length
+	private static final int MAX_DEWEY_DEC_NUM = 1000;				//Static value of maximum dewey decimal numbers
 	
-	private int curMaxDeweyDecNum;
-	private String[] deweyDecClasses = null;
-	private int[] deweyDecNums = null;
+	private int curMaxDeweyDecNum;							//Maxmimum number of dewey decimal number
+	private String[] deweyDecClasses = null;					//String array of dewey decimal classes	
+	private int[] deweyDecNums = null;						//Int arrray of dewey decimal numbers
 	
 	//DeweyDecSystem constructor
 	public DeweyDecSystem () {
