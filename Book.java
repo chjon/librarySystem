@@ -6,12 +6,12 @@
  *******************************************************************************/
 
 public class Book extends Item {
-	private static final String TYPE = "Book";	//Item type
-	private static final int MAX_DAYS_OUT = 21;	//Maximum number of days borrowed
-	private String author;								//Name of author
-	private int pages;									//Number of pages
+	private static final String TYPE = "Book";				//Item type
+	private static final int MAX_DAYS_OUT = 21;				//Maximum number of days borrowed
+	private String author;							//Name of author
+	private int pages;							//Number of pages
 	private double deweyDecNum;						//Dewey Decimal number
-	private DeweyDecSystem deweySystem;				//Dewey Decimal system
+	private DeweyDecSystem deweySystem;					//Dewey Decimal system
 	
 	public Book (long id, boolean isOut, String title, Date dayBorrowed,
 		String author, int pages, double deweyDecNum, DeweyDecSystem deweySystem) {
