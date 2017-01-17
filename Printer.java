@@ -24,6 +24,7 @@ public class Printer {
 			"Current Number of Paper(s): " + numPaper;
 	} //toString method
   
+	//checks if two printer objects are equal
 	public boolean equals (Printer other) {
 		if (id == other.id) {
 			return true;
