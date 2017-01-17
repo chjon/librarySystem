@@ -6,11 +6,11 @@
  *******************************************************************************/
 
 public class Date {
-	private static final int MONTH_FORMAT_LENGTH = 2;			//amount of digits in a month
-	private static final int DAY_FORMAT_LENGTH = 2;				//amount of digits in a day
-	private static final int DAYS_IN_YEAR = 365;				//number of days in a year
-	private static final int DAYS_IN_MONTH = 30;				//number of days in a month
-	private static final char PAD_CHAR = '0';				//filler character for dates
+	private static final int MONTH_FORMAT_LENGTH = 2;			//Amount of digits in a month
+	private static final int DAY_FORMAT_LENGTH = 2;				//Amount of digits in a day
+	private static final int DAYS_IN_YEAR = 365;				//Number of days in a year
+	private static final int DAYS_IN_MONTH = 30;				//Number of days in a month
+	private static final char PAD_CHAR = '0';				//Filler character for dates
 	
 	private int year;       //Year
 	private int month;      //Month
@@ -26,15 +26,15 @@ public class Date {
 	
 	public int getYear () {
 		return year;
-	} //getYear method
+	} //year accessor
 	
 	public int getMonth () {
 		return month;
-	} //getYear method
+	} //month accessor
 	
 	public int getDay () {
 		return day;
-	} //getYear method
+	} //day accessor
 	
 	//compares two date objects and returns the days in between
 	public int compareTo (Date other) {
