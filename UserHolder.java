@@ -36,4 +36,23 @@ public abstract class UserHolder {
 		
 		return added;
 	} //addUser method
+	
+	//Sort a UserHolder array by ID
+	public static void sortById (UserHolder[] userHolders) {
+      UserHolder temp;
+      boolean swapped = true;
+      
+      for (int i = 0; i < userHolders.length && swapped; i++) {
+         swapped = false;
+         
+         for (int j = userHolders.length - 1; j > i; j--) {
+            if (userHolders[j].id < userHolders[j - 1].id) {
+               temp = userHolders[j];
+               userHolders[j] = userHolders[j - 1];
+               userHolders[j - 1] = temp;
+               swapped = true;
+            } //if structure
+         } //for loop
+      } //for loop
+   } //sortById method
 } //UserHolder class

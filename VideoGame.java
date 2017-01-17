@@ -7,11 +7,11 @@
  *******************************************************************************/
 
 public class VideoGame extends Item {
-	private static final String TYPE = "Video game";					//Item type
-	private static final int MAX_DAYS_OUT = 14;						//Maximum number of days borrowed
-	private String developer;								//Name of developer
-	private String genre;									//Genre of video game
-	private int ageRating;									//Age rating of video game
+	private static final String TYPE = "Video game";      //Item type
+	private static final int MAX_DAYS_OUT = 14;           //Maximum number of days borrowed
+	private String developer;                             //Name of developer
+	private String genre;                                 //Genre of video game
+	private int ageRating;                                //Age rating of video game
 	
 	public VideoGame (long id, boolean isOut, String title, Date dayBorrowed,
 		String developer, String genre, int ageRating) {
