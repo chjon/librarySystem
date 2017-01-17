@@ -18,6 +18,24 @@ public class Library {
 	private Calendar cal;						//library calendar system
 	private DeweyDecSystem deweySystem;				//library Dewey Decimal system
 	
+	public Library (String userFiletext, String userHolderText, String itemFileText, 
+			String printerFileText){
+		try{
+			BufferedReader in = new BufferedReader (new FileReader ("users.txt"));
+			int userAmount = Integer.parseInt(in.readLine());
+			users = new User[userAmount];
+			for (int i = 0; i < userAmount; i ++){
+				in.readLine();
+				String userName = in.readLine();
+				long userId = Long.parseLong(in.readLine());
+				int userAge = Integer.parseint(in.readLine());
+				double amountOwed = Double.parseDouble(in.readLine());
+				long[] itemId = in.readLine().spl
+				users[i] = new User (userName, userId, userAge, amountOwed,
+			}
+		}
+	}
+	
 	//New Library constructor
 	public Library () {
 		name = "JURR Library";
