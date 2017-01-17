@@ -6,8 +6,8 @@
  *******************************************************************************/
 
 public abstract class UserHolder {
-	protected long id;
-	protected User [] users;
+	protected long id;			//Id of the UserHolder
+	protected User [] users;		//List of users in the UserHolder
 	
 	abstract boolean isOccupied();
 	
