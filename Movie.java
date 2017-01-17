@@ -6,12 +6,12 @@
  *******************************************************************************/
 
 public class Movie extends Item {
-	private static final String TYPE = "Movie";  //Item type
-	private static final int MAX_DAYS_OUT = 14;  //Maximum number of days borrowed
-	private String director;                     //Name of director
-	private String genre;                        //Genre of movie
-	private int length;                          //Length of movie in minutes
-	private int ageRating;                       //Age rating of movie
+	private static final String TYPE = "Movie";  		//Item type
+	private static final int MAX_DAYS_OUT = 14;  		//Maximum number of days borrowed
+	private String director;                     		//Name of director
+	private String genre;                        		//Genre of movie
+	private int length;                          		//Length of movie in minutes
+	private int ageRating;                       		//Age rating of movie
 	
 	public Movie (long id, boolean isOut, String title, Date dayBorrowed,
 		String director, String genre, int length, int ageRating) {
