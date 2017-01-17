@@ -20,6 +20,7 @@ public class Room extends UserHolder {
 			"Max Users: " + maxUsers;
 	} //toString method
 
+	//Checks if the room is full
 	public boolean isOccupied () {
 		int count = 0;
 	
