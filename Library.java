@@ -97,7 +97,21 @@ public class Library {
 				int computerCount = 0;
 				int roomCount = 0;
 				if(type.equals("Room")){
-					
+					long id = Long.parseLong(holderIn.readLine());
+					int maxUser =  Integer.parseInt(holderIn.readLine());
+					String lineOfUser = holderIn.readLine();
+					long [] userId = Long.parseLong(lineOfUser.split(","));
+					User [] arrayOfUser = new User[maxUser];
+					for(int u=0;u<maxUser;u++){
+						User found = searchById(users,userId[u]);
+						if(found != null){
+							arrayOfUser[roomCount] = found;
+						}
+					}
+					roomList[roomCount] =  new Room(id,maxUser);
+					for(int u=0;u<arrayOfUser.length;u++){
+						roomList[roomCount].addUser(arrayOfUser[u]);
+					}
 					roomCount++;
 				}
 				else if(type.equals("Computer")){
