@@ -24,6 +24,43 @@ public class Library {
 		try{
 			BufferedReader itemIn =  new BufferedReader(new FileReader("items.txt"));
 			int itemAmount = Integer.parseInt(itemIn.readline());
+			for(int i = 0;i < itemAmount; i++){
+				in.readLine();
+				String type = in.readLine();
+				if(type.equals("Book")){
+					String title = itemIn.readLine();
+					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
+					long id = Long.parseLong(itemIn.readLine());
+					int [] date = //not done
+					String author =  itemIn.readLine();
+					int pages =  Integer.parseInt(itemIn.readLine());
+					double deweyDecNum = itemIn.readLine();
+					//need deweySystem
+					items[i] = new Book(title,isOut,id,date,author,pages,deweyDecNum,deweySystem);
+				}//Book reader
+				else if(type.equals("Movie")){
+					long id = Long.parseLong(itemIn.readLine());
+					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
+					String title = itemIn.readLine();
+					//dateBorrowed
+					String director = itemIn.readLine();
+					String genre = itemIn.readLine();
+					int length = Integer.parseInt(itemIn.readLine());
+					int ageRating = Integer.parseInt(itemIn.readLine());
+					items[i] = new Movie(id,isOut,title,dateBorrowed,director,genre,length,ageRating);
+				}//Movie reader
+				else if(type.equals("Video Game")){
+					long id = Long.parseLong(itemIn.readLine());
+					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
+					String title = itemIn.readLine();
+					//dayBorrowed
+					String developer =  itemIn.readLine();
+					String genre = itemIn.readLine();
+					int ageRating = Integer.parseInt(itemIn.readLine());
+					items[i] =  new VideoGame(id,isOut,title,dayBorrowed,developer,genre,ageRating);
+				}//Video Game reader
+					
+			}//Item file reader
 			items = new Item[itemAmount];
 			BufferedReader userIn = new BufferedReader (new FileReader ("users.txt"));
 			int userAmount = Integer.parseInt(in.readLine());
