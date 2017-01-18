@@ -115,7 +115,11 @@ public class Library {
 					roomCount++;
 				}
 				else if(type.equals("Computer")){
-					
+					long id = Long.parseLong(holderIn.readLine());
+					boolean occupied = Boolean.parseBoolean(holderIn.readLine());
+					long userId =  Long.parseLong(holderIn.readLine());
+					String lineOfPrinters= holderIn.readLine();
+					long [] printerId = new Printer(Long.parseLong(lineOfPrinters.split(","));
 					computerCount++;
 				}
 			}
