@@ -24,6 +24,7 @@ public class Library {
 		try{
 			BufferedReader itemIn =  new BufferedReader(new FileReader("items.txt"));
 			int itemAmount = Integer.parseInt(itemIn.readline());
+			items = new Item[itemAmount];
 			for(int i = 0;i < itemAmount; i++){
 				in.readLine();
 				String type = in.readLine();
@@ -61,7 +62,6 @@ public class Library {
 				}//Video Game reader
 					
 			}//Item file reader
-			items = new Item[itemAmount];
 			BufferedReader userIn = new BufferedReader (new FileReader ("users.txt"));
 			int userAmount = Integer.parseInt(in.readLine());
 			users = new User[userAmount];
