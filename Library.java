@@ -118,8 +118,14 @@ public class Library {
 					long id = Long.parseLong(holderIn.readLine());
 					boolean occupied = Boolean.parseBoolean(holderIn.readLine());
 					long userId =  Long.parseLong(holderIn.readLine());
+					User foundUser =  searchById(users,userId);
 					String lineOfPrinters= holderIn.readLine();
-					long [] printerId = new Printer(Long.parseLong(lineOfPrinters.split(","));
+					long [] printerId = new Printer(Long.parseLong(lineOfPrinters.split(",")));
+					computerList[computerCount] =  new Computer(id,occupied);
+					if(occupied == true){
+						computerList[computerCount].addUser(foundUser);
+					}
+					//add user
 					computerCount++;
 				}
 			}
