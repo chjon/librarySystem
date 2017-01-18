@@ -68,6 +68,7 @@ public class Library {
 			int userAmount = Integer.parseInt(in.readLine());
 			users = new User[userAmount];
 			for (int i = 0; i < userAmount; i ++){
+				userIn.readLine();
 				String name = userIn.readLine();
 				long id = Long.parseLong(userIn.readLine());
 				int age = Integer.parseInt(userIn.readLine());
@@ -87,7 +88,7 @@ public class Library {
 			computerList =  new Computer[userHolderAmount];
 			roomList = new Room[userHolderAmount];
 			for(int i = 0; i<userHolderAmount;i++){
-				String type = in.readLine();
+				String type = holderIn.readLine();
 				if(type.equals("Room")){
 				}
 				else if(type.equals("Computer"){
@@ -96,9 +97,14 @@ public class Library {
 			
 			//Printer file reader begins
 			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
-			int printerAmount = Integer.parseINt(printerIn.readLine());
+			int printerAmount = Integer.parseInt(printerIn.readLine());
 			printers = new Printer[printerAmount];
-			
+			for(int i = 0;i<printerAmount;i++){
+				long id = Long.parseLong(printerIn.readLine());
+				int max = Integer.parseInt(printerIn.readLine());
+				int num = Integer.parseInt(printerIn.readLine());
+				printers [i] = new Printer(id,max,num);
+			}
 		} catch (Exception e) {
 		
 		}
