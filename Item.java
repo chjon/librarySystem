@@ -260,19 +260,19 @@ abstract class Item {
 		int foundCount = 0;
 		
 		//Find number of a type of item
-		if (type.equals(BOOK)) {
+		if (type.equalsIgnoreCase(BOOK)) {
 			for (int i = 0; i < items.length; i++) {
 				if (items[i] instanceof Book) {
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equals(VIDEO_GAME)) {
+		} else if (type.equalsIgnoreCase(VIDEO_GAME)) {
 			for (int i = 0; i < items.length; i++) {
 				if (items[i] instanceof VideoGame) {
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equals(MOVIE)) {
+		} else if (type.equalsIgnoreCase(MOVIE)) {
 			for (int i = 0; i < items.length; i++) {
 				if (items[i] instanceof Movie) {
 					foundCount++;
@@ -284,21 +284,21 @@ abstract class Item {
 		foundCount = 0;
 		
 		//Copy items of a matching type
-		if (type.equals(BOOK)) {
+		if (type.equalsIgnoreCase(BOOK)) {
 			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
 				if (items[i] instanceof Book) {
 					foundItems[foundCount] = items[i];
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equals(VIDEO_GAME)) {
+		} else if (type.equalsIgnoreCase(VIDEO_GAME)) {
 			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
 				if (items[i] instanceof VideoGame) {
 					foundItems[foundCount] = items[i];
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equals(MOVIE)) {
+		} else if (type.equalsIgnoreCase(MOVIE)) {
 			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
 				if (items[i] instanceof Movie) {
 					foundItems[foundCount] = items[i];
