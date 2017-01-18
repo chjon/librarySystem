@@ -86,6 +86,13 @@ public class Library {
 			int userHolderAmount = Integer.parseInt(holderIn.readLine());
 			computerList =  new Computer[userHolderAmount];
 			roomList = new Room[userHolderAmount];
+			for(int i = 0; i<userHolderAmount;i++){
+				String type = in.readLine();
+				if(type.equals("Room")){
+				}
+				else if(type.equals("Computer"){
+				}
+			}
 			
 			//Printer file reader begins
 			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
