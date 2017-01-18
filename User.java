@@ -29,35 +29,35 @@ public class User {
 		amountOwed = 0;
 	} //User constructor
  
-	public void setAge(int age){
+	public void setAge (int age) {
 	  this.age = age;
   	} //age mutator
 	
-	public void setName(String name){
+	public void setName (String name) {
 	  this.name = name;
   	}//name mutator
 	
-	public long getId(){
+	public long getId () {
     		return id;
   	} //id accessor 
 
-	public int getAge(){
+	public int getAge () {
 		return age;
 	} //age accessor
   
-	public String getName(){
+	public String getName () {
 		return name;
 	} //name accessor
 
-	public Item[] getItems(){
+	public Item[] getItems () {
 		return items;
 	} //item array accessor
 
-	public double getAmountOwed(){
+	public double getAmountOwed () {
 		return amountOwed;
 	} //amountOwed accessor
 
-	public String toString(){
+	public String toString () {
 		return
 			"Name: " + name + "\n" +
 			"User number: " + id + "\n" +
@@ -66,7 +66,7 @@ public class User {
 	} //toString method
 	
 	//Edit user name and age by id
-	public void editUser(String name, int age){
+	public void editUser (String name, int age) {
 		this.name = name;
 		this.age = age;
 	} //editUser method
@@ -75,7 +75,7 @@ public class User {
 		return id == other.id;
 	} //equalsId method
   
-	public boolean equalsName (User other){
+	public boolean equalsName (User other) {
 		return name.equals(other.name);
 	} //equalsName method
 
@@ -93,7 +93,7 @@ public class User {
 	} //currentItems method
 
 	//Checks if borrowing the item is possible
-	public boolean canBorrow(Item libraryItem) {
+	public boolean canBorrow (Item libraryItem) {
 		return
 			!libraryItem.getIsOut() &&
 			currentItems() < MAX_ITEMS_OUT;
@@ -110,7 +110,7 @@ public class User {
 	} //takeOutItem method
 
 	//Takes back all items
-	public void takeBack(Date curDate) {
+	public void takeBack (Date curDate) {
 		int count = currentItems();
 		for (int i = 0; i < count; i ++) {
 			//Add fine if item is overdue
@@ -126,7 +126,7 @@ public class User {
 	} //takeBack method
   
 	//Takes back the item according to the provided item
-	public void takeBack(Item returnItem, Date curDate) {
+	public void takeBack (Item returnItem, Date curDate) {
 		//Add fine if item is overdue
 		if (returnItem.isOverdue(curDate)) {
 			amountOwed += returnItem.getDaysOverdue(curDate) * Item.OVERDUE_PRICE;
@@ -151,7 +151,7 @@ public class User {
 	} //payOverdue method
  
 	//Add to the amount owed by the user
-	public void addAmountOwed(double amount) {
+	public void addAmountOwed (double amount) {
 		amountOwed += amount;
 	} //addAmountOwed method
 	
