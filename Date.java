@@ -37,6 +37,7 @@ public class Date {
 	} //day accessor
 	
 	//compares two date objects and returns the days in between
+	//is negative if the compared date is later
 	public int compareTo (Date other) {
 		int dayDifference = 0;
 		
@@ -45,6 +46,12 @@ public class Date {
 		dayDifference += day - other.day;
 		
 		return dayDifference;
+	} //compareDay method
+	
+	//compares two date objects and returns the days in between
+	//is negative if the compared date is later
+	public int compareTo (Date other, int daysFromCurrent, int daysFromOther) {
+		return compareTo(other) - daysFromCurrent + daysFromOther;
 	} //compareDay method
 	
 	//Pad months and days with zeros

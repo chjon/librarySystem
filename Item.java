@@ -128,7 +128,7 @@ abstract class Item {
 			swapped = false;
          
 			for (int j = items.length - 1; j > i; j--) {
-				if (items[j].getTitle().compareTo(items[j - 1].getTitle()) > 1) {
+				if (items[j].getTitle().compareTo(items[j - 1].getTitle()) > 0) {
 					temp = items[j];
 					items[j] = items[j - 1];
 					items[j - 1] = temp;
@@ -147,7 +147,7 @@ abstract class Item {
 			swapped = false;
          
 			for (int j = items.length - 1; j > i; j--) {
-				if (items[j].getGenre().compareTo(items[j - 1].getGenre()) > 1) {
+				if (items[j].getGenre().compareTo(items[j - 1].getGenre()) > 0) {
 					temp = items[j];
 					items[j] = items[j - 1];
 					items[j - 1] = temp;
@@ -156,6 +156,39 @@ abstract class Item {
 			} //for loop
 		} //for loop
 	} //sortByGenre method
+	
+	//Finds number of days between the overdue dates
+	//negative if the explicit object's overdue date is later
+	private int compareOverdue(Item other) {
+		return getDayBorrowed().compareTo(
+			other.getDayBorrowed(),
+			getMaxDaysOut(),
+			other.getMaxDaysOut());
+	} //compareOverdue method
+	
+	private int compareOverdue(Date curDate) {
+		return getDayBorrowed().compareTo(
+			curDate, getMaxDaysOut(), 0);
+	} //compareOverdue method
+	
+	//Sort an item array by date overdue
+	public static void sortByOverdue (Item[] items) {
+		Item temp;
+		boolean swapped = true;
+      
+		for (int i = 0; i < items.length && swapped; i++) {
+			swapped = false;
+         
+			for (int j = items.length - 1; j > i; j--) {
+				if (items[j].compareOverdue(items[j - 1]) < 0) {
+					temp = items[j];
+					items[j] = items[j - 1];
+					items[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	} //sortByDate method
 	
 	//Search an item array by title alphabetically
 	public static Item[] searchByTitle (Item[] items, String title) {
@@ -251,6 +284,52 @@ abstract class Item {
 		return null;
 	} //searchByGenre method
 	
+	//Search an item array by date overdue
+	public static Item[] searchByOverdue (Item[] items, Date curDate) {
+		int bottom = 0, top = items.length, middle;
+		int foundIndex = -1;
+      
+		//find the index of a matching item
+		while (bottom <= top && foundIndex == -1) {
+			middle = (bottom + top) / 2;
+         
+			if (items[middle].compareOverdue(curDate) < 0) {
+				foundIndex = middle;
+			} else if (items[middle].compareOverdue(curDate) > 0) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
+			} //if structure
+		} //while loop
+      
+		//Check if a match has been found
+		if (foundIndex != -1) {
+			int endIndex = foundIndex;
+			
+			//find first index of a matching item
+			while (foundIndex > 0 && items[foundIndex - 1].compareOverdue(curDate) == 0) {
+				foundIndex--;
+			} //while loop
+			
+			//find last index of a matching item
+			while (endIndex < items.length - 1 && items[endIndex + 1].compareOverdue(curDate) == 0) {
+				endIndex++;
+			} //while loop
+			
+			Item[] foundItems = new Item[endIndex - foundIndex + 1];
+			
+			//Copy all matching items
+			for (int i = foundIndex; i <= endIndex; i++) {
+				foundItems[i - foundIndex] = items[i];
+			} //for loop
+			
+			return foundItems;
+		} //if structure
+		
+		//return null if no match is found
+		return null;
+	} //searchByTitle method
+	
 	//Search for a type of item
 	public static Item[] searchByType (Item[] items, String type) {
 		final String BOOK = "book";
@@ -309,6 +388,4 @@ abstract class Item {
 		
 		return foundItems;
 	} //searchByType
-	
-	
 } //Item class
