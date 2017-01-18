@@ -22,6 +22,7 @@ public class Library {
 			String printerFileText){
 		
 		try{
+			//Item file reader begins
 			BufferedReader itemIn =  new BufferedReader(new FileReader("items.txt"));
 			int itemAmount = Integer.parseInt(itemIn.readline());
 			items = new Item[itemAmount];
@@ -60,25 +61,37 @@ public class Library {
 					int ageRating = Integer.parseInt(itemIn.readLine());
 					items[i] =  new VideoGame(id,isOut,title,dayBorrowed,developer,genre,ageRating);
 				}//Video Game reader
-					
-			}//Item file reader
+			}
+			
+			//User file reader begins
 			BufferedReader userIn = new BufferedReader (new FileReader ("users.txt"));
 			int userAmount = Integer.parseInt(in.readLine());
 			users = new User[userAmount];
 			for (int i = 0; i < userAmount; i ++){
-				in.readLine();
-				String userName = in.readLine();
-				long userId = Long.parseLong(in.readLine());
-				int userAge = Integer.parseint(in.readLine());
-				double amountOwed = Double.parseDouble(in.readLine());
+				String name = userIn.readLine();
+				long id = Long.parseLong(userIn.readLine());
+				int age = Integer.parseInt(userIn.readLine());
+				double amountOwed = Double.parseDouble(userIn.readLine());
+				String itemList = userIn.readLine();
+				long itemArray = itemList.split(",");
+				Item [] itemList =  new Item[itemArray.length];
+				for(int i = 0;i<itemArray.length;i++){
+					
+				}
+				users[i] =  new User(name,id,age,amountOwed,itemList);
 			}
+			
+			//UserHolder file reader begins
 			BufferedReader holderIn =  new BufferedReader(new FileReader("userHolder.txt"));
 			int userHolderAmount = Integer.parseInt(holderIn.readLine());
 			computerList =  new Computer[userHolderAmount];
 			roomList = new Room[userHolderAmount];
+			
+			//Printer file reader begins
 			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
 			int printerAmount = Integer.parseINt(printerIn.readLine());
 			printers = new Printer[printerAmount];
+			
 		} catch (Exception e) {
 		
 		}
