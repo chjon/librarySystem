@@ -133,9 +133,10 @@ abstract class Item {
 					items[j] = items[j - 1];
 					items[j - 1] = temp;
 					swapped = true;
-				} //if structure} //for loop
+				} //if structure
 			} //for loop
-		} //sortByTitle method
+		} //for loop
+	} //sortByTitle method
 	
 	//Sort an item array by genre alphabetically
 	public static void sortByGenre (Item[] items) {

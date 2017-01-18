@@ -42,6 +42,8 @@ public class Library {
 			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
 			int printerAmount = Integer.parseINt(printerIn.readLine());
 			printers = new Printer[printerAmount];
+		} catch (Exception e) {
+		
 		}
 						 
 	}
@@ -429,4 +431,130 @@ public class Library {
 	  }
 	  return amountArray;
 	} //searchUsersByAmount method
+	
+	private static int totalLength (Movie[] movies) {
+		int sum = 0;
+		
+		for (int i = 0; i < movies.length; i++) {
+			sum += movies[i].getLength();
+		} //for loop
+		
+		return sum;
+	} //totalLength method
+	
+	public static Movie[] suggestMovies (Movie[] movies, int desired) {
+		//Check if there are no more movies
+		if (movies.length == 1) {
+			return movies;
+		} //if structure
+		
+		//Array of movies with the closest desired length
+		Movie[] closestMovies = movies;
+		//Closeness to length
+		int closeness = Math.abs(desired - totalLength(movies));
+		
+		for (int movie = 0; movie < movies.length; movie++) {
+			Movie current = movies[movie];
+			
+			//Update closest if current array is closer than the stored array
+			if (closeness - Math.abs(desired - current.getLength()) > 0) {
+				closeness = Math.abs(desired - current.getLength());
+				closestMovies = new Movie[1];
+				closestMovies[0] = current;
+			} //if structure
+			
+			//Array of all movies after the current one
+			Movie[] successiveMovies = new Movie[movies.length - movie - 1];
+			
+			//Copy all successive items to new list
+			for (int i = 1; i <= successiveMovies.length; i++) {
+				successiveMovies[i - 1] = movies[movie + i];
+			} //for loop
+			
+			//Find array closest to new desired length
+			for (int i = movie; i <= successiveMovies.length; i++) {
+				Movie[] moviesToCheck = suggestMovies(successiveMovies, desired - current.getLength());
+				
+				int checkLength = totalLength(moviesToCheck);
+				
+				//Update closest if current array is closer than the stored array
+				if (closeness - Math.abs(desired - checkLength - current.getLength()) > 0) {
+					closeness = Math.abs(desired - checkLength - current.getLength());
+					
+					//Insert current movie into array
+					closestMovies = new Movie[moviesToCheck.length + 1];
+					closestMovies[0] = current;
+					
+					for (int j = 1; j < closestMovies.length; j++) {
+						closestMovies[j] = moviesToCheck[j - 1];
+					} //for loop
+				} //if structure
+			} //for loop
+		} //for loop
+		
+		return closestMovies;
+	} //suggestMovies method
+	
+	private static int totalPages (Book[] books) {
+		int sum = 0;
+		
+		for (int i = 0; i < books.length; i++) {
+			sum += books[i].getPages();
+		} //for loop
+		
+		return sum;
+	} //totalPages method
+	
+	public static Book[] suggestBooks (Book[] books, int desired) {
+		//Check if there are no more books
+		if (books.length == 1) {
+			return books;
+		} //if structure
+		
+		//Array of books with the closest desired length
+		Book[] closestBooks = books;
+		//Closeness to length
+		int closeness = Math.abs(desired - totalPages(books));
+		
+		for (int book = 0; book < books.length; book++) {
+			Book current = books[book];
+			
+			//Update closest if current array is closer than the stored array
+			if (closeness - Math.abs(desired - current.getPages()) > 0) {
+				closeness = Math.abs(desired - current.getPages());
+				closestBooks = new Book[1];
+				closestBooks[0] = current;
+			} //if structure
+			
+			//Array of all books after the current one
+			Book[] successiveBooks = new Book[books.length - book - 1];
+			
+			//Copy all successive items to new list
+			for (int i = 1; i <= successiveBooks.length; i++) {
+				successiveBooks[i - 1] = books[book + i];
+			} //for loop
+			
+			//Find array closest to new desired length
+			for (int i = book; i <= successiveBooks.length; i++) {
+				Book[] booksToCheck = suggestBooks(successiveBooks, desired - current.getPages());
+				
+				int checkPages = totalPages(booksToCheck);
+				
+				//Update closest if current array is closer than the stored array
+				if (closeness - Math.abs(desired - checkPages - current.getPages()) > 0) {
+					closeness = Math.abs(desired - checkPages - current.getPages());
+					
+					//Insert current book into array
+					closestBooks = new Book[booksToCheck.length + 1];
+					closestBooks[0] = current;
+					
+					for (int j = 1; j < closestBooks.length; j++) {
+						closestBooks[j] = booksToCheck[j - 1];
+					} //for loop
+				} //if structure
+			} //for loop
+		} //for loop
+		
+		return closestBooks;
+	} //suggestBooks method
 } //Library class

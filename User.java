@@ -50,7 +50,7 @@ public class User {
 	} //name accessor
 
 	public Item[] getItems(){
-		return itemList;
+		return items;
 	} //item array accessor
 
 	public double getAmountOwed(){
@@ -66,14 +66,10 @@ public class User {
 	} //toString method
 	
 	//Edit user name and age by id
-	public boolean editUser(long id, String name, int age){
-		if(searchById(id) != null){
-			this.name = name;
-			this.age = age;
-			return true;
-		}
-		return false;
-	}//editUser method
+	public void editUser(String name, int age){
+		this.name = name;
+		this.age = age;
+	} //editUser method
   
 	public boolean equalsId (User other) {
 		return id == other.id;
@@ -87,8 +83,8 @@ public class User {
 	public int currentItems () {
 		int count = 0;
 		
-		for (int i = 0; i < itemList.length; i ++) {
-			if (itemList[i] != null) {
+		for (int i = 0; i < items.length; i ++) {
+			if (items[i] != null) {
 				count ++;
 			} //if structure
 		} //for loop
@@ -99,14 +95,14 @@ public class User {
 	//Checks if borrowing the item is possible
 	public boolean canBorrow(Item libraryItem) {
 		return
-			!libraryItem.isOut() &&
+			!libraryItem.getIsOut() &&
 			currentItems() < MAX_ITEMS_OUT;
 	} //canBorrow method
 
 	//Adds item to the user's item list
 	public boolean takeOutItem (Item checkOut) {   
 		if (canBorrow(checkOut)) {
-			itemList[currentItems()-1] = checkOut;
+			items[currentItems() - 1] = checkOut;
 			return true;
 		} //if structure
 		
@@ -118,14 +114,14 @@ public class User {
 		int count = currentItems();
 		for (int i = 0; i < count; i ++) {
 			//Add fine if item is overdue
-			if (itemList[i].isOverdue(curDate)) {
-				amountOwed += itemList[i].getDaysOverdue(curDate) * Item.OVERDUE_PRICE;
+			if (items[i].isOverdue(curDate)) {
+				amountOwed += items[i].getDaysOverdue(curDate) * Item.OVERDUE_PRICE;
 			} //if structure
 			
 			//Reset item properties
-			itemList[i].setDayBorrowed(null);
-			itemList[i].setIsOut(false);
-			itemList[i] = null;
+			items[i].setDayBorrowed(null);
+			items[i].setIsOut(false);
+			items[i] = null;
 		} //for loop
 	} //takeBack method
   
@@ -142,9 +138,9 @@ public class User {
 		returnItem.setIsOut(false);
 		
 		//Remove the item from the user
-		for (int i = 0; i < itemList.length; i ++) {
-			if (itemList[i].getId() == returnItem.getId()) {
-				itemList[i] = null;
+		for (int i = 0; i < items.length; i ++) {
+			if (items[i].getId() == returnItem.getId()) {
+				items[i] = null;
 			} //if structure
 		} //for loop
 	} //takeBack method

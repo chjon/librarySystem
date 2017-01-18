@@ -47,9 +47,9 @@ public class Printer {
 			numPaper -= needed;
 			
 			if (color) {
-				account.setAmountOwed(needed * PRICE_COLOUR);
+				account.addAmountOwed(needed * PRICE_COLOUR);
 			} else {
-				account.setAmountOwed(needed * PRICE_BW);
+				account.addAmountOwed(needed * PRICE_BW);
 			} //if structure
 			
 			return true;
