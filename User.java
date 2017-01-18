@@ -174,6 +174,25 @@ public class User {
 		} //for loop
 	} //sortById method
 	
+	//Sort a User array by age
+	public static void sortByAge (User[] users) {
+		User temp;
+		boolean swapped = true;
+		
+		for (int i = 0; i < users.length && swapped; i++) {
+			swapped = false;
+         
+			for (int j = users.length - 1; j > i; j--) {
+				if (users[j].age < users[j - 1].age) {
+					temp = users[j];
+					users[j] = users[j - 1];
+					users[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	} //sortByAge method
+	
 	//Sort an User array by name alphabetically
 	public static void sortByName (User[] users) {
 		User temp;
@@ -257,4 +276,51 @@ public class User {
 		//return null if no match is found
 		return null;
 	} //searchByName method
+	
+	//Search a User array by age
+	public static User[] searchByAge (User[] users, int age) {
+		int bottom = 0, top = users.length, middle;
+		int foundIndex = -1;
+      
+		//find the index of a matching user
+		while (bottom <= top && foundIndex == -1) {
+			middle = (bottom + top) / 2;
+			int userAge = users[middle].getAge();
+         
+			if (userAge == age) {
+				foundIndex = middle;
+			} else if (userAge > age) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
+			} //if structure
+		} //while loop
+      
+		//Check if a match has been found
+		if (foundIndex != -1) {
+			int endIndex = foundIndex;
+			
+			//find first index of a matching user
+			while (foundIndex > 0 && users[foundIndex - 1].getAge() == age) {
+				foundIndex--;
+			} //while loop
+			
+			//find last index of a matching user
+			while (endIndex < users.length - 1 && users[endIndex + 1].getAge() == age) {
+				endIndex++;
+			} //while loop
+			
+			User[] foundUsers = new User[endIndex - foundIndex + 1];
+			
+			//Copy all matching users
+			for (int i = foundIndex; i <= endIndex; i++) {
+				foundUsers[i - foundIndex] = users[i];
+			} //for loop
+			
+			return foundUsers;
+		} //if structure
+		
+		//return null if no match is found
+		return null;
+	} //searchByAge method
 } //User class
