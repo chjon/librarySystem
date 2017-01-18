@@ -89,9 +89,15 @@ public class Library {
 			roomList = new Room[userHolderAmount];
 			for(int i = 0; i<userHolderAmount;i++){
 				String type = holderIn.readLine();
+				int computerCount = 0;
+				int roomCount = 0;
 				if(type.equals("Room")){
+					
+					roomCount++;
 				}
-				else if(type.equals("Computer"){
+				else if(type.equals("Computer")){
+					
+					computerCount++;
 				}
 			}
 			
