@@ -281,6 +281,7 @@ public class LibraryRunner {
 		long id;
 		boolean exit = false;
 		String name;
+		String genre;
 		String[] dateHold;
 		int year, month, day;
 		Date dueDate;
@@ -325,6 +326,7 @@ public class LibraryRunner {
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
 						}
+						
 						break;
 					case 4:
 						System.out.print("Enter item ID: ");
@@ -332,7 +334,15 @@ public class LibraryRunner {
 						System.out.println(jurrLibrary.getItemById(id));
 						break;
 					case 5:
-						//NOTE no getItemsByGenre method found													//
+						System.out.print("Enter a genre: ");
+						genre = sc.nextLine();
+
+						tempList = searchByGenre(jurrLibrary.getItems(), genre);
+
+						for (int i = 0; i < tempList.length; i++) {
+							System.out.println(tempList[i]);
+						}
+
 						break;
 					case 6:
 						exit = true;
@@ -367,7 +377,7 @@ public class LibraryRunner {
 		curUser = jurrLibrary.getUserById(accNum);
 
 		while (!exit) {
-			System.out.println("DISPLAY USERS MENU");
+			System.out.println("USER LIST MENU");
 			System.out.println("1. Display users");
 			System.out.println("2. Add user");
 			System.out.println("3. Remove user");
@@ -397,7 +407,7 @@ public class LibraryRunner {
 						jurrLibrary.remUser(id);
 						break;
 					case 4:
-
+						//NOTE Clarify with team what this does
 						break;
 					case 5:
 						exit = true;
@@ -421,6 +431,8 @@ public class LibraryRunner {
 		long accNum;
 		int sel;
 		boolean exit = false;
+		String name;
+		User[] tempUsers;
 
 		System.out.print("Enter account number: ");
 		accNum = sc.nextLong();
@@ -429,11 +441,12 @@ public class LibraryRunner {
 
 		while (!exit) {
 			System.out.println("DISPLAY USERS MENU");
-			System.out.println("1. Display users");
-			System.out.println("2. Add user");
-			System.out.println("3. Remove user");
-			System.out.println("4. Edit user");
-			System.out.println("5. Return to MAIN MENU");
+			System.out.println("1. List by ID");
+			System.out.println("2. List by name");
+			System.out.println("3. List by age");
+			System.out.println("4. List by overdue");
+			System.out.println("5. List by number of items");
+			System.out.println("6. Return to USER LIST MENU");
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -441,18 +454,34 @@ public class LibraryRunner {
 
 				switch (sel) {
 					case 1:
+						tempUsers = jurrLibrary.getUsers();
+
+						for (int i = 0; i < tempUsers.length; i++) {
+							System.out.println(tempUsers[i]);
+						}
 
 						break;
 					case 2:
+						System.out.print("Enter a name: ");
+						name = sc.nextLine();
+
+						tempUsers = jurrLibrary.getUserByName(name);
+
+						for (int i = 0; i < tempUsers.length; i++) {
+							System.out.println(tempUsers[i]);
+						}
 
 						break;
 					case 3:
-
+						//NOTE getUsersByAge method not found															//
 						break;
 					case 4:
-
+					
 						break;
 					case 5:
+						
+						break;
+					case 6:
 						exit = true;
 						break;
 				} //switch structure to display sub menus
