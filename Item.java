@@ -250,4 +250,63 @@ abstract class Item {
 		//return null if no match is found
 		return null;
 	} //searchByGenre method
+	
+	//Search for a type of item
+	public static Item[] searchByType (Item[] items, String type) {
+		final String BOOK = "book";
+		final String VIDEO_GAME = "video game";
+		final String MOVIE = "movie";
+		
+		int foundCount = 0;
+		
+		//Find number of a type of item
+		if (type.equals(BOOK)) {
+			for (int i = 0; i < items.length; i++) {
+				if (items[i] instanceof Book) {
+					foundCount++;
+				} //if structure
+			} //for loop
+		} else if (type.equals(VIDEO_GAME)) {
+			for (int i = 0; i < items.length; i++) {
+				if (items[i] instanceof VideoGame) {
+					foundCount++;
+				} //if structure
+			} //for loop
+		} else if (type.equals(MOVIE)) {
+			for (int i = 0; i < items.length; i++) {
+				if (items[i] instanceof Movie) {
+					foundCount++;
+				} //if structure
+			} //for loop
+		} //if structure
+		
+		Item[] foundItems = new Item[foundCount];
+		foundCount = 0;
+		
+		//Copy items of a matching type
+		if (type.equals(BOOK)) {
+			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
+				if (items[i] instanceof Book) {
+					foundItems[foundCount] = items[i];
+					foundCount++;
+				} //if structure
+			} //for loop
+		} else if (type.equals(VIDEO_GAME)) {
+			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
+				if (items[i] instanceof VideoGame) {
+					foundItems[foundCount] = items[i];
+					foundCount++;
+				} //if structure
+			} //for loop
+		} else if (type.equals(MOVIE)) {
+			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
+				if (items[i] instanceof Movie) {
+					foundItems[foundCount] = items[i];
+					foundCount++;
+				} //if structure
+			} //for loop
+		} //if structure
+		
+		return foundItems;
+	} //searchByType
 } //Item class
