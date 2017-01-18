@@ -631,4 +631,107 @@ public class Library {
 		
 		return closestBooks;
 	} //suggestBooks method
+	public void writeToFile(){
+		try{
+  BufferedWriter out = new BufferedWriter (new FileWriter ("printers.txt", true));
+  out.write(""+printers.length);
+  for (int i =0; i < printers.length; i ++){
+    out.newLine();
+    out.write(""+printers[i].id);  
+    out.newLine();
+    out.write(""+printers[i].maxPaper);
+    out.newLine();
+    out.write(""+printers[i].numPaper);
+    out.newLine();
+    out.newLine():
+  }
+  printerOut.close();
+}catch (IOException e){
+  System.out.println("Problem with file" + e.getMessage());
+  
+}
+try{
+  BufferedWriter itemOut = new BufferedWriter (new FileWriter ("items.txt", true));
+  out.write(""+items.length);
+  for (int i = 0; i < items.length; i ++){
+    out.newLine();
+    if (items[i] instanceof Book){
+      out.write("Book");
+      out.newLine();
+      out.write(items[i].title);
+      out.newLine();
+      if (items[i].getIsOut())
+        out.write("true");
+      else
+        out.write("false");
+      out.newLine();
+      out.write(""+items[i].id);
+      out.newLine();
+      out.write(items[i].dayBorrowed.getDay()+"/");
+      out.write(items[i].dayBorrowed.getMonth()+"/");
+      out.write(items[i].dayBorrowed.getYear()+"");
+      out.newLine();
+      out.write(((Book)(items[i])).getAuthor());
+      out.newLine();
+      out.write(((Book)(items[i])).getPages()+"");
+      out.newLine();
+      out.write(((Book)(items[i])).getDeweyDecNum()+"");
+      out.newLine();
+    }
+    else if (items[i] instanceof Movie){
+      out.write("Movie");
+      out.newLine();
+      out.write(""+ items[i].id);
+      out.newLine();
+      if(items[i].getIsOut())
+        out.write("true");
+      else
+        out.write("false");
+      out.newLine();
+      out.write(items[i].title);
+      out.newLine();
+      out.write(items[i].dayBorrowed.getDay()+"/");
+      out.write(items[i].dayBorrowed.getMonth()+"/");
+      out.write(items[i].dayBorrowed.getYear()+"");
+      out.newLine();
+      out.write(((Movie)(items[i])).getDirector());
+      out.newLine();
+      out.write(((Movie)(items[i])).getGenre());
+      out.newLine();
+      out.write(((Movie)(items[i])).getLength()+"");
+      out.newLine();
+      out.write(((Movie)(items[i])).getAgeRating()+"");
+      out.newLine();
+    }
+    else if (items[i] instanceof VideoGame){
+      out.write("Video Game");
+      out.newLine();
+      out.write(items[i].getId()+"");
+      out.newLine();
+      if (items[i].getIsOut())
+        out.write("true");
+      else
+        out.write("false");
+      out.newLine();
+      out.write(items[i].getTitle());
+      out.newLine();
+      out.write(items[i].dayBorrowed.getDay()+"/");
+      out.write(items[i].dayBorrowed.getMonth()+"/");
+      out.write(items[i].dayBorrowed.getYear()+"");
+      out.newLine();
+      out.write(((VideoGame)(items[i])).getDeveloper());
+      out.newLine();
+      out.write(((VideoGame)(items[i])).getGenre());
+      out.newLine();
+      out.write(((VideoGame)(items[i])).getAgeRating()+"");
+      out.newLine();
+    }
+      
+    }
+  out.close();
+}catch (IOException e){
+  System.out.println("Problem with using file" + e.getMessage());
+  
+}
+	}
 } //Library class
