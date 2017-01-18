@@ -33,18 +33,21 @@ public class Library {
 					String title = itemIn.readLine();
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 					long id = Long.parseLong(itemIn.readLine());
-					int [] date = //not done
+					String lineOfDate = itemIn.readLine();
+					int [] date = Integer.parseInt(lineOfDate.split("/"));
+					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					String author =  itemIn.readLine();
 					int pages =  Integer.parseInt(itemIn.readLine());
 					double deweyDecNum = itemIn.readLine();
-					//need deweySystem
-					items[i] = new Book(title,isOut,id,date,author,pages,deweyDecNum,deweySystem);
+					items[i] = new Book(title,isOut,id,dayBorrowed,author,pages,deweyDecNum,deweySystem);
 				}//Book reader
 				else if(type.equals("Movie")){
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 					String title = itemIn.readLine();
-					//dateBorrowed
+					String lineOfDate = itemIn.readLine();
+					int [] date =  Integer.parseInt(lineOfDate.split("/"));
+					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					String director = itemIn.readLine();
 					String genre = itemIn.readLine();
 					int length = Integer.parseInt(itemIn.readLine());
@@ -55,7 +58,9 @@ public class Library {
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 					String title = itemIn.readLine();
-					//dayBorrowed
+					String lineOfDate = itemIn.readLine();
+					int [] date = Integer.parseInt(lineOfDate.split("/"));
+					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					String developer =  itemIn.readLine();
 					String genre = itemIn.readLine();
 					int ageRating = Integer.parseInt(itemIn.readLine());
