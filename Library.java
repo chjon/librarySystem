@@ -757,5 +757,86 @@ try{
   System.out.println("Problem with using file" + e.getMessage());
   
 }
+		}
+try{
+  BufferedWriter out = new BufferedWriter (new FileWriter ("users.txt", true));
+  out.write(users.length + "");
+  out.newLine();
+  boolean found = false;
+  for (int i = 0; i < users.length; i ++){
+    out.newLine();
+    out.write(users[i].name);
+    out.newLine();
+    out.write(users[i].id+"");
+    out.newLine();
+    out.write(users[i].age+"");
+    out.newLine();
+    out.write(users[i].amountOwed+"");
+    out.newLine();
+    for (int r = 0; r < users[r].items[r].length && !found; r ++){
+      if (users[i].items[r] !=null){
+        out.write(users[i].items[r].id+",");
+        
+        found = false;
+      }
+      else
+        found = true;
+    }
+    out.newLine();
+    
+    
+  }
+  out.close();
+}catch (IOException e){
+  System.out.println("Problem with using file" + e.getMessage());
+}
+try{
+  BufferedWriter out = new BufferedWriter (new FileWriter ("userHolder.txt", true));
+  out.write((computer.length + rooms.length) +"");
+  boolean found = false;
+  for (int i = 0; i < rooms.length; i ++){
+    out.write("Printer");
+    out.newLine();
+    out.write(rooms[i].id+"");
+    out.newLine();
+    out.write(rooms[i].maxUser+"");
+    out.newLine();
+    for (int r = 0; r < rooms[i].users[i].length && !found; i ++){
+      if (rooms[i].users[r] !=null){
+        out.write(rooms[i].users[r].id+",");
+        
+        found = false;
+      }
+      else
+        found = true;
+    }
+    out.newLine();
+    
+  }
+  for (int i = 0; i < computers.length; i ++){
+    out.write("Computer");
+    out.newLine();
+    out.write(computers[i].id+"");
+    out.newLine();
+    if (computers[i].isOccupied())
+      out.write("true");
+    else
+      out.write("false");
+    out.newLine();
+    for (int r = 0; r < rooms[i].users[i].length && !found; i ++){
+      if (rooms[i].users[r] !=null){
+        out.write(rooms[i].users[r].id+",");
+        
+        found = false;
+      }
+      else
+        found = true;
+    }
+    out.newLine();
+    
+  }
+  
+}
+
 	}
 } //Library class
