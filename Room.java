@@ -50,4 +50,10 @@ public class Room extends UserHolder {
 		
 		return found;
 	} //remUser method
+	
+	public void remAllUsers () {
+		for (int i = 0; i < users.length; i++) {
+			users[i] = null;
+		}
+	}
 } //Room class
