@@ -11,12 +11,3 @@
 1936
 35
 0
-
-/*
-Sample
-size (int)
-
-Printer id (long)
-maxPaper (int)
-numPaper (int)
-*/
