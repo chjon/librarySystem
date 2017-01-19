@@ -13,15 +13,17 @@ public class LibraryRunner {
 	private static Library jurrLibrary = new Library();
 
 	public static void main (String[] args) {
-
 		displayMainMenu();
 	} // main method
 
 	public static void displayMainMenu () {
-		int sel;
+		//Base method for interaction
+
+		int sel; // to choose an option
 		boolean exit = false;
 
 		while (!exit) {
+			//Structure to select which function to execute or other menu to view
 			System.out.println("MAIN MENU");
 			System.out.println("Welcome to the Library!\nPlease enter a selection:");
 			System.out.println("1. Enter account credentials");
@@ -36,30 +38,37 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Entering account credentials
 					case 1:
 						displayAccountMenu();
 						break;
 
+					//Viewing Library inventory
 					case 2:
 						displayLibraryInventoryMenu();
 						break;
 
+					//Viewing list of users
 					case 3:
 						displayUserListMenu();
 						break;
 
+					//Returning an item
 					case 4:
 						displayReturnItem();
 						break;
 
+					//Viewing rooms
 					case 5:
 						displayRoomMenu();
 						break;
 
+					//Viewing computers
 					case 6:
 						displayComputerMenu();
 						break;
 
+					//Exit
 					case 7:
 						exit = true;
 						break;
@@ -74,16 +83,17 @@ public class LibraryRunner {
 
 	public static void displayAccountMenu () {
 		//displayMainMenu selection 1
+		//Shows options to interact with a user's account
 
 		long accNum; 
 		int sel;
 		int itemId;
 		int newAge;
-		int targetPages;
-		int targetMinutes;
+		int targetPages;			//Number of pages a user wants for suggested books
+		int targetMinutes;		//Number of minutes a user wants for suggested movies
 		boolean exit = false;
 		String newName;
-		User curUser;
+		User curUser;				//Current user
 		Item[] tempList;
 
 		System.out.print("Enter account number: ");
@@ -107,6 +117,7 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Signing out an item
 					case 1:
 						System.out.print("Enter item ID: ");
 						itemId = sc.nextInt();
@@ -114,19 +125,23 @@ public class LibraryRunner {
 						curUser.takeOutItem(jurrLibrary.getItemById(itemId));
 						break;
 
+					//Viewing current items in the account
 					case 2:
 						viewCurrentItemsMenu();
 						break;
 
+					//Displaying the amount owed to the Library
 					case 3:
 						System.out.println("Amount owed: "+curUser.getAmountOwed());
 						break;
 
+					//Paying overdue fines
 					case 4:
 						curUser.payFine();
 						System.out.println("Transaction complete.  All fees have been paid");
 						break;
 
+					//Change information in the account
 					case 5:
 						System.out.print("Enter name: ");
 						newName = sc.nextLine();
@@ -136,6 +151,7 @@ public class LibraryRunner {
 						System.out.println("Account information changed");
 						break;
 
+					//Returning books suggested that are closest to the number of pages the user enters
 					case 6:
 						System.out.print("Enter a number of pages to read: ");
 						targetPages = sc.nextInt();
@@ -148,6 +164,7 @@ public class LibraryRunner {
 						}
 						break;
 
+					//Returning movies suggested that are closest to the number of minutes the user enters
 					case 7:
 						System.out.print("Enter number of minutes to watch: ");
 						targetMinutes = sc.nextInt();
@@ -194,6 +211,7 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Displays a list of items according to their title
 					case 1:
 						System.out.print("Enter a title: ");
 						name = sc.nextLine();
@@ -206,6 +224,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Displays a list of items according to their expiry/overdue date
 					case 2:
 						System.out.print("Enter an expiry date (YYYY/MM/DD): ");
 						dateTemp = sc.nextLine().split("/");
@@ -220,6 +239,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Displays an item with the matching ID
 					case 3:
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
@@ -266,6 +286,7 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Displays the item list of the Library inventory
 					case 1:
 						tempList = jurrLibrary.getItems();
 
@@ -275,6 +296,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Add item to the list of items
 					case 2:
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
@@ -283,6 +305,7 @@ public class LibraryRunner {
 						System.out.print("Enter item type (book, video game, movie): ");
 						type = sc.nextLine();
 
+						//If the item is of type Book
 						if (type.equalsIgnoreCase("book")) {
 							parameters = new Object[BOOKPARAMETERS];
 
@@ -297,6 +320,7 @@ public class LibraryRunner {
 
 							jurrLibrary.addItem(type, name, parameters);
 
+						//If the item is of type VideoGame
 						} else if (type.equalsIgnoreCase("video game")) {
 							parameters = new Object[VIDEOGAMEPARAMETERS];
 
@@ -311,6 +335,7 @@ public class LibraryRunner {
 
 							jurrLibrary.addItem(type, name, parameters);
 
+						//If the item is of type Movie
 						} else if (type.equalsIgnoreCase("movie")) {
 							parameters = new Object[MOVIEPARAMETERS];
 
@@ -331,6 +356,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Removes an item from the list by ID
 					case 3:
 						System.out.print("Enter an ID: ");
 						id = sc.nextLong();
@@ -339,6 +365,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Checks to see if an item is in the library or not
 					case 4:
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
@@ -394,6 +421,7 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Displays items that are overdue
 					case 1:
 						System.out.print("Enter the overdue date (DD/MM/YYYY): ");
 						dateHold = sc.nextLine().split("/");
@@ -408,6 +436,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Displays item by the selected type (Book, VideoGame, Movie)
 					case 2:
 						System.out.print("Enter an item type (book / video game / movie): ");
 						type = sc.nextLine();
@@ -419,6 +448,7 @@ public class LibraryRunner {
 						}
 						break;
 
+					//Displays items by their title
 					case 3:
 						System.out.print("Enter a title: ");
 						name = sc.nextLine();
@@ -431,12 +461,14 @@ public class LibraryRunner {
 						
 						break;
 
+					//Displays an item with the entered ID
 					case 4:
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
 						System.out.println(jurrLibrary.getItemById(id));
 						break;
 
+					//Displays items by genre
 					case 5:
 						System.out.print("Enter a genre: ");
 						genre = sc.nextLine();
@@ -488,10 +520,12 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Enters menu to display users
 					case 1:
 						displayUsersMenu();
 						break;
 
+					//Adds user to the library user list
 					case 2:
 						System.out.print("Enter a name: ");
 						name = sc.nextLine();
@@ -501,6 +535,7 @@ public class LibraryRunner {
 						jurrLibrary.addUser(name, age);
 						break;
 
+					//Removes a user from the library user list
 					case 3:
 						System.out.print("Enter an ID: ");
 						id = sc.nextInt();
@@ -508,6 +543,7 @@ public class LibraryRunner {
 						jurrLibrary.remUser(id);
 						break;
 
+					//Changes user information
 					case 4:
 						System.out.print("Enter account number: ");
 						accNum = sc.nextLong();
@@ -542,7 +578,7 @@ public class LibraryRunner {
 		//displayUserListMenu selection 1
 
 		long accNum;
-		int sel, age;
+		int sel, age, itemNum;
 		boolean exit = false;
 		String name;
 		String[] dateInfo;
@@ -570,6 +606,7 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Lists users by ID
 					case 1:
 						tempUsers = jurrLibrary.getUsers();
 
@@ -579,6 +616,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Lists users by name
 					case 2:
 						System.out.print("Enter a name: ");
 						name = sc.nextLine();
@@ -591,6 +629,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Lists users by age
 					case 3:
 						System.out.print("Enter age: ");
 						age = sc.nextInt();
@@ -603,6 +642,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Lists users by overdues
 					case 4:
 						System.out.println("Enter date (YYYY/MM/DD: ");
 						dateInfo = sc.nextLine().split("/");
@@ -617,8 +657,17 @@ public class LibraryRunner {
 
 						break;
 
+					//Lists users by the number of items
 					case 5:
-						
+						System.out.print("Enter number of items: ");
+						itemNum = sc.nextInt();
+
+						tempUsers = User.searchByNumItemsOut(jurrLibrary.getUsers(), itemNum);
+
+						for (int i = 0; i < tempUsers.length; i++) {
+							System.out.println(tempUsers[i]);
+						}
+
 						break;
 						
 					case 6:
@@ -637,6 +686,7 @@ public class LibraryRunner {
 
 	public static void displayReturnItem () {
 		//displayMainMenu selection 4
+
 		long id;
 		boolean exit = false;
 		String[] dateTemp;
@@ -690,6 +740,7 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Displays a listing of all rooms
 					case 1:
 						tempRooms = jurrLibrary.getRooms();
 
@@ -699,6 +750,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Displays a room with the matching entered ID
 					case 2:
 						System.out.println("Enter room ID: ");
 						roomId = sc.nextLong();
@@ -706,6 +758,7 @@ public class LibraryRunner {
 						System.out.println(jurrLibrary.getRoomById(roomId));
 						break;
 
+					//Adds a user to a room
 					case 3:
 						System.out.print("Enter room ID: ");
 						roomId = sc.nextLong();
@@ -725,6 +778,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Enters a sub menu to remove users from a room
 					case 4:
 						System.out.print("Enter room ID: ");
 						roomId = sc.nextLong();
@@ -768,12 +822,14 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Removes all users from the room
 					case 1:
 						curRoom.remAllUsers();
 						System.out.println("All users removed");
 
 						break;
 
+					//Removes a single user from the room specified by ID
 					case 2:
 						System.out.print("Enter a user ID: ");
 						id = sc.nextLong();
@@ -785,6 +841,7 @@ public class LibraryRunner {
 						}
 
 						break;
+
 					case 3:
 						exit = true;
 						break;
@@ -823,6 +880,7 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
+					//Displays a listing of all computers
 					case 1:
 						tempComs = jurrLibrary.getComputers();
 
@@ -832,6 +890,7 @@ public class LibraryRunner {
 
 						break;
 
+					//Displays a computer with matching entered ID
 					case 2:
 						System.out.println("Enter Computer ID: ");
 						comId = sc.nextLong();
@@ -839,6 +898,7 @@ public class LibraryRunner {
 						System.out.println(jurrLibrary.getComputerById(comId));
 						break;
 
+					//Adds a user to a computer
 					case 3:
 						System.out.print("Enter room ID: ");
 						comId = sc.nextLong();
@@ -858,12 +918,14 @@ public class LibraryRunner {
 
 						break;
 
+					//Removes a user from a computer
 					case 4:
 						System.out.print("Enter Computer ID: ");
 						comId = sc.nextLong();
 
 						curCom = jurrLibrary.getComputerById(comId);
 
+						//A computer will only ever have one user at max
 						if (curCom.remUser) {
 							System.out.println("User removed");
 						} else {
