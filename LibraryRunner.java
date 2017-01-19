@@ -207,7 +207,7 @@ public class LibraryRunner {
 						break;
 
 					case 2:
-						System.out.print("Enter an expiry date (YYYY,MM,DD): ");
+						System.out.print("Enter an expiry date (YYYY/MM/DD): ");
 						dateTemp = sc.nextLine().split("/");
 
 						expDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), cal);
@@ -616,10 +616,87 @@ public class LibraryRunner {
 
 	public static void displayReturnItem () {
 		//displayMainMenu selection 4
+		long id;
+		boolean exit = false;
+		String[] dateTemp;
+		User curUser;
+		Date curDate;
+		Calendar cal = new Calendar();
+
+		System.out.println("Enter user ID: ");
+		id = sc.nextLong();
+
+		curUser = jurrLibrary.getUserById(id);
+
+		System.out.print("Enter today's date (YYYY/MM/DD");
+		dateTemp = sc.nextLine().split("/");
+
+		curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), cal);
+
+		try {
+			while (!exit) {
+				System.out.print("Enter the ID of the item being returned (\"Exit\" to return to MAIN MENU): ");
+				id = sc.nextLong();
+
+				curUser.takeBack(jurrLibrary.getItemById(id), curDate);
+			}
+		} catch (java.util.InputMismatchException e) {
+			exit = true;
+		}
 	} 
 
 	public static void displayRoomMenu () {
 		//displayMainMenu selection 5
+		
+		int sel;
+		long id;
+		boolean exit = false;
+
+		while (!exit) {
+			System.out.println("ROOM MENU");
+			System.out.println("1. View all rooms");
+			System.out.println("2. Search for room by ID");
+			System.out.println("3. Add user");
+			System.out.println("4. Remove user");
+			System.out.println("5. Return to MAIN MENU");
+
+			try {
+				System.out.println("\nEnter a selection");
+				sel = sc.nextInt();
+
+				switch (sel) {
+					case 1:
+
+						break;
+
+					case 2:
+
+						break;
+
+					case 3:
+
+						break;
+
+					case 4:
+
+						break;
+
+					case 5:
+						
+						break;
+						
+					case 6:
+						exit = true;
+						break;
+				} //switch structure to display sub menus
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input");
+			} catch (Exception e) {
+				System.out.println("Critical error");
+			} //try and catch structure
+		} //while loop
+
+		displayMainMenu();
 	}
 
 	public static void displayComputerMenu () {
