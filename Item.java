@@ -6,7 +6,10 @@
  *******************************************************************************/
 
 abstract class Item {
-	public final static double OVERDUE_PRICE = 0.25;				//Price per day overdue
+	public static final String BOOK = "book";
+	public static final String VIDEO_GAME = "video game";
+	public static final String MOVIE = "movie";
+	public static final double OVERDUE_PRICE = 0.25;				//Price per day overdue
 	private long id;              							//Item identification number
 	private boolean isOut;        							//Whether the item is out of the library or not
 	private String title;         							//Title of the item
@@ -332,26 +335,22 @@ abstract class Item {
 	
 	//Search for a type of item
 	public static Item[] searchByType (Item[] items, String type) {
-		final String BOOK = "book";
-		final String VIDEO_GAME = "video game";
-		final String MOVIE = "movie";
-		
 		int foundCount = 0;
 		
 		//Find number of a type of item
-		if (type.equalsIgnoreCase(BOOK)) {
+		if (type.equalsIgnoreCase(Item.BOOK)) {
 			for (int i = 0; i < items.length; i++) {
 				if (items[i] instanceof Book) {
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equalsIgnoreCase(VIDEO_GAME)) {
+		} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
 			for (int i = 0; i < items.length; i++) {
 				if (items[i] instanceof VideoGame) {
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equalsIgnoreCase(MOVIE)) {
+		} else if (type.equalsIgnoreCase(Item.MOVIE)) {
 			for (int i = 0; i < items.length; i++) {
 				if (items[i] instanceof Movie) {
 					foundCount++;
@@ -363,21 +362,21 @@ abstract class Item {
 		foundCount = 0;
 		
 		//Copy items of a matching type
-		if (type.equalsIgnoreCase(BOOK)) {
+		if (type.equalsIgnoreCase(Item.BOOK)) {
 			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
 				if (items[i] instanceof Book) {
 					foundItems[foundCount] = items[i];
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equalsIgnoreCase(VIDEO_GAME)) {
+		} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
 			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
 				if (items[i] instanceof VideoGame) {
 					foundItems[foundCount] = items[i];
 					foundCount++;
 				} //if structure
 			} //for loop
-		} else if (type.equalsIgnoreCase(MOVIE)) {
+		} else if (type.equalsIgnoreCase(Item.MOVIE)) {
 			for (int i = 0; i < items.length && foundCount < foundItems.length; i++) {
 				if (items[i] instanceof Movie) {
 					foundItems[foundCount] = items[i];
