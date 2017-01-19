@@ -271,7 +271,7 @@ public class Library {
 		} else if (title.equalsIgnoreCase(Item.VIDEO_GAME)) {
 			newItem = new VideoGame(genItemId(),   //Item ID
 				false,										//Whether the Item is out
-				(String)objectParameters[0],        //Title of VideoGame
+				title,        //Title of VideoGame
 				null,                               //Date VideoGame was borrowed
 				(String)objectParameters[0],        //Name of developer
 				(String)objectParameters[1],        //Genre
