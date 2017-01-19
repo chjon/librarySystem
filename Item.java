@@ -86,18 +86,18 @@ abstract class Item {
 	} //equals method
 	
 	//Sort an item array by ID
-	public static void sortById (Item[] list) {
+	public static void sortById (Item[] items) {
       Item temp;
       boolean swapped = true;
       
-      for (int i = 0; i < list.length && swapped; i++) {
+      for (int i = 0; i < items.length && swapped; i++) {
          swapped = false;
          
-         for (int j = list.length - 1; j > i; j--) {
-            if (list[j].id < list[j - 1].id) {
-               temp = list[j];
-               list[j] = list[j - 1];
-               list[j - 1] = temp;
+         for (int j = items.length - 1; j > i; j--) {
+            if (items[j].id < items[j - 1].id) {
+               temp = items[j];
+               items[j] = items[j - 1];
+               items[j - 1] = temp;
                swapped = true;
             } //if structure
          } //for loop
@@ -106,6 +106,8 @@ abstract class Item {
 	
 	//Search an Item array by ID
 	public static Item searchById (Item[] items, long id) {
+		sortById(items);
+	
 		int bottom = 0, top = items.length, middle;
 		while (bottom <= top) {
 			middle = (bottom + top) / 2;
@@ -195,6 +197,8 @@ abstract class Item {
 	
 	//Search an item array by title alphabetically
 	public static Item[] searchByTitle (Item[] items, String title) {
+		sortByTitle(items);
+	
 		int bottom = 0, top = items.length, middle;
 		int foundIndex = -1;
       
@@ -242,6 +246,8 @@ abstract class Item {
 	
 	//Search an item array by genre alphabetically
 	public static Item[] searchByGenre (Item[] items, String genre) {
+		sortByGenre(items);
+	
 		int bottom = 0, top = items.length, middle;
 		int foundIndex = -1;
       
@@ -289,6 +295,8 @@ abstract class Item {
 	
 	//Search an item array by date overdue
 	public static Item[] searchByOverdue (Item[] items, Date curDate) {
+		sortByOverdue(items);
+	
 		int bottom = 0, top = items.length, middle;
 		int foundIndex = -1;
       

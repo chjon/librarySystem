@@ -213,6 +213,8 @@ public class User {
 	
 	//Search a User array by ID
 	public static User searchById (User[] users, long id) {
+		sortById(users);
+	
 		int bottom = 0, top = users.length, middle;
       
 		while (bottom <= top) {
@@ -232,6 +234,8 @@ public class User {
 	
 	//Search a User array by name alphabetically
 	public static User[] searchByName (User[] users, String name) {
+		sortByName(users);
+	
 		int bottom = 0, top = users.length, middle;
 		int foundIndex = -1;
       
@@ -279,6 +283,8 @@ public class User {
 	
 	//Search a User array by age
 	public static User[] searchByAge (User[] users, int age) {
+		sortByAge(users);
+	
 		int bottom = 0, top = users.length, middle;
 		int foundIndex = -1;
       

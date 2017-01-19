@@ -67,5 +67,44 @@ public class Printer {
 		
 		numPaper = maxPaper;
 		return false;
-	} //addPaper method 
+	} //addPaper method
+	
+	//Sort a Printer array by ID
+	public static void sortById (Printer[] printers) {
+      Printer temp;
+      boolean swapped = true;
+      
+      for (int i = 0; i < printers.length && swapped; i++) {
+         swapped = false;
+         
+         for (int j = printers.length - 1; j > i; j--) {
+            if (printers[j].id < printers[j - 1].id) {
+               temp = printers[j];
+               printers[j] = printers[j - 1];
+               printers[j - 1] = temp;
+               swapped = true;
+            } //if structure
+         } //for loop
+      } //for loop
+   } //sortById method
+	
+	//Search a Printer array by ID
+	public static Printer searchById (Printer[] printers, long id) {
+		sortById(printers);
+	
+		int bottom = 0, top = printers.length, middle;
+		while (bottom <= top) {
+			middle = (bottom + top) / 2;
+			
+			if (printers[middle].getId() == id) {
+				return printers[middle];
+			} else if (printers[middle].getId() > id) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
+			} //if structure
+		} //while loop
+		
+		return null;
+	} //searchById method
 } //Printer class
