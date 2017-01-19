@@ -19,6 +19,10 @@ public class Room extends UserHolder {
 			"Type: " + TYPE + "\n" +
 			"Max Users: " + maxUsers;
 	} //toString method
+	
+	public int getMaxUsers () {
+		return maxUsers;
+	} //getMaxUsers method
 
 	//Checks if the room is full
 	public boolean isOccupied () {

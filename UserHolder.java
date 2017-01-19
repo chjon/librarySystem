@@ -24,6 +24,10 @@ public abstract class UserHolder {
 		return id;
 	} //getId method
 	
+	public User[] getUsers () {
+		return users;
+	} //getUsers method
+	
 	//Adds user to the Userholder
 	public boolean addUser(User toAdd) {
 		boolean added = false;

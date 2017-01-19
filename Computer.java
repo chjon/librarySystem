@@ -18,6 +18,10 @@ public class Computer extends UserHolder {
 	public String toString () {
 		return "ID:" + id + "Currently Available:" + id;
 	} //toString method
+	
+	public Printer[] getPrinters () {
+		return printers;
+	} //getPrinters method
   
 	public boolean isOccupied () {
 		return occupied;

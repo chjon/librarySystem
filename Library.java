@@ -339,7 +339,7 @@ public class Library {
 	} //remUser method
 	
 	//Add new item
-	public void addItem (String type, String title, Object[] objectParameters) {
+	public void addItem (String type, String title, Object[] objectParameters) throws Exception {
 		Item newItem;
 		
 		//Create new item
@@ -979,20 +979,21 @@ public class Library {
 				out.newLine();
 				out.write(roomList[i].getId() + "");
 				out.newLine();
-				out.write(roomList[i].getMaxUser() + "");
+				out.write(roomList[i].getMaxUsers() + "");
 				out.newLine();
-			} //for loop
-     
-			for (int r = 0; r < roomList[i].users[i].length && !found; i ++){
-				if (rooms[i].users[r] !=null){
-					out.write(roomList[i].users[r].id+",");
-					found = false;
-				} else {
-					found = true;
+				
+				//Write the users in the room
+				for (int r = 0; r < roomList[i].getUsers().length && !found; i ++){
+					if (roomList[i].getUsers()[r] != null){
+						out.write(roomList[i].getUsers()[r].getId() + ",");
+						found = false;
+					} else {
+						found = true;
+						out.newLine();
+					} //if structure
+	    
 					out.newLine();
-				} //if structure
-    
-				out.newLine();
+				} //for loop
 			} //for loop
     
 			for (int i = 0; i < computerList.length; i ++){
@@ -1009,9 +1010,9 @@ public class Library {
     
 				out.newLine();
     
-				for (int r = 0; r < computerList[i].users[r].length && !found; r ++){
-					if (computerList[i].users[r] !=null) {
-						out.write(computerList[i].users[r].id);
+				for (int r = 0; r < computerList[i].getUsers().length && !found; r ++){
+					if (computerList[i].getUsers()[r] != null) {
+						out.write(computerList[i].getUsers()[r].getId() + "");
 						found = false;
 					} else {
 						found = true;
@@ -1023,9 +1024,9 @@ public class Library {
 				
 				boolean printFound = false;
 				
-				for (int r = 0; r < computers[i].printers[r].length && !printFound; r ++){
-					if (computers[i].users[r] !=null){
-						out.write(computers[i].printers[r].id);
+				for (int r = 0; r < computerList[i].getPrinters().length && !printFound; r ++){
+					if (computerList[i].getUsers()[r] !=null){
+						out.write(computerList[i].getPrinters()[r].getId() + "");
 						printFound = false;
 					} else {
 						printFound = true;
