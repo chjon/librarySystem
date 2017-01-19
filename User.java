@@ -323,4 +323,36 @@ public class User {
 		//return null if no match is found
 		return null;
 	} //searchByAge method
+	
+	public boolean hasOverdue (Date curDate) {
+		for (int i = 0; i < items.length; i++) {
+			if (items[i].isOverdue(curDate)) {
+				return true;
+			} //if structure
+		} //for loop
+		
+		return false;
+	} //hasOverdue method
+	
+	public static User[] searchByOverdue (User[] users, Date curDate) {
+		int count = 0;
+	
+		for (int i = 0; i < users.length; i++) {
+			if (users[i].hasOverdue(curDate)) {
+				count++;
+			} //if structure
+		} //for loop
+		
+		User[] areOverdue = new User[count];
+		count = 0;
+		
+		for (int i = 0; i < users.length; i++) {
+			if (users[i].hasOverdue(curDate)) {
+				areOverdue[count] = users[i];
+				count++;
+			} //if structure
+		} //for loop
+		
+		return areOverdue;
+	} //searchByOverdue method
 } //User class
