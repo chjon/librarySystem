@@ -103,7 +103,7 @@ public class Library {
 					long [] userId = Long.parseLong(lineOfUser.split(","));
 					User [] arrayOfUser = new User[maxUser];
 					for(int u=0;u<maxUser;u++){
-						User found = searchById(users,userId[u]);
+						User found = User.searchById(users,userId[u]);
 						if(found != null){
 							arrayOfUser[roomCount] = found;
 						}
@@ -118,7 +118,7 @@ public class Library {
 					long id = Long.parseLong(holderIn.readLine());
 					boolean occupied = Boolean.parseBoolean(holderIn.readLine());
 					long userId =  Long.parseLong(holderIn.readLine());
-					User foundUser =  searchById(users,userId);
+					User foundUser = User.searchById(users,userId);
 					String lineOfPrinters= holderIn.readLine();
 					long [] printerId = new Printer(Long.parseLong(lineOfPrinters.split(",")));
 					computerList[computerCount] =  new Computer(id,occupied);
@@ -170,9 +170,10 @@ public class Library {
 		return users;
 	} //getUsers method
 	
-	private long genId () {
+	private long genUserId () {
 		long id;
 		boolean isUnused;
+		
 		do {
 			id = (long)(Math.floor(Math.random() * (1 + MAX_ID)));
 			
@@ -186,7 +187,26 @@ public class Library {
 		} while (!isUnused);
 		
 		return id;
-	} //genId method
+	} //genUserId method
+	
+	private long genItemId () {
+		long id;
+		boolean isUnused;
+		
+		do {
+			id = (long)(Math.floor(Math.random() * (1 + MAX_ID)));
+			
+			isUnused = true;
+			
+			for (int i = 0; i < items.length && isUnused; i++) {
+				if (items[i].getId() == id) {
+					isUnused = false;
+				} //if structure
+			} //for loop
+		} while (!isUnused);
+		
+		return id;
+	} //genItemId method
 	
 	//Add new user
 	public void addUser (String name, int age) {
@@ -198,7 +218,7 @@ public class Library {
 		} //for loop
 		
 		//Insert new user
-		temp[users.length] = new User(name, genId(), age, 0);
+		temp[users.length] = new User(name, genUserId(), age);
 		users = temp;
 	} //addUser method
 	
@@ -232,6 +252,53 @@ public class Library {
 		
 		return found;
 	} //remUser method
+	
+	//Add new item
+	public void addItem (String type, String title, Object[] objectParameters) {
+		Item newItem;
+		
+		//Create new item
+		if (title.equalsIgnoreCase(Item.BOOK)) {
+			newItem = new Book(
+				genItemId(),                        //Item ID
+				false,                              //Whether the Item is out
+				title,                              //Title of Book
+				null,                               //Date Book was borrowed
+				(String)objectParameters[0],        //Name of author
+				(int)objectParameters[1],           //Number of pages
+				(double)objectParameters[2],        //Dewey Decimal number
+				deweySystem);							   //The Library's Dewey Decimal system
+		} else if (title.equalsIgnoreCase(Item.VIDEO_GAME)) {
+			newItem = new VideoGame(genItemId(),   //Item ID
+				false,										//Whether the Item is out
+				(String)objectParameters[0],        //Title of VideoGame
+				null,                               //Date VideoGame was borrowed
+				(String)objectParameters[0],        //Name of developer
+				(String)objectParameters[1],        //Genre
+				(int)objectParameters[2]);          //Age rating
+		} else if (title.equalsIgnoreCase(Item.MOVIE)) {
+			newItem = new Movie(genItemId(),       //Item ID
+				false,                              //Whether the Item is out
+				title,                              //Title of Movie
+				null,                               //Date VideoGame was borrowed
+				(String)objectParameters[0],        //Name of director
+				(String)objectParameters[1],        //Genre
+				(int)objectParameters[2],           //Length of Movie in minutes
+				(int)objectParameters[3]);          //Age rating
+		} else {
+			throw new Exception("Invalid item type: " + type);
+		} //if structure
+		
+		//Copy items to larger array
+		Item[] temp = new Item[items.length + 1];
+		
+		for (int i = 0; i < items.length; i++) {
+			temp[i] = items[i];
+		} //for loop
+		
+		temp[items.length] = newItem;
+		items = temp;
+	} //addUser method
 	
 	//finds user with specific id
 	public User getUserById (long id) {
@@ -488,7 +555,7 @@ public class Library {
 		return movieList;
 	} //getMovies method
 	
-	// finds items that are overdue by the given Date object
+	//finds items that are overdue by the given Date object
 	public Item[] getOverdue (Date curDate) {   		
 		int numOverdue = 0, curIndex = 0;
 	
@@ -516,7 +583,7 @@ public class Library {
 	  for (int i = 0; i < amountArray.length; i ++){
 	    for (int r = 0; r < amount; r ++){
 	      boolean theseItems = false;
-	      if (users[i].itemsList[r] == null){
+	      if (users[i].items[r] == null){
 		r = amount;
 		theseItems = false;
 	      }
@@ -655,188 +722,204 @@ public class Library {
 		
 		return closestBooks;
 	} //suggestBooks method
-	public void writeToFile(){
-		try{
-  BufferedWriter out = new BufferedWriter (new FileWriter ("printers.txt", true));
-  out.write(""+printers.length);
-  for (int i =0; i < printers.length; i ++){
-    out.newLine();
-    out.write(""+printers[i].id);  
-    out.newLine();
-    out.write(""+printers[i].maxPaper);
-    out.newLine();
-    out.write(""+printers[i].numPaper);
-    out.newLine();
-    out.newLine():
-  }
-  printerOut.close();
-}catch (IOException e){
-  System.out.println("Problem with file" + e.getMessage());
-  
-}
-try{
-  BufferedWriter itemOut = new BufferedWriter (new FileWriter ("items.txt", true));
-  out.write(""+items.length);
-  for (int i = 0; i < items.length; i ++){
-    out.newLine();
-    if (items[i] instanceof Book){
-      out.write("Book");
-      out.newLine();
-      out.write(items[i].title);
-      out.newLine();
-      if (items[i].getIsOut())
-        out.write("true");
-      else
-        out.write("false");
-      out.newLine();
-      out.write(""+items[i].id);
-      out.newLine();
-      out.write(items[i].dayBorrowed.getDay()+"/");
-      out.write(items[i].dayBorrowed.getMonth()+"/");
-      out.write(items[i].dayBorrowed.getYear()+"");
-      out.newLine();
-      out.write(((Book)(items[i])).getAuthor());
-      out.newLine();
-      out.write(((Book)(items[i])).getPages()+"");
-      out.newLine();
-      out.write(((Book)(items[i])).getDeweyDecNum()+"");
-      out.newLine();
-    }
-    else if (items[i] instanceof Movie){
-      out.write("Movie");
-      out.newLine();
-      out.write(""+ items[i].id);
-      out.newLine();
-      if(items[i].getIsOut())
-        out.write("true");
-      else
-        out.write("false");
-      out.newLine();
-      out.write(items[i].title);
-      out.newLine();
-      out.write(items[i].dayBorrowed.getDay()+"/");
-      out.write(items[i].dayBorrowed.getMonth()+"/");
-      out.write(items[i].dayBorrowed.getYear()+"");
-      out.newLine();
-      out.write(((Movie)(items[i])).getDirector());
-      out.newLine();
-      out.write(((Movie)(items[i])).getGenre());
-      out.newLine();
-      out.write(((Movie)(items[i])).getLength()+"");
-      out.newLine();
-      out.write(((Movie)(items[i])).getAgeRating()+"");
-      out.newLine();
-    }
-    else if (items[i] instanceof VideoGame){
-      out.write("Video Game");
-      out.newLine();
-      out.write(items[i].getId()+"");
-      out.newLine();
-      if (items[i].getIsOut())
-        out.write("true");
-      else
-        out.write("false");
-      out.newLine();
-      out.write(items[i].getTitle());
-      out.newLine();
-      out.write(items[i].dayBorrowed.getDay()+"/");
-      out.write(items[i].dayBorrowed.getMonth()+"/");
-      out.write(items[i].dayBorrowed.getYear()+"");
-      out.newLine();
-      out.write(((VideoGame)(items[i])).getDeveloper());
-      out.newLine();
-      out.write(((VideoGame)(items[i])).getGenre());
-      out.newLine();
-      out.write(((VideoGame)(items[i])).getAgeRating()+"");
-      out.newLine();
-    }
-      
-    }
-  out.close();
-}catch (IOException e){
-  System.out.println("Problem with using file" + e.getMessage());
-  
-}
+	
+	public void writeToFile () {
+		try {
+			BufferedWriter out = new BufferedWriter (new FileWriter ("printers.txt", true));
+			out.write(""+printers.length);
+			
+			for (int i = 0; i < printers.length; i ++) {
+				out.newLine();
+				out.write("" + printers[i].id);  
+				out.newLine();
+				out.write("" + printers[i].maxPaper);
+				out.newLine();
+				out.write("" + printers[i].numPaper);
+				out.newLine();
+				out.newLine();
+			}
+			
+			printerOut.close();
+		} catch (IOException e) {
+  			System.out.println("Problem with file" + e.getMessage());
 		}
-try{
-  BufferedWriter out = new BufferedWriter (new FileWriter ("users.txt", true));
-  out.write(users.length + "");
-  out.newLine();
-  boolean found = false;
-  for (int i = 0; i < users.length; i ++){
-    out.newLine();
-    out.write(users[i].name);
-    out.newLine();
-    out.write(users[i].id+"");
-    out.newLine();
-    out.write(users[i].age+"");
-    out.newLine();
-    out.write(users[i].amountOwed+"");
-    out.newLine();
-    for (int r = 0; r < users[r].items[r].length && !found; r ++){
-      if (users[i].items[r] !=null){
-        out.write(users[i].items[r].id+",");
-        
-        found = false;
-      }
-      else
-        found = true;
-    }
-    out.newLine();
-    
-    
-  }
-  out.close();
-}catch (IOException e){
-  System.out.println("Problem with using file" + e.getMessage());
-}
-try{
-  BufferedWriter out = new BufferedWriter (new FileWriter ("userHolder.txt", true));
-  out.write((computer.length + rooms.length) +"");
-  boolean found = false;
-  for (int i = 0; i < rooms.length; i ++){
-    out.write("Printer");
-    out.newLine();
-    out.write(rooms[i].id+"");
-    out.newLine();
-    out.write(rooms[i].maxUser+"");
-    out.newLine();
-    for (int r = 0; r < rooms[i].users[i].length && !found; i ++){
-      if (rooms[i].users[r] !=null){
-        out.write(rooms[i].users[r].id+",");
-        
-        found = false;
-      }
-      else
-        found = true;
-    }
-    out.newLine();
-    
-  }
-  for (int i = 0; i < computers.length; i ++){
-    out.write("Computer");
-    out.newLine();
-    out.write(computers[i].id+"");
-    out.newLine();
-    if (computers[i].isOccupied())
-      out.write("true");
-    else
-      out.write("false");
-    out.newLine();
-    for (int r = 0; r < rooms[i].users[i].length && !found; i ++){
-      if (rooms[i].users[r] !=null){
-        out.write(rooms[i].users[r].id+",");
-        
-        found = false;
-      }
-      else
-        found = true;
-    }
-    out.newLine();
-    
-  }
-  
-}
+		
+		try {
+			BufferedWriter itemOut = new BufferedWriter (new FileWriter ("items.txt", true));
+			out.write(""+items.length);
+			
+			for (int i = 0; i < items.length; i ++){
+				out.newLine();
+				
+				if (items[i] instanceof Book){
+					out.write("Book");
+					out.newLine();
+					out.write(items[i].title);
+					out.newLine();
+					
+					if (items[i].getIsOut())
+						out.write("true");
+					else
+						out.write("false");
+					
+					out.newLine();
+					out.write(""+items[i].id);
+					out.newLine();
+					out.write(items[i].dayBorrowed.getDay()+"/");
+					out.write(items[i].dayBorrowed.getMonth()+"/");
+					out.write(items[i].dayBorrowed.getYear()+"");
+					out.newLine();
+					out.write(((Book)(items[i])).getAuthor());
+					out.newLine();
+					out.write(((Book)(items[i])).getPages()+"");
+					out.newLine();
+					out.write(((Book)(items[i])).getDeweyDecNum()+"");
+					out.newLine();
+    			} else if (items[i] instanceof Movie) {
+					out.write("Movie");
+					out.newLine();
+					out.write(""+ items[i].id);
+					out.newLine();
+					
+					if(items[i].getIsOut())
+						out.write("true");
+					else
+						out.write("false");
+					
+					out.newLine();
+					out.write(items[i].title);
+					out.newLine();
+					out.write(items[i].dayBorrowed.getDay()+"/");
+					out.write(items[i].dayBorrowed.getMonth()+"/");
+					out.write(items[i].dayBorrowed.getYear()+"");
+					out.newLine();
+					out.write(((Movie)(items[i])).getDirector());
+					out.newLine();
+					out.write(((Movie)(items[i])).getGenre());
+					out.newLine();
+					out.write(((Movie)(items[i])).getLength()+"");
+					out.newLine();
+					out.write(((Movie)(items[i])).getAgeRating()+"");
+					out.newLine();
+				} else if (items[i] instanceof VideoGame) {
+					out.write("Video Game");
+					out.newLine();
+					out.write(items[i].getId()+"");
+					out.newLine();
+					
+					if (items[i].getIsOut())
+						out.write("true");
+					else
+						out.write("false");
+					
+					out.newLine();
+					out.write(items[i].getTitle());
+					out.newLine();
+					out.write(items[i].dayBorrowed.getDay()+"/");
+					out.write(items[i].dayBorrowed.getMonth()+"/");
+					out.write(items[i].dayBorrowed.getYear()+"");
+					out.newLine();
+					out.write(((VideoGame)(items[i])).getDeveloper());
+					out.newLine();
+					out.write(((VideoGame)(items[i])).getGenre());
+					out.newLine();
+					out.write(((VideoGame)(items[i])).getAgeRating()+"");
+					out.newLine();
+				}
+			}
+			
+			out.close();
+		} catch (IOException e){
+			System.out.println("Problem with using file" + e.getMessage());
+		}
 
+		try {
+			BufferedWriter out = new BufferedWriter (new FileWriter ("users.txt", true));
+			out.write(users.length + "");
+			out.newLine();
+			
+			boolean found = false;
+			
+			for (int i = 0; i < users.length; i ++){
+				out.newLine();
+				out.write(users[i].name);
+				out.newLine();
+				out.write(users[i].id+"");
+				out.newLine();
+				out.write(users[i].age+"");
+				out.newLine();
+				out.write(users[i].amountOwed+"");
+				out.newLine();
+				
+				for (int r = 0; r < users[r].items[r].length && !found; r ++){
+					if (users[i].items[r] !=null){
+						out.write(users[i].items[r].id+",");
+						found = false;
+					} else {
+						found = true;
+					}
+					
+					out.newLine();
+				}
+			}
+			
+			out.close();
+		} catch (IOException e){
+			System.out.println("Problem with using file" + e.getMessage());
+		}
+		
+		try {
+			BufferedWriter out = new BufferedWriter (new FileWriter ("userHolder.txt", true));
+			out.write((computer.length + rooms.length) +"");
+			
+			boolean found = false;
+			
+			for (int i = 0; i < rooms.length; i ++){
+				out.write("Printer");
+				out.newLine();
+				out.write(rooms[i].id+"");
+				out.newLine();
+				out.write(rooms[i].maxUser+"");
+				out.newLine();
+			}
+					
+			for (int r = 0; r < rooms[i].users[i].length && !found; i ++){
+				if (rooms[i].users[r] !=null){
+					out.write(rooms[i].users[r].id+",");
+					found = false;
+				} else {
+					found = true;
+				}
+				
+				out.newLine();
+			}
+				
+			for (int i = 0; i < computers.length; i ++){
+				out.write("Computer");
+				out.newLine();
+				out.write(computers[i].id+"");
+				out.newLine();
+					
+				if (computers[i].isOccupied())
+					out.write("true");
+				else
+					out.write("false");
+				
+				out.newLine();
+				
+				for (int r = 0; r < rooms[i].users[i].length && !found; i ++){
+					if (rooms[i].users[r] !=null){
+						out.write(rooms[i].users[r].id+",");
+						found = false;
+					} else {
+						found = true;
+					}
+					
+					out.newLine();
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Problem with using file" + e.getMessage());
+		}
 	}
 } //Library class
