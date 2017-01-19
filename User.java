@@ -225,7 +225,26 @@ public class User {
 				} //if structure
 			} //for loop
 		} //for loop
-	} //sortByName method
+	} //sortByName method\
+
+	//Sort an User array by the number of items signed out
+	public static void sortByNumItemsOut (User[] users) {
+		User temp;
+		boolean swapped = true;
+		
+		for (int i = 0; i < users.length && swapped; i++) {
+			swapped = false;
+         
+			for (int j = users.length - 1; j > i; j--) {
+				if (users[j].items.length < users[j - 1].items.length) {
+					temp = users[j];
+					users[j] = users[j - 1];
+					users[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	}
 	
 	//Search a User array by ID
 	public static User searchById (User[] users, long id) {
@@ -406,4 +425,63 @@ public class User {
 		
 		return foundUsers;
 	} //searchByAmount method
+
+	public int findNumItemsOut () {
+		int count = 0;
+
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] != null) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public static User[] searchByNumItemsOut (User[] users, int target) {
+		sortByNumItemsOut(users);
+
+		int bottom = 0, top = users.length, middle;
+		int foundIndex = -1;
+      
+		//find the index of a matching user
+		while (bottom <= top && foundIndex == -1) {
+			middle = (bottom + top) / 2;
+			int numItem = users[middle].findNumItemsOut();
+         
+			if (numItem == target) {
+				foundIndex = middle;
+			} else if (numItem > target) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
+			} //if structure
+		} //while loop
+      
+		//Check if a match has been found
+		if (foundIndex != -1) {
+			int endIndex = foundIndex;
+			
+			//find first index of a matching user
+			while (foundIndex > 0 && users[foundIndex - 1].findNumItemsOut() == target) {
+				foundIndex--;
+			} //while loop
+			
+			//find last index of a matching user
+			while (endIndex < users.length - 1 && users[endIndex + 1].findNumItemsOut() == target) {
+				endIndex++;
+			} //while loop
+			
+			User[] foundUsers = new User[endIndex - foundIndex + 1];
+			
+			//Copy all matching users
+			for (int i = foundIndex; i <= endIndex; i++) {
+				foundUsers[i - foundIndex] = users[i];
+			} //for loop
+			
+			return foundUsers;
+		} //if structure
+		
+		//return null if no match is found
+		return null;
+	} //searchByNumItemsOut method
 } //User class
