@@ -66,8 +66,6 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-			} catch (IOException e) {
-				System.out.println("Problem with using file");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 			} //try and catch structure
@@ -164,8 +162,6 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-			} catch (IOException e) {
-				System.out.println("Problem with using file");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 			} //try and catch structure
@@ -181,7 +177,10 @@ public class LibraryRunner {
 		long id;
 		boolean exit = false;
 		String name, date;
+		String[] dateTemp;
 		Item[] tempList;
+		Date expDate;
+		Calendar cal = new Calendar();
 
 		while (!exit) {
 			System.out.println("VIEW CURRENT ITEMS MENU");
@@ -209,8 +208,16 @@ public class LibraryRunner {
 
 					case 2:
 						System.out.print("Enter an expiry date (YYYY,MM,DD): ");
-						date = sc.nextLine();
-						//NOTE no method found for finding items by expiry date 									//
+						dateTemp = sc.nextLine().split("/");
+
+						expDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), cal);
+
+						tempList = jurrLibrary.getOverdue(expDate);
+						
+						for (int i = 0; i < tempList.length; i++) {
+							System.out.println(tempList[i]);
+						}
+
 						break;
 
 					case 3:
@@ -225,8 +232,6 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-			} catch (IOException e) {
-				System.out.println("Problem with using file");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 			} //try and catch structure
@@ -237,10 +242,15 @@ public class LibraryRunner {
 
 	public static void displayLibraryInventoryMenu () {
 		//displayMainMenu selection 2
+		final int BOOKPARAMETERS = 3;
+		final int VIDEOGAMEPARAMETERS = 3;
+		final int MOVIEPARAMETERS = 4;
 
 		int sel;
 		long id;
 		boolean exit = false;
+		String name, type;
+		Object[] parameters;
 		Item[] tempList;
 
 		while (!exit) {
@@ -266,11 +276,67 @@ public class LibraryRunner {
 						break;
 
 					case 2:
-						//NOTE no addItem method found													//
+						System.out.print("Enter item ID: ");
+						id = sc.nextLong();
+						System.out.print("Enter item name: ");
+						name = sc.nextLine();
+						System.out.print("Enter item type (book, video game, movie): ");
+						type = sc.nextLine();
+
+						if (type.equalsIgnoreCase("book")) {
+							parameters = new Object[BOOKPARAMETERS];
+
+							System.out.print("Enter author name: ");
+							parameters[0] = sc.nextLine();
+
+							System.out.print("Enter the number of pages in the book: ");
+							parameters[1] = (Integer)sc.nextInt();
+
+							System.out.print("Enter the Dewey Decimal Number: ");
+							parameters[2] = (Long)sc.nextLong();
+
+							jurrLibrary.addItem(type, name, parameters);
+
+						} else if (type.equalsIgnoreCase("video game")) {
+							parameters = new Object[VIDEOGAMEPARAMETERS];
+
+							System.out.print("Enter developer name: ");
+							parameters[0] = sc.nextLine();
+
+							System.out.print("Enter the genre: ");
+							parameters[1] = sc.nextLine();
+
+							System.out.print("Enter the age rating: ");
+							parameters[2] = (Integer)sc.nextInt();
+
+							jurrLibrary.addItem(type, name, parameters);
+
+						} else if (type.equalsIgnoreCase("movie")) {
+							parameters = new Object[MOVIEPARAMETERS];
+
+							System.out.print("Enter director name: ");
+							parameters[0] = sc.nextLine();
+
+							System.out.print("Enter the genre: ");
+							parameters[1] = sc.nextLine();
+
+							System.out.print("Enter the length of the movie (in minutes): ");
+							parameters[2] = (Integer)sc.nextInt();
+
+							System.out.print("Enter the age rating: ");
+							parameters[3] = (Integer)sc.nextInt();
+
+							jurrLibrary.addItem(type, name, parameters);
+						}
+
 						break;
 
 					case 3:
-						//NOTE no removeItem method found												//
+						System.out.print("Enter an ID: ");
+						id = sc.nextLong();
+
+						jurrLibrary.remItem(id);
+
 						break;
 
 					case 4:
@@ -291,8 +357,6 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-			} catch (IOException e) {
-				System.out.println("Problem with using file");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 			} //try and catch structure
@@ -377,7 +441,7 @@ public class LibraryRunner {
 						System.out.print("Enter a genre: ");
 						genre = sc.nextLine();
 
-						tempList = searchByGenre(jurrLibrary.getItems(), genre);
+						tempList = Item.searchByGenre(jurrLibrary.getItems(), genre);
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
@@ -391,8 +455,6 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-			} catch (IOException e) {
-				System.out.println("Problem with using file");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 			} //try and catch structure
@@ -408,9 +470,10 @@ public class LibraryRunner {
 		long accNum;
 		int sel;
 		boolean exit = false;
-		String name;
-		int age;
+		String name, newName;
+		int age, newAge;
 		int id;
+		User curUser;
 
 		while (!exit) {
 			System.out.println("USER LIST MENU");
@@ -467,8 +530,6 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-			} catch (IOException e) {
-				System.out.println("Problem with using file");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 			} //try and catch structure
@@ -485,6 +546,7 @@ public class LibraryRunner {
 		boolean exit = false;
 		String name;
 		User[] tempUsers;
+		User curUser;
 
 		System.out.print("Enter account number: ");
 		accNum = sc.nextLong();
@@ -544,8 +606,6 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-			} catch (IOException e) {
-				System.out.println("Problem with using file");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 			} //try and catch structure
