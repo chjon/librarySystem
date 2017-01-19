@@ -80,7 +80,7 @@ public class User {
 	} //equalsName method
 
 	//Returns number of items currently checked out by the user
-	public int currentItems () {
+	public int currentItems() {
 		int count = 0;
 		
 		for (int i = 0; i < items.length; i ++) {
@@ -381,4 +381,29 @@ public class User {
 		
 		return areOverdue;
 	} //searchByOverdue method
+	
+	//searches for users with x items
+	public static User[] searchByAmount(User[] users, int amount) {			
+		int count = 0;
+		
+		//Count number of Users with x items
+		for (int i = 0; i < users.length; i++) {
+			if (users[i].currentItems() == amount) {
+				count++;
+			} //if structure
+		} //for loop
+		
+		User[] foundUsers = new User[count];
+		count = 0;
+		
+		//Copy Users with x items
+		for (int i = 0; i < users.length; i++) {
+			if (users[i].currentItems() == amount) {
+				foundUsers[count] = users[i];
+				count++;
+			} //if structure
+		} //for loop
+		
+		return foundUsers;
+	} //searchByAmount method
 } //User class

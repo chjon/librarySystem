@@ -124,6 +124,26 @@ abstract class Item {
 		return null;
 	} //searchById method
 	
+	//Search an Item array by ID
+	public static int indexOfId (Item[] items, long id) {
+		sortById(items);
+	
+		int bottom = 0, top = items.length, middle;
+		while (bottom <= top) {
+			middle = (bottom + top) / 2;
+			
+			if (items[middle].getId() == id) {
+				return middle;
+			} else if (items[middle].getId() > id) {
+				top = middle - 1;
+			} else {
+				bottom = middle + 1;
+			} //if structure
+		} //while loop
+		
+		return -1;
+	} //indexOfId method
+	
 	//Sort an item array by title alphabetically
 	public static void sortByTitle (Item[] items) {
 		Item temp;

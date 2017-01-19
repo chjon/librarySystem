@@ -10,7 +10,7 @@ public class Computer extends UserHolder {
 	private boolean occupied;				//whether or not a computer is occupied
 	private Printer[] printers;				//array of printers to print to
 
-	public Computer (long identification,boolean occupied) {
+	public Computer (long identification, boolean occupied) {
 		super(MAX_USERS, identification);
 		this.occupied = occupied;
 	} //Computer constructor
