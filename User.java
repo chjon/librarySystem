@@ -18,7 +18,7 @@ public class User {
 		this.name = name;
 		this.id = id;
 		this.age = age;
-		this.amountOwed = amountOwed;
+		amountOwed = amountOwed;
 	} //User constructor
 	
 	//Constructor for a new user
