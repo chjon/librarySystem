@@ -67,7 +67,10 @@ public class Library {
 					items[i] =  new VideoGame(id,isOut,title,dayBorrowed,developer,genre,ageRating);
 				}//Video Game reader
 			}
-			
+		}catch (Exception e) {
+			}
+		
+		try{
 			//User file reader begins
 			BufferedReader userIn = new BufferedReader (new FileReader ("users.txt"));
 			int userAmount = Integer.parseInt(in.readLine());
@@ -88,7 +91,12 @@ public class Library {
 						itemCount++;
 					}
 				}
+			}
+		}catch (Exception e) {
+		
+			}
 			
+		try{
 			//UserHolder file reader begins
 			BufferedReader holderIn =  new BufferedReader(new FileReader("userHolder.txt"));
 			int userHolderAmount = Integer.parseInt(holderIn.readLine());
@@ -135,7 +143,11 @@ public class Library {
 						computerCount++;
 					}
 				}
-			
+			}catch (Exception e) {
+		
+			}
+	
+		try{			
 			//Printer file reader begins
 			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
 			int printerAmount = Integer.parseInt(printerIn.readLine());
