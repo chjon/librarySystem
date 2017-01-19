@@ -18,151 +18,209 @@ public class Library {
 	private Calendar cal;						//library calendar system
 	private DeweyDecSystem deweySystem;				//library Dewey Decimal system
 	
-	public Library (String userFiletext, String userHolderText, String itemFileText, 
-			String printerFileText){
+	//Parse a String array to integer values
+	private int[] toIntFromString (String[] stringValues) {
+		int[] values = new int[stringValues.length];
+	
+		for (int i = 0; i < stringValues.length; i++) {
+			values[i] = Integer.parseInt(stringValues[i]);
+		} //for loop
 		
-		try{
-			//Item file reader begins
+		return values;
+	} //toIntFromString method
+	
+	//Parse a String array to long values
+	private long[] toLongFromString (String[] stringValues) {
+		long[] values = new long[stringValues.length];
+	
+		for (int i = 0; i < stringValues.length; i++) {
+			values[i] = Long.parseLong(stringValues[i]);
+		} //for loop
+		
+		return values;
+	} //toLongFromString method
+	
+	//Library constructor - load from file
+	public Library (String userFiletext, String userHolderText, String itemFileText, 
+			String printerFileText) {
+		
+		//Item file reader
+		try {
 			BufferedReader itemIn =  new BufferedReader(new FileReader("items.txt"));
-			int itemAmount = Integer.parseInt(itemIn.readline());
+			int itemAmount = Integer.parseInt(itemIn.readLine());
 			items = new Item[itemAmount];
-			for(int i = 0;i < itemAmount; i++){
-				in.readLine();
-				String type = in.readLine();
-				if(type.equals("Book")){
+			
+			for (int i = 0; i < itemAmount; i++) {
+				itemIn.readLine();
+				String type = itemIn.readLine();
+				
+				//Book reader
+				if (type.equals("Book")) {
+					//Parse object parameters
 					String title = itemIn.readLine();
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 					long id = Long.parseLong(itemIn.readLine());
 					String lineOfDate = itemIn.readLine();
-					int [] date = Integer.parseInt(lineOfDate.split("/"));
+					int [] date = toIntFromString(lineOfDate.split("/"));
 					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
-					String author =  itemIn.readLine();
-					int pages =  Integer.parseInt(itemIn.readLine());
-					double deweyDecNum = itemIn.readLine();
-					items[i] = new Book(title,isOut,id,dayBorrowed,author,pages,deweyDecNum,deweySystem);
-				}//Book reader
-				else if(type.equals("Movie")){
+					String author = itemIn.readLine();
+					int pages = Integer.parseInt(itemIn.readLine());
+					double deweyDecNum = Double.parseDouble(itemIn.readLine());
+					
+					//Construct Book
+					items[i] = new Book(id, isOut, title, dayBorrowed, author, pages, deweyDecNum, deweySystem);
+				//Movie reader
+				} else if (type.equals("Movie")) {
+					//Parse object parameters
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 					String title = itemIn.readLine();
 					String lineOfDate = itemIn.readLine();
-					int [] date =  Integer.parseInt(lineOfDate.split("/"));
+					int [] date = toIntFromString(lineOfDate.split("/"));
 					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					String director = itemIn.readLine();
 					String genre = itemIn.readLine();
 					int length = Integer.parseInt(itemIn.readLine());
 					int ageRating = Integer.parseInt(itemIn.readLine());
-					items[i] = new Movie(id,isOut,title,dateBorrowed,director,genre,length,ageRating);
-				}//Movie reader
-				else if(type.equals("Video Game")){
+					
+					//Construct Movie
+					items[i] = new Movie(id, isOut, title, dayBorrowed, director, genre, length, ageRating);
+				//VideoGame reader
+				} else if (type.equals("Video Game")){
+					//Parse object parameters
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 					String title = itemIn.readLine();
 					String lineOfDate = itemIn.readLine();
-					int [] date = Integer.parseInt(lineOfDate.split("/"));
+					int [] date = toIntFromString(lineOfDate.split("/"));
 					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					String developer =  itemIn.readLine();
 					String genre = itemIn.readLine();
 					int ageRating = Integer.parseInt(itemIn.readLine());
+					
+					//Construct VideoGame
 					items[i] =  new VideoGame(id,isOut,title,dayBorrowed,developer,genre,ageRating);
-				}//Video Game reader
-			}
-		}catch (Exception e) {
-			}
+				} //if structure
+			} //for loop
+		} catch (Exception e) {
+			System.err.println("There was a problem with the item file.\t" + e.getMessage());
+		} //try-catch structure
 		
-		try{
-			//User file reader begins
-			BufferedReader userIn = new BufferedReader (new FileReader ("users.txt"));
-			int userAmount = Integer.parseInt(in.readLine());
+		//User file reader
+		try {
+			BufferedReader userIn = new BufferedReader(new FileReader("users.txt"));
+			int userAmount = Integer.parseInt(userIn.readLine());
 			users = new User[userAmount];
-			for (int i = 0; i < userAmount; i ++){
+			
+			for (int i = 0; i < userAmount; i++) {
+				//Parse object parameters
 				userIn.readLine();
 				String name = userIn.readLine();
 				long id = Long.parseLong(userIn.readLine());
 				int age = Integer.parseInt(userIn.readLine());
 				double amountOwed = Double.parseDouble(userIn.readLine());
-				String itemList = userIn.readLine();
-				long itemArray = itemList.split(",");
-				Item [] itemList =  new Item[itemArray.length];
-				for(int i = 0;i<itemArray.length;i++){
-					Item foundItem  = Item.searchById(items,itemArray[i]);
-					if(foundItem != null){
-						itemList[itemCount] =  foundItem;
+				String unparsedItemIds = userIn.readLine();
+				long[] itemIds = toLongFromString(unparsedItemIds.split(","));
+				Item[] itemList =  new Item[itemIds.length];
+				
+				//Check if item exists
+				for (int j = 0; j < itemIds.length; j++) {
+					Item foundItem  = Item.searchById(items,itemIds[j]);
+					int itemCount = 0;
+					
+					//Insert item into user inventory
+					if (foundItem != null) {
+						itemList[itemCount] = foundItem;
 						itemCount++;
-					}
-				}
-			}
-		}catch (Exception e) {
+					} //if structure
+				} //for loop
+			} //for loop
+		} catch (Exception e) {
+			System.err.println("There was a problem with the user file.\t" + e.getMessage());
+		} //try-catch structure
 		
-			}
-			
-		try{
-			//UserHolder file reader begins
-			BufferedReader holderIn =  new BufferedReader(new FileReader("userHolder.txt"));
+		//UserHolder file reader
+		try {
+			BufferedReader holderIn = new BufferedReader(new FileReader("userHolder.txt"));
+			//Number of entries in the file
 			int userHolderAmount = Integer.parseInt(holderIn.readLine());
-			computerList =  new Computer[userHolderAmount];
+			
+			computerList = new Computer[userHolderAmount];
 			roomList = new Room[userHolderAmount];
-			for(int i = 0; i<userHolderAmount;i++){
+			
+			for (int i = 0; i < userHolderAmount; i++) {
 				String type = holderIn.readLine();
 				int computerCount = 0;
 				int roomCount = 0;
-				if(type.equals("Room")){
+				
+				if (type.equals("Room")) {
 					long id = Long.parseLong(holderIn.readLine());
 					int maxUser =  Integer.parseInt(holderIn.readLine());
 					String lineOfUser = holderIn.readLine();
-					long [] userId = Long.parseLong(lineOfUser.split(","));
-					User [] arrayOfUser = new User[maxUser];
+					long[] userId = toLongFromString(lineOfUser.split(","));
+					User[] arrayOfUser = new User[maxUser];
+					
 					for(int u=0;u<maxUser;u++){
 						User found = User.searchById(users,userId[u]);
+						
 						if(found != null){
 							arrayOfUser[roomCount] = found;
-						}
-					}
+						} //if structure
+					} //for loop
+					
 					roomList[roomCount] =  new Room(id,maxUser);
-					for(int u=0;u<arrayOfUser.length;u++){
+					
+					for(int u = 0; u < arrayOfUser.length; u++){
 						roomList[roomCount].addUser(arrayOfUser[u]);
-					}
+					} //for loop
+					
 					roomCount++;
-				}
-				else if(type.equals("Computer")){
+				} else if (type.equals("Computer")) {
 					long id = Long.parseLong(holderIn.readLine());
 					boolean occupied = Boolean.parseBoolean(holderIn.readLine());
 					long userId =  Long.parseLong(holderIn.readLine());
 					User foundUser = User.searchById(users,userId);
-					String lineOfPrinters= holderIn.readLine();
-					long [] printerId = new Printer(Long.parseLong(lineOfPrinters.split(",")));
-					computerList[computerCount] =  new Computer(id,occupied);
-					if(occupied == true){
+					String lineOfPrinters = holderIn.readLine();
+					long[] printerId = toLongFromString(lineOfPrinters.split(","));
+					long[] printerId = new Printer(Long.parseLong(lineOfPrinters.split(",")));
+					computerList[computerCount] = new Computer(id,occupied);
+					
+					if (occupied == true){
 						computerList[computerCount].addUser(foundUser);
-					}
-					for(int p = 0;P<printerId.length;p++){
+					} //if structure
+					
+					for (int p = 0; p < printerId.length;p++) {
 						Printer foundPrinter = Printer.searchById(printers,printerId[p]);
-						if(foundPrinter != null){
+						
+						if (foundPrinter != null) {
 							computerList[computerCount].addPrinter(foundPrinter);
-						}
+						} //if structure
+						
 						computerCount++;
-					}
-				}
-			}catch (Exception e) {
+					} //for loop
+				} //if structure
+			} //for loop
+		} catch (Exception e) {
+			System.err.println("There was a problem with the UserHolder file.\t" + e.getMessage());
+		} //try-catch structure
 		
-			}
-	
-		try{			
-			//Printer file reader begins
+		//Printer file reader
+		try {			
 			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
 			int printerAmount = Integer.parseInt(printerIn.readLine());
 			printers = new Printer[printerAmount];
+			
 			for(int i = 0;i<printerAmount;i++){
 				long id = Long.parseLong(printerIn.readLine());
 				int max = Integer.parseInt(printerIn.readLine());
 				int num = Integer.parseInt(printerIn.readLine());
 				printers [i] = new Printer(id,max,num);
-			}
+			} //for loop
 		} catch (Exception e) {
-		
-		}
+			System.err.println("There was a problem with the printer file.\t" + e.getMessage());
+		} //try-catch structure
 						 
-	}
+	} //Library constructor - loading from file
 	
 	//New Library constructor
 	public Library () {
