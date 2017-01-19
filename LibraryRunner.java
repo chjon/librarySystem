@@ -649,8 +649,12 @@ public class LibraryRunner {
 		//displayMainMenu selection 5
 		
 		int sel;
+		long roomId;
 		long id;
 		boolean exit = false;
+		Room[] tempRooms;
+		Room curRoom;
+		User curUser;
 
 		while (!exit) {
 			System.out.println("ROOM MENU");
@@ -666,26 +670,50 @@ public class LibraryRunner {
 
 				switch (sel) {
 					case 1:
+						tempRooms = jurrLibrary.getRooms();
+
+						for (int i = 0; i < tempRooms.length; i++) {
+							System.out.println(tempRooms[i]);
+						}
 
 						break;
 
 					case 2:
+						System.out.println("Enter room ID: ");
+						roomId = sc.nextLong();
 
+						System.out.println(jurrLibrary.getRoomById(roomId));
 						break;
 
 					case 3:
+						System.out.print("Enter room ID: ");
+						roomId = sc.nextLong();
+
+						curRoom = jurrLibrary.getRoomById(roomId);
+
+						System.out.print("Enter user ID: ");
+						id = sc.nextLong();
+
+						curUser = jurrLibrary.getUserById(id);
+
+						if (curRoom.addUser(curUser)) {
+							System.out.println("User entered room");
+						} else {
+							System.out.println("Room full");
+						}
 
 						break;
 
 					case 4:
+						System.out.print("Enter room ID: ");
+						roomId = sc.nextLong();
 
+						curRoom = jurrLibrary.getRoomById(roomId);
+
+						displayRemoveFromRoomMenu(curRoom);
 						break;
 
 					case 5:
-						
-						break;
-						
-					case 6:
 						exit = true;
 						break;
 				} //switch structure to display sub menus
@@ -699,7 +727,141 @@ public class LibraryRunner {
 		displayMainMenu();
 	}
 
+	public static void displayRemoveFromRoomMenu (Room curRoom) {
+		//displayRoomMenu selection 4
+
+		int sel;
+		long id;
+		long roomId;
+		boolean exit = false;
+		User curUser;
+
+		while (!exit) {
+			System.out.println("REMOVE FROM ROOM MENU");
+			System.out.println("1. Remove all user(s)");
+			System.out.println("2. Remove user by ID");
+			System.out.println("3. Return to ROOM MENU");
+
+			try {
+				System.out.println("\nEnter a selection");
+				sel = sc.nextInt();
+
+				switch (sel) {
+					case 1:
+						curRoom.remAllUsers();
+						System.out.println("All users removed");
+
+						break;
+
+					case 2:
+						System.out.print("Enter a user ID: ");
+						id = sc.nextLong();
+
+						if (curRoom.remUser(id)) {
+							System.out.println("User removed");
+						} else {
+							System.out.println("User not found");
+						}
+
+						break;
+					case 3:
+						exit = true;
+						break;
+
+				} //switch structure to display sub menus
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input");
+			} catch (Exception e) {
+				System.out.println("Critical error");
+			} //try and catch structure
+		} //while loop
+
+		displayRoomMenu();
+	}
+
 	public static void displayComputerMenu () {
 		//displayMainMenu selection 6
+
+		int sel;
+		long comId;
+		boolean exit = false;
+		Computer[] tempComs;
+		Computer curCom;
+		User curUser;
+
+		while (!exit) {
+			System.out.println("COMPUTER MENU");
+			System.out.println("1. View all computers");
+			System.out.println("2. Search for computer by ID");
+			System.out.println("3. Add user");
+			System.out.println("4. Remove user");
+			System.out.println("5. Return to MAIN MENU");
+
+			try {
+				System.out.println("\nEnter a selection");
+				sel = sc.nextInt();
+
+				switch (sel) {
+					case 1:
+						tempComs = jurrLibrary.getComputers();
+
+						for (int i = 0; i < tempComs.length; i++) {
+							System.out.println(tempComs[i]);
+						}
+
+						break;
+
+					case 2:
+						System.out.println("Enter Computer ID: ");
+						comId = sc.nextLong();
+
+						System.out.println(jurrLibrary.getComputerById(comId));
+						break;
+
+					case 3:
+						System.out.print("Enter room ID: ");
+						comId = sc.nextLong();
+
+						curCom = jurrLibrary.getComputerById(comId);
+
+						System.out.print("Enter user ID: ");
+						id = sc.nextLong();
+
+						curUser = jurrLibrary.getUserById(id);
+
+						if (curCom.addUser(curUser)) {
+							System.out.println("User on computer");
+						} else {
+							System.out.println("Adding to computer failed");
+						}
+
+						break;
+
+					case 4:
+						System.out.print("Enter Computer ID: ");
+						comId = sc.nextLong();
+
+						curCom = jurrLibrary.getComputerById(comId);
+
+						if (curCom.remUser) {
+							System.out.println("User removed");
+						} else {
+							System.out.println("Computer unoccupied");
+						}
+
+						break;
+
+					case 5:
+						exit = true;
+						break;
+				} //switch structure to display sub menus
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input");
+			} catch (Exception e) {
+				System.out.println("Critical error");
+			} //try and catch structure
+		} //while loop
+
+		displayMainMenu();
 	}
 }
