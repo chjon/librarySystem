@@ -542,11 +542,14 @@ public class LibraryRunner {
 		//displayUserListMenu selection 1
 
 		long accNum;
-		int sel;
+		int sel, age;
 		boolean exit = false;
 		String name;
+		String[] dateInfo;
 		User[] tempUsers;
 		User curUser;
+		Date curDate;
+		Calendar cal = new Calendary();
 
 		System.out.print("Enter account number: ");
 		accNum = sc.nextLong();
@@ -589,11 +592,29 @@ public class LibraryRunner {
 						break;
 
 					case 3:
-						//NOTE getUsersByAge method not found															//
+						System.out.print("Enter age: ");
+						age = sc.nextInt();
+
+						tempUsers = User.searchByAge(jurrLibrary.getUsers(), age);
+
+						for (int i = 0; i < tempUsers.length; i++) {
+							System.out.println(tempUsers[i]);
+						}
+
 						break;
 
 					case 4:
-						//NOTE getUsersByOverdue method not found										//
+						System.out.println("Enter date (YYYY/MM/DD: ");
+						dateInfo = sc.nextLine().split("/");
+
+						curDate = new Date(Integer.parseInt(dateInfo[0]), Integer.parseInt(dateInfo[1]), Integer.parseInt(dateInfo[2]), cal);
+
+						tempUsers = User.searchByOverdue(jurrLibrary.getUsers(), curDate);
+
+						for (int i = 0; i < tempUsers.length; i++) {
+							System.out.println(tempUsers[i]);
+						}
+
 						break;
 
 					case 5:
