@@ -300,6 +300,28 @@ public class Library {
 		items = temp;
 	} //addUser method
 	
+	public boolean remItem (long id) {
+		Item.sortById(items);
+		
+		int index = Item.indexOfId(items, id);
+		
+		if (index != -1) {
+			Item[] temp = new Item[items.length - 1];
+			int curIndex = 0;
+			
+			for (int i = 0; i < items.length; i++) {
+				if (i != index) {
+					temp[curIndex] = items[i];
+					curIndex++;
+				} //if structure
+			} //for loop
+			
+			items = temp;
+		} //if structure
+		
+		return index != -1;
+	} //remItem method
+	
 	//finds user with specific id
 	public User getUserById (long id) {
 		User.sortById(users);
