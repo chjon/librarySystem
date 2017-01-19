@@ -33,6 +33,7 @@ public class LibraryRunner {
 			System.out.println("5. View rooms");
 			System.out.println("6. View computers");
 			System.out.println("7. Exit");
+			System.out.println();
 
 			try {
 				sel = sc.nextInt();
@@ -111,6 +112,7 @@ public class LibraryRunner {
 			System.out.println("6. Get suggested books");
 			System.out.println("7. Get suggested movies");
 			System.out.println("8. Return to main menu");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -205,6 +207,7 @@ public class LibraryRunner {
 			System.out.println("2. Search for item by expiry date");
 			System.out.println("3. Search for item by ID");
 			System.out.println("4. Return to ACCOUNT MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -280,6 +283,7 @@ public class LibraryRunner {
 			System.out.println("3. Remove item");
 			System.out.println("4. Check item status");
 			System.out.println("5. Return to MAIN MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -415,6 +419,7 @@ public class LibraryRunner {
 			System.out.println("4. Display by ID");
 			System.out.println("5. Display by genre");
 			System.out.println("6. Return to INVENTORY MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -514,6 +519,7 @@ public class LibraryRunner {
 			System.out.println("3. Remove user");
 			System.out.println("4. Edit user");
 			System.out.println("5. Return to MAIN MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -577,7 +583,6 @@ public class LibraryRunner {
 	public static void displayUsersMenu () {
 		//displayUserListMenu selection 1
 
-		long accNum;
 		int sel, age, itemNum;
 		boolean exit = false;
 		String name;
@@ -585,12 +590,7 @@ public class LibraryRunner {
 		User[] tempUsers;
 		User curUser;
 		Date curDate;
-		Calendar cal = new Calendary();
-
-		System.out.print("Enter account number: ");
-		accNum = sc.nextLong();
-
-		curUser = jurrLibrary.getUserById(accNum);
+		Calendar cal = new Calendar();
 
 		while (!exit) {
 			System.out.println("DISPLAY USERS MENU");
@@ -600,6 +600,7 @@ public class LibraryRunner {
 			System.out.println("4. List by overdue");
 			System.out.println("5. List by number of items");
 			System.out.println("6. Return to USER LIST MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -734,6 +735,7 @@ public class LibraryRunner {
 			System.out.println("3. Add user");
 			System.out.println("4. Remove user");
 			System.out.println("5. Return to MAIN MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -816,6 +818,7 @@ public class LibraryRunner {
 			System.out.println("1. Remove all user(s)");
 			System.out.println("2. Remove user by ID");
 			System.out.println("3. Return to ROOM MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -861,6 +864,7 @@ public class LibraryRunner {
 		//displayMainMenu selection 6
 
 		int sel;
+		long id;
 		long comId;
 		boolean exit = false;
 		Computer[] tempComs;
@@ -874,6 +878,7 @@ public class LibraryRunner {
 			System.out.println("3. Add user");
 			System.out.println("4. Remove user");
 			System.out.println("5. Return to MAIN MENU");
+			System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -926,7 +931,7 @@ public class LibraryRunner {
 						curCom = jurrLibrary.getComputerById(comId);
 
 						//A computer will only ever have one user at max
-						if (curCom.remUser) {
+						if (curCom.remUser()) {
 							System.out.println("User removed");
 						} else {
 							System.out.println("Computer unoccupied");
