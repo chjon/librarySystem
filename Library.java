@@ -125,10 +125,14 @@ public class Library {
 					if(occupied == true){
 						computerList[computerCount].addUser(foundUser);
 					}
-					//add user
-					computerCount++;
+					for(int p = 0;P<printerId.length;p++){
+						Printer foundPrinter = Printer.searchById(printers,printerId[p]);
+						if(foundPrinter != null){
+							computerList[computerCount].addPrinter(foundPrinter);
+						}
+						computerCount++;
+					}
 				}
-			}
 			
 			//Printer file reader begins
 			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
