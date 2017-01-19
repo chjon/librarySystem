@@ -94,10 +94,32 @@ public class User {
 
 	//Checks if borrowing the item is possible
 	public boolean canBorrow (Item libraryItem) {
-		return
-			!libraryItem.getIsOut() &&
-			currentItems() < MAX_ITEMS_OUT;
-	} //canBorrow method
+  	if (libraryItem instanceof VideoGame){
+    		if (age >= (((VideoGame)(libraryItem)).getAgeRating())){     
+      			if (!libraryItem.getIsOut() &&
+   			currentItems() < MAX_ITEMS_OUT)
+        			return true;
+      			else
+        			return false;
+    		}
+    	else if (libraryItem instanceof Movie){
+      		if (age >= (((Movie)(libraryItem)).getAgeRating())){
+      			if (!libraryItem.getIsOut() &&
+   			currentItems() < MAX_ITEMS_OUT)
+        			return true;
+      			else
+        			return false;
+    		}
+    	}
+    	else{
+      		return !libraryItem.getIsOut()
+      		&& currentItems() < MAX_ITEMS_OUT;
+	}
+  }
+  
+ }
+}//canBorrow method
+
 
 	//Adds item to the user's item list
 	public boolean takeOutItem (Item checkOut) {   
