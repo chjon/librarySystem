@@ -745,7 +745,7 @@ public class Library {
 		return closestBooks;
 	} //suggestBooks method
 	
-	
+	//saves all items to different files.
 	public void writeToFile () {
   try {
    BufferedWriter out = new BufferedWriter (new FileWriter ("printers.txt", true));
@@ -762,9 +762,9 @@ public class Library {
     out.newLine();
    }
    
-   printerOut.close();
+   out.close();
   } catch (IOException e) {
-     System.out.println("Problem with file" + e.getMessage());
+     System.out.println("Problem with using Printers.txt " + e.getMessage());
   }
   
   try {
@@ -853,7 +853,7 @@ public class Library {
    
    out.close();
   } catch (IOException e){
-   System.out.println("Problem with using file" + e.getMessage());
+   System.out.println("Problem with using items.txt" + e.getMessage());
   }
 
   try {
@@ -888,7 +888,7 @@ public class Library {
    
    out.close();
   } catch (IOException e){
-   System.out.println("Problem with using file" + e.getMessage());
+   System.out.println("Problem with using users.txt" + e.getMessage());
   }
   
   try {
@@ -958,7 +958,7 @@ public class Library {
    }
    out.close();
   } catch (IOException e) {
-   System.out.println("Problem with using file" + e.getMessage());
+   System.out.println("Problem with using userHolders.txt" + e.getMessage());
   }
  }
 } //Library class
