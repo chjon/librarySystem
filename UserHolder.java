@@ -6,8 +6,10 @@
  *******************************************************************************/
 
 public abstract class UserHolder {
-	protected long id;			//Id of the UserHolder
-	protected User [] users;		//List of users in the UserHolder
+	public static final String COMPUTER = "computer";
+	public static final String ROOM = "room";
+	protected long id;            //ID of the UserHolder
+	protected User [] users;      //List of users in the UserHolder
 	
 	abstract boolean isOccupied();
 	

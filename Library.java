@@ -1,13 +1,17 @@
 /*******************************************************************************
  * File Name:     Library.java
  * Class:         ICS4U-01
- * Date:          2017/01/16
  * Description:   This class defines a library.
  *******************************************************************************/
 
 import java.io.*;
 
 public class Library {
+	private static final String DATA_FILE_DIRECTORY = "";
+	private static final String ITEM_FILE = "items.txt";
+	private static final String USER_FILE = "users.txt";
+	private static final String USER_HOLDER_FILE = "userHolders.txt";
+	private static final String PRINTER_FILE = "printers.txt";
 	private static final long MAX_ID = 99999999;			//maximum allowed ID number
 	private String name; 						//name of library
 	private User[] users;						//list of users
@@ -41,12 +45,11 @@ public class Library {
 	} //toLongFromString method
 	
 	//Library constructor - load from file
-	public Library (String userFiletext, String userHolderText, String itemFileText, 
-			String printerFileText) {
+	public Library () {
 		
 		//Item file reader
 		try {
-			BufferedReader itemIn =  new BufferedReader(new FileReader("items.txt"));
+			BufferedReader itemIn =  new BufferedReader(new FileReader(ITEM_FILE));
 			int itemAmount = Integer.parseInt(itemIn.readLine());
 			items = new Item[itemAmount];
 			
@@ -55,7 +58,7 @@ public class Library {
 				String type = itemIn.readLine();
 				
 				//Book reader
-				if (type.equals("Book")) {
+				if (type.equalsIgnoreCase(Item.BOOK)) {
 					//Parse object parameters
 					String title = itemIn.readLine();
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
@@ -70,7 +73,7 @@ public class Library {
 					//Construct Book
 					items[i] = new Book(id, isOut, title, dayBorrowed, author, pages, deweyDecNum, deweySystem);
 				//Movie reader
-				} else if (type.equals("Movie")) {
+				} else if (type.equalsIgnoreCase(Item.MOVIE)) {
 					//Parse object parameters
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
@@ -86,7 +89,7 @@ public class Library {
 					//Construct Movie
 					items[i] = new Movie(id, isOut, title, dayBorrowed, director, genre, length, ageRating);
 				//VideoGame reader
-				} else if (type.equals("Video Game")){
+				} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)){
 					//Parse object parameters
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
@@ -108,7 +111,7 @@ public class Library {
 		
 		//User file reader
 		try {
-			BufferedReader userIn = new BufferedReader(new FileReader("users.txt"));
+			BufferedReader userIn = new BufferedReader(new FileReader(USER_FILE));
 			int userAmount = Integer.parseInt(userIn.readLine());
 			users = new User[userAmount];
 			
@@ -141,7 +144,7 @@ public class Library {
 		
 		//UserHolder file reader
 		try {
-			BufferedReader holderIn = new BufferedReader(new FileReader("userHolder.txt"));
+			BufferedReader holderIn = new BufferedReader(new FileReader(USER_HOLDER_FILE));
 			//Number of entries in the file
 			int userHolderAmount = Integer.parseInt(holderIn.readLine());
 			
@@ -154,7 +157,7 @@ public class Library {
 				int roomCount = 0;
 				
 				//Determine UserHolder type
-				if (type.equals("Room")) {
+				if (type.equalsIgnoreCase(UserHolder.ROOM)) {
 					//Parse object parameters
 					long id = Long.parseLong(holderIn.readLine());
 					int maxUser =  Integer.parseInt(holderIn.readLine());
@@ -179,7 +182,7 @@ public class Library {
 					} //for loop
 					
 					roomCount++;
-				} else if (type.equals("Computer")) {
+				} else if (type.equalsIgnoreCase(UserHolder.COMPUTER)) {
 					//Parse object parameters
 					long id = Long.parseLong(holderIn.readLine());
 					boolean occupied = Boolean.parseBoolean(holderIn.readLine());
@@ -215,7 +218,7 @@ public class Library {
 		
 		//Printer file reader
 		try {			
-			BufferedReader printerIn =  new BufferedReader(new FileReader("printer.txt"));
+			BufferedReader printerIn = new BufferedReader(new FileReader(PRINTER_FILE));
 			int printerAmount = Integer.parseInt(printerIn.readLine());
 			printers = new Printer[printerAmount];
 			
@@ -232,8 +235,8 @@ public class Library {
 	} //Library constructor - loading from file
 	
 	//New Library constructor
-	public Library () {
-		name = "JURR Library";
+	public Library (String name) {
+		this.name = name;
 		users = new User[0];
 		computerList = new Computer[0];
 		roomList = new Room[0];
@@ -356,7 +359,7 @@ public class Library {
 		} else if (title.equalsIgnoreCase(Item.VIDEO_GAME)) {
 			newItem = new VideoGame(genItemId(),   //Item ID
 				false,										//Whether the Item is out
-				title,        //Title of VideoGame
+				title,                              //Title of VideoGame
 				null,                               //Date VideoGame was borrowed
 				(String)objectParameters[0],        //Name of developer
 				(String)objectParameters[1],        //Genre
@@ -814,7 +817,7 @@ public class Library {
 	public void writeToFile () {
 		//Printer file writer
 		try {
-			BufferedWriter out = new BufferedWriter (new FileWriter ("printers.txt", true));
+			BufferedWriter out = new BufferedWriter (new FileWriter (PRINTER_FILE, true));
 			
 			out.write("" + printers.length);
    
@@ -836,7 +839,7 @@ public class Library {
 		
 		//Item file writer
 		try {
-			BufferedWriter itemOut = new BufferedWriter (new FileWriter ("items.txt", true));
+			BufferedWriter itemOut = new BufferedWriter (new FileWriter (ITEM_FILE, true));
 			
 			itemOut.write("" + items.length);
    
@@ -845,7 +848,7 @@ public class Library {
     			
 				//Book writer
 				if (items[i] instanceof Book){
-					itemOut.write("Book");
+					itemOut.write(Item.BOOK);
 					itemOut.newLine();
 					itemOut.write(items[i].getTitle());
 					itemOut.newLine();
@@ -871,7 +874,7 @@ public class Library {
 					itemOut.newLine();
 				//Movie writer
 				} else if (items[i] instanceof Movie) {
-					itemOut.write("Movie");
+					itemOut.write(Item.MOVIE);
 					itemOut.newLine();
 					itemOut.write("" + items[i].getId());
 					itemOut.newLine();
@@ -899,7 +902,7 @@ public class Library {
 					itemOut.newLine();
 				//VideoGame writer
 				} else if (items[i] instanceof VideoGame) {
-					itemOut.write("Video Game");
+					itemOut.write(Item.VIDEO_GAME);
 					itemOut.newLine();
 					itemOut.write(items[i].getId()+"");
 					itemOut.newLine();
@@ -933,7 +936,7 @@ public class Library {
 		
 		//User file writer
 		try {
-			BufferedWriter out = new BufferedWriter (new FileWriter ("users.txt", true));
+			BufferedWriter out = new BufferedWriter (new FileWriter (USER_FILE, true));
 			out.write(users.length + "");
 			out.newLine();
 			
@@ -968,14 +971,14 @@ public class Library {
 		} //try-catch structure
   
 		try {
-			BufferedWriter out = new BufferedWriter (new FileWriter ("userHolder.txt", true));
+			BufferedWriter out = new BufferedWriter (new FileWriter (USER_HOLDER_FILE, true));
 			
 			out.write((computerList.length + roomList.length) + "");
    
 			boolean found = false;
    
 			for (int i = 0; i < roomList.length; i ++){
-				out.write("Rooms");
+				out.write(UserHolder.ROOM);
 				out.newLine();
 				out.write(roomList[i].getId() + "");
 				out.newLine();
@@ -997,7 +1000,7 @@ public class Library {
 			} //for loop
     
 			for (int i = 0; i < computerList.length; i ++){
-				out.write("Computer");
+				out.write(UserHolder.COMPUTER);
 				out.newLine();
 				out.write(computerList[i].id+"");
 				out.newLine();
