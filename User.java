@@ -324,6 +324,7 @@ public class User {
 		return null;
 	} //searchByAge method
 	
+	//Check whether a User has an overdue Item
 	public boolean hasOverdue (Date curDate) {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].isOverdue(curDate)) {
@@ -334,9 +335,11 @@ public class User {
 		return false;
 	} //hasOverdue method
 	
+	//Search a User array for Users with overdue Items 
 	public static User[] searchByOverdue (User[] users, Date curDate) {
 		int count = 0;
-	
+		
+		//Count number of Users with overdue Items
 		for (int i = 0; i < users.length; i++) {
 			if (users[i].hasOverdue(curDate)) {
 				count++;
@@ -346,6 +349,7 @@ public class User {
 		User[] areOverdue = new User[count];
 		count = 0;
 		
+		//Copy all Users with overdue Items
 		for (int i = 0; i < users.length; i++) {
 			if (users[i].hasOverdue(curDate)) {
 				areOverdue[count] = users[i];
