@@ -27,19 +27,3 @@ Computer
 true
 1237
 1235, 1263
-
-/*
-Sample Data:
-size (int)
-
-Computer (String)
-Computer id (long)
-occupied (boolean)
-userId (long)
-printer Ids (String CSV)
-
-Room (String)
-Room id (long)
-maxUsers (int)
-userIds (String CSV)
-*/
