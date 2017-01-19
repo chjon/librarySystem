@@ -82,10 +82,12 @@ public class Library {
 				long itemArray = itemList.split(",");
 				Item [] itemList =  new Item[itemArray.length];
 				for(int i = 0;i<itemArray.length;i++){
-					
+					Item foundItem  = Item.searchById(items,itemArray[i]);
+					if(foundItem != null){
+						itemList[itemCount] =  foundItem;
+						itemCount++;
+					}
 				}
-				users[i] =  new User(name,id,age,amountOwed,itemList);
-			}
 			
 			//UserHolder file reader begins
 			BufferedReader holderIn =  new BufferedReader(new FileReader("userHolder.txt"));
