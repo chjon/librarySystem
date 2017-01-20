@@ -252,7 +252,7 @@ public class User {
 	
 		int bottom = 0, top = users.length, middle;
       
-		while (bottom <= top) {
+		while (bottom < top) {
 			middle = (bottom + top) / 2;
 			
 			if (users[middle].getId() == id) {

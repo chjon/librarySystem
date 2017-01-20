@@ -109,7 +109,7 @@ abstract class Item {
 		sortById(items);
 	
 		int bottom = 0, top = items.length, middle;
-		while (bottom <= top) {
+		while (bottom < top) {
 			middle = (bottom + top) / 2;
 			
 			if (items[middle].getId() == id) {
@@ -129,7 +129,7 @@ abstract class Item {
 		sortById(items);
 	
 		int bottom = 0, top = items.length, middle;
-		while (bottom <= top) {
+		while (bottom < top) {
 			middle = (bottom + top) / 2;
 			
 			if (items[middle].getId() == id) {
