@@ -79,6 +79,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	} //displayMainMenu method
@@ -186,6 +187,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	} //displayAccountMenu method
@@ -258,6 +260,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	} //viewCurrentItemsMenu method
@@ -390,6 +393,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	} //displayLibraryInventoryMenu method
@@ -492,6 +496,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	} //displayItemMenu method
@@ -569,6 +574,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	} //displayUserListMenu method
@@ -606,6 +612,7 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempUsers.length; i++) {
 							System.out.println(tempUsers[i]);
+							System.out.println();
 						}
 
 						break;
@@ -672,6 +679,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	} //displayUsersMenu method
@@ -789,6 +797,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	}
@@ -843,6 +852,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	}
@@ -934,6 +944,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
+				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
 	}
