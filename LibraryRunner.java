@@ -202,7 +202,6 @@ public class LibraryRunner {
 		String[] dateTemp;
 		Item[] tempList;
 		Date expDate;
-		Calendar cal = new Calendar();
 
 		while (!exit) {
 			System.out.println("\nVIEW CURRENT ITEMS MENU\n");
@@ -235,7 +234,7 @@ public class LibraryRunner {
 						System.out.print("Enter an expiry date (YYYY/MM/DD): ");
 						dateTemp = sc.nextLine().split("/");
 
-						expDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), cal);
+						expDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
 
 						tempList = jurrLibrary.getOverdue(expDate);
 						
@@ -410,7 +409,6 @@ public class LibraryRunner {
 		String[] dateHold;
 		int year, month, day;
 		Date dueDate;
-		Calendar cal = new Calendar();
 		Item[] tempList;
 
 		while (!exit) {
@@ -433,7 +431,7 @@ public class LibraryRunner {
 						System.out.print("Enter the overdue date (DD/MM/YYYY): ");
 						dateHold = sc.nextLine().split("/");
 
-						dueDate = new Date(Integer.parseInt(dateHold[0]), Integer.parseInt(dateHold[1]), Integer.parseInt(dateHold[2]), cal);
+						dueDate = new Date(Integer.parseInt(dateHold[0]), Integer.parseInt(dateHold[1]), Integer.parseInt(dateHold[2]), jurrLibrary.getCal());
 
 						tempList = jurrLibrary.getOverdue(dueDate);
 
@@ -589,7 +587,6 @@ public class LibraryRunner {
 		User[] tempUsers;
 		User curUser;
 		Date curDate;
-		Calendar cal = new Calendar();
 
 		while (!exit) {
 			System.out.println("\nDISPLAY USERS MENU\n");
@@ -645,10 +642,10 @@ public class LibraryRunner {
 
 					//Lists users by overdues
 					case 4:
-						System.out.println("Enter date (YYYY/MM/DD: ");
+						System.out.println("Enter date (YYYY/MM/DD): ");
 						dateInfo = sc.nextLine().split("/");
 
-						curDate = new Date(Integer.parseInt(dateInfo[0]), Integer.parseInt(dateInfo[1]), Integer.parseInt(dateInfo[2]), cal);
+						curDate = new Date(Integer.parseInt(dateInfo[0]), Integer.parseInt(dateInfo[1]), Integer.parseInt(dateInfo[2]), jurrLibrary.getCal());
 
 						tempUsers = User.searchByOverdue(jurrLibrary.getUsers(), curDate);
 
@@ -692,17 +689,16 @@ public class LibraryRunner {
 		String[] dateTemp;
 		User curUser;
 		Date curDate;
-		Calendar cal = new Calendar();
 
 		System.out.println("Enter user ID: ");
 		id = sc.nextLong();
 
 		curUser = jurrLibrary.getUserById(id);
 
-		System.out.print("Enter today's date (YYYY/MM/DD");
+		System.out.print("Enter today's date (YYYY/MM/DD): ");
 		dateTemp = sc.nextLine().split("/");
 
-		curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), cal);
+		curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
 
 		try {
 			while (!exit) {
