@@ -24,8 +24,8 @@ public class LibraryRunner {
 
 		while (!exit) {
 			//Structure to select which function to execute or other menu to view
-			System.out.println("MAIN MENU");
-			System.out.println("Welcome to the Library!\nPlease enter a selection:");
+			System.out.println("\nMAIN MENU\n");
+			System.out.println("Welcome to the Library!\nPlease enter a selection:\n");
 			System.out.println("1. Enter account credentials");
 			System.out.println("2. View Library inventory");
 			System.out.println("3. View user list");
@@ -72,6 +72,7 @@ public class LibraryRunner {
 					//Exit
 					case 7:
 						exit = true;
+						System.out.println("EXITING PROGRAM");
 						break;
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
@@ -102,8 +103,10 @@ public class LibraryRunner {
 
 		curUser = jurrLibrary.getUserById(accNum);
 
+		System.out.println();
+
 		while (!exit) {
-			System.out.println("ACCOUNT MENU");
+			System.out.println("\nACCOUNT MENU\n");
 			System.out.println("1. Sign out item");
 			System.out.println("2. View current items");
 			System.out.println("3. Check overdue fees");
@@ -185,8 +188,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayMainMenu();
 	} //displayAccountMenu method
 
 	public static void viewCurrentItemsMenu () {
@@ -202,7 +203,7 @@ public class LibraryRunner {
 		Calendar cal = new Calendar();
 
 		while (!exit) {
-			System.out.println("VIEW CURRENT ITEMS MENU");
+			System.out.println("\nVIEW CURRENT ITEMS MENU\n");
 			System.out.println("1. Search for items by name");
 			System.out.println("2. Search for item by expiry date");
 			System.out.println("3. Search for item by ID");
@@ -259,8 +260,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayAccountMenu();
 	} //viewCurrentItemsMenu method
 
 	public static void displayLibraryInventoryMenu () {
@@ -277,7 +276,7 @@ public class LibraryRunner {
 		Item[] tempList;
 
 		while (!exit) {
-			System.out.println("INVENTORY MENU");
+			System.out.println("\nINVENTORY MENU\n");
 			System.out.println("1. Display item list");
 			System.out.println("2. Add item");
 			System.out.println("3. Remove item");
@@ -293,9 +292,10 @@ public class LibraryRunner {
 					//Displays the item list of the Library inventory
 					case 1:
 						tempList = jurrLibrary.getItems();
-
+                  
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
+                     System.out.println();
 						}
 
 						break;
@@ -392,8 +392,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayMainMenu();
 	} //displayLibraryInventoryMenu method
 
 	public static void displayItemMenu () {
@@ -412,7 +410,7 @@ public class LibraryRunner {
 		Item[] tempList;
 
 		while (!exit) {
-			System.out.println("DISPLAY ITEM MENU");
+			System.out.println("\nDISPLAY ITEM MENU\n");
 			System.out.println("1. Display by overdue");
 			System.out.println("2. Display by type");
 			System.out.println("3. Display by name");
@@ -496,9 +494,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayLibraryInventoryMenu();
-
 	} //displayItemMenu method
 
 	public static void displayUserListMenu () {
@@ -513,7 +508,7 @@ public class LibraryRunner {
 		User curUser;
 
 		while (!exit) {
-			System.out.println("USER LIST MENU");
+			System.out.println("\nUSER LIST MENU\n");
 			System.out.println("1. Display users");
 			System.out.println("2. Add user");
 			System.out.println("3. Remove user");
@@ -576,8 +571,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayMainMenu();
 	} //displayUserListMenu method
 
 	public static void displayUsersMenu () {
@@ -593,7 +586,7 @@ public class LibraryRunner {
 		Calendar cal = new Calendar();
 
 		while (!exit) {
-			System.out.println("DISPLAY USERS MENU");
+			System.out.println("\nDISPLAY USERS MENU\n");
 			System.out.println("1. List by ID");
 			System.out.println("2. List by name");
 			System.out.println("3. List by age");
@@ -681,8 +674,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayUserListMenu();
 	} //displayUsersMenu method
 
 	public static void displayReturnItem () {
@@ -729,7 +720,7 @@ public class LibraryRunner {
 		User curUser;
 
 		while (!exit) {
-			System.out.println("ROOM MENU");
+			System.out.println("\nROOM MENU\n");
 			System.out.println("1. View all rooms");
 			System.out.println("2. Search for room by ID");
 			System.out.println("3. Add user");
@@ -800,8 +791,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayMainMenu();
 	}
 
 	public static void displayRemoveFromRoomMenu (Room curRoom) {
@@ -814,7 +803,7 @@ public class LibraryRunner {
 		User curUser;
 
 		while (!exit) {
-			System.out.println("REMOVE FROM ROOM MENU");
+			System.out.println("\nREMOVE FROM ROOM MENU\n");
 			System.out.println("1. Remove all user(s)");
 			System.out.println("2. Remove user by ID");
 			System.out.println("3. Return to ROOM MENU");
@@ -856,8 +845,6 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayRoomMenu();
 	}
 
 	public static void displayComputerMenu () {
@@ -872,7 +859,7 @@ public class LibraryRunner {
 		User curUser;
 
 		while (!exit) {
-			System.out.println("COMPUTER MENU");
+			System.out.println("\nCOMPUTER MENU\n");
 			System.out.println("1. View all computers");
 			System.out.println("2. Search for computer by ID");
 			System.out.println("3. Add user");
@@ -949,7 +936,5 @@ public class LibraryRunner {
 				System.out.println("Critical error");
 			} //try and catch structure
 		} //while loop
-
-		displayMainMenu();
 	}
 }
