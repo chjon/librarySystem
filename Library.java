@@ -7,7 +7,7 @@
  import java.io.*;
  
  public class Library {
- 	private static final String DATA_FILE_DIRECTORY = "";
+ 	private static final String DATA_FILE_DIRECTORY = "dataFiles";
  	private static final String ITEM_FILE = "items.txt";
  	private static final String USER_FILE = "users.txt";
  	private static final String USER_HOLDER_FILE = "userHolders.txt";
@@ -49,7 +49,7 @@
  		
  		//Item file reader
  		try {
- 			BufferedReader itemIn =  new BufferedReader(new FileReader(ITEM_FILE));
+ 			BufferedReader itemIn =  new BufferedReader(new FileReader(DATA_FILE_DIRECTORY + "/" + ITEM_FILE));
  			int itemAmount = Integer.parseInt(itemIn.readLine());
  			items = new Item[itemAmount];
  			
@@ -113,7 +113,7 @@
  		
  		//User file reader
  		try {
- 			BufferedReader userIn = new BufferedReader(new FileReader(USER_FILE));
+ 			BufferedReader userIn = new BufferedReader(new FileReader(DATA_FILE_DIRECTORY + "/" + USER_FILE));
  			int userAmount = Integer.parseInt(userIn.readLine());
  			users = new User[userAmount];
  			
@@ -149,7 +149,7 @@
  		
 		//Printer file reader
  		try {   
- 			BufferedReader printerIn = new BufferedReader(new FileReader(PRINTER_FILE));
+ 			BufferedReader printerIn = new BufferedReader(new FileReader(DATA_FILE_DIRECTORY + "/" + PRINTER_FILE));
  			int printerAmount = Integer.parseInt(printerIn.readLine());
  			printers = new Printer[printerAmount];
  			
@@ -167,7 +167,7 @@
 		
  		//UserHolder file reader
  		try {
- 			BufferedReader holderIn = new BufferedReader(new FileReader(USER_HOLDER_FILE));
+ 			BufferedReader holderIn = new BufferedReader(new FileReader(DATA_FILE_DIRECTORY + "/" + USER_HOLDER_FILE));
  			//Number of entries in the file
  			int userHolderAmount = Integer.parseInt(holderIn.readLine());
  			
@@ -471,6 +471,11 @@
  		return null;
  	} //getComputerById method
  	
+	//accessor for calendar
+	public Calendar getCal () {
+		return cal;
+	} //getCal method
+	
  	//accessor for printers
  	public Printer[] getPrinters () {
  		return printers;
@@ -853,7 +858,7 @@
  		
  		//Item file writer
  		try {
- 			BufferedWriter itemOut = new BufferedWriter (new FileWriter (ITEM_FILE, true));
+ 			BufferedWriter itemOut = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + ITEM_FILE, true));
  			
  			itemOut.write("" + items.length);
  			
@@ -949,7 +954,7 @@
 		
 		//User file writer
 		try {
-			BufferedWriter out = new BufferedWriter (new FileWriter (USER_FILE, true));
+			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_FILE, true));
 			out.write(users.length + "");
 			out.newLine();
 			
@@ -984,7 +989,7 @@
 		} //try-catch structure
 		
 		try {
-			BufferedWriter out = new BufferedWriter (new FileWriter (USER_HOLDER_FILE, true));
+			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_HOLDER_FILE, true));
 			
 			out.write((computerList.length + roomList.length) + "");
 			
