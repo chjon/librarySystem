@@ -139,8 +139,10 @@
  						itemCount++;
  					} //if structure
  				} //for loop
+				
+				users[i] = new User(name, id, age, amountOwed, itemList);
  			} //for loop
- 									userIn.close();
+ 			userIn.close();
  		} catch (Exception e) {
  			System.err.println("There was a problem with the user file.\t" + e.getMessage());
  		} //try-catch structure
