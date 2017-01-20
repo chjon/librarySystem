@@ -71,29 +71,29 @@ public class Printer {
 	
 	//Sort a Printer array by ID
 	public static void sortById (Printer[] printers) {
-      Printer temp;
-      boolean swapped = true;
-      
-      for (int i = 0; i < printers.length && swapped; i++) {
-         swapped = false;
+		Printer temp;
+		boolean swapped = true;
+		
+		for (int i = 0; i < printers.length && swapped; i++) {
+			swapped = false;
          
-         for (int j = printers.length - 1; j > i; j--) {
-            if (printers[j].id < printers[j - 1].id) {
-               temp = printers[j];
-               printers[j] = printers[j - 1];
-               printers[j - 1] = temp;
-               swapped = true;
-            } //if structure
-         } //for loop
-      } //for loop
-   } //sortById method
+			for (int j = printers.length - 1; j > i; j--) {
+				if (printers[j].id < printers[j - 1].id) {
+					temp = printers[j];
+					printers[j] = printers[j - 1];
+					printers[j - 1] = temp;
+					swapped = true;
+				} //if structure
+			} //for loop
+		} //for loop
+	} //sortById method
 	
 	//Search a Printer array by ID
 	public static Printer searchById (Printer[] printers, long id) {
 		sortById(printers);
 	
 		int bottom = 0, top = printers.length, middle;
-		while (bottom <= top) {
+		while (bottom < top) {
 			middle = (bottom + top) / 2;
 			
 			if (printers[middle].getId() == id) {

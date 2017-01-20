@@ -147,6 +147,24 @@
  			System.err.println("There was a problem with the user file.\t" + e.getMessage());
  		} //try-catch structure
  		
+		//Printer file reader
+ 		try {   
+ 			BufferedReader printerIn = new BufferedReader(new FileReader(PRINTER_FILE));
+ 			int printerAmount = Integer.parseInt(printerIn.readLine());
+ 			printers = new Printer[printerAmount];
+ 			
+ 			for(int i = 0;i<printerAmount;i++){
+				printerIn.readLine();
+ 				long id = Long.parseLong(printerIn.readLine());
+ 				int max = Integer.parseInt(printerIn.readLine());
+ 				int num = Integer.parseInt(printerIn.readLine());
+ 				printers [i] = new Printer(id,max,num);
+ 			} //for loop
+ 			printerIn.close();
+ 		} catch (Exception e) {
+ 			System.err.println("There was a problem with the printer file.\t" + e.getMessage());
+ 		} //try-catch structure
+		
  		//UserHolder file reader
  		try {
  			BufferedReader holderIn = new BufferedReader(new FileReader(USER_HOLDER_FILE));
@@ -157,6 +175,7 @@
  			roomList = new Room[userHolderAmount];
  			
  			for (int i = 0; i < userHolderAmount; i++) {
+				holderIn.readLine();
  				String type = holderIn.readLine();
  				int computerCount = 0;
  				int roomCount = 0;
@@ -171,15 +190,15 @@
  					User[] arrayOfUser = new User[maxUser];
  					
  					//Check if user exists
- 					for(int u = 0; u < maxUser; u++){
- 						User found = User.searchById(users,userId[u]);
+ 					for (int u = 0; u < userId.length; u++){
+ 						User found = User.searchById(users, userId[u]);
  						
  						if (found != null){
  							arrayOfUser[roomCount] = found;
  						} //if structure
  					} //for loop
  					
- 					roomList[roomCount] =  new Room(id,maxUser);
+ 					roomList[roomCount] = new Room(id,maxUser);
  					
  					//Copy found users into array
  					for(int u = 0; u < arrayOfUser.length; u++){
@@ -191,23 +210,29 @@
  					//Parse object parameters
  					long id = Long.parseLong(holderIn.readLine());
  					boolean occupied = Boolean.parseBoolean(holderIn.readLine());
- 					long userId =  Long.parseLong(holderIn.readLine());
- 					User foundUser = User.searchById(users, userId);
+ 					long userId = -1;
+					
+					//Construct Computer
+ 					computerList[computerCount] = new Computer(id, occupied);
+					
+					//Check whether there are users listed
+					String input = holderIn.readLine();
+					
+					if (!input.isEmpty()) {
+						userId = Long.parseLong(input);
+						User foundUser = User.searchById(users, userId);
+						
+						//Add user to Computer
+	 					computerList[computerCount].addUser(foundUser);
+					} //if structure
+
  					String lineOfPrinters = holderIn.readLine();
  					long[] printerId = toLongFromString(lineOfPrinters.split(","));
  					Printer[] printers = new Printer[printerId.length];
  					
- 					//Construct Computer
- 					computerList[computerCount] = new Computer(id, occupied);
- 					
- 					//Add user to Computer
- 					if (occupied == true) {
- 						computerList[computerCount].addUser(foundUser);
- 					} //if structure
- 					
  					//Add printers to Computer
- 					for (int p = 0; p < printerId.length;p++) {
- 						Printer foundPrinter = Printer.searchById(printers,printerId[p]);
+ 					for (int p = 0; p < printerId.length; p++) {
+ 						Printer foundPrinter = Printer.searchById(this.printers,printerId[p]);
  						
  						if (foundPrinter != null) {
  							computerList[computerCount].addPrinter(foundPrinter);
@@ -220,25 +245,7 @@
  			holderIn.close();
  		} catch (Exception e) {
  			System.err.println("There was a problem with the UserHolder file.\t" + e.getMessage());
- 		} //try-catch structure
- 		
- 		//Printer file reader
- 		try {   
- 			BufferedReader printerIn = new BufferedReader(new FileReader(PRINTER_FILE));
- 			int printerAmount = Integer.parseInt(printerIn.readLine());
- 			printers = new Printer[printerAmount];
- 			
- 			for(int i = 0;i<printerAmount;i++){
- 				long id = Long.parseLong(printerIn.readLine());
- 				int max = Integer.parseInt(printerIn.readLine());
- 				int num = Integer.parseInt(printerIn.readLine());
- 				printers [i] = new Printer(id,max,num);
- 			} //for loop
- 			printerIn.close();
- 		} catch (Exception e) {
- 			System.err.println("There was a problem with the printer file.\t" + e.getMessage());
- 		} //try-catch structure
- 							
+ 		} //try-catch structure					
  	} //Library constructor - loading from file
  	
  	//New Library constructor
