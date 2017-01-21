@@ -404,6 +404,7 @@ public class LibraryRunner {
 					case 3:
 						System.out.print("Enter an ID: ");
 						id = sc.nextLong();
+						sc.nextLine();
 
 						jurrLibrary.remItem(id);
 
@@ -418,7 +419,7 @@ public class LibraryRunner {
 							System.out.println("Item is in the library");
 						} else {
 							System.out.println("Item is not in the library");
-						}
+						} //if structure
 
 						break;
 
@@ -489,7 +490,8 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
+						
 						break;
 
 					//Displays items by their title
@@ -501,7 +503,7 @@ public class LibraryRunner {
 						//printing information for all items found with matching title
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
 						
 						break;
 
@@ -509,7 +511,9 @@ public class LibraryRunner {
 					case 4:
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
+						sc.nextLine();
 						System.out.println(jurrLibrary.getItemById(id));
+						
 						break;
 
 					//Displays items by genre
@@ -521,7 +525,7 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
 
 						break;
 

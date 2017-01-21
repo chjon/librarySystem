@@ -846,7 +846,7 @@ public class Library {
  		}
 
  		try {
- 			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + PRINTER_FILE, true));
+ 			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + PRINTER_FILE));
  			
  			out.write("" + printers.length);
  			
@@ -868,7 +868,7 @@ public class Library {
  		
  		//Item file writer
  		try {
- 			BufferedWriter itemOut = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + ITEM_FILE, true));
+ 			BufferedWriter itemOut = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + ITEM_FILE));
  			
  			itemOut.write("" + items.length);
  			
@@ -964,7 +964,7 @@ public class Library {
 		
 		//User file writer
 		try {
-			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_FILE, true));
+			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_FILE));
 			out.write(users.length + "");
 			out.newLine();
 			
@@ -1000,7 +1000,7 @@ public class Library {
 		
 		//UserHolder file writer
 		try {
-			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_HOLDER_FILE, true));
+			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_HOLDER_FILE));
 			
 			out.write((computerList.length + roomList.length) + "");
 			
