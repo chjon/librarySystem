@@ -99,8 +99,8 @@ public class Printer {
 	public static Printer searchById (Printer[] printers, long id) {
 		sortById(printers);
 	
-		int bottom = 0, top = printers.length, middle;
-		while (bottom < top) {
+		int bottom = 0, top = printers.length - 1, middle;
+		while (bottom <= top) {
 			middle = (bottom + top) / 2;
 			
 			if (printers[middle].getId() == id) {

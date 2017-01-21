@@ -912,13 +912,15 @@ public class LibraryRunner {
 					//Displays a listing of all computers
 					case 1:
 						tempComs = jurrLibrary.getComputers();
-
+						
 						for (int i = 0; i < tempComs.length; i++) {
-							System.out.println(tempComs[i]);
-						}
+							if (tempComs[i] != null) {
+								System.out.println(tempComs[i]);
+								System.out.println();
+							} //if structure
+						} //for loop
 
 						break;
-
 					//Displays a computer with matching entered ID
 					case 2:
 						System.out.println("Enter Computer ID: ");

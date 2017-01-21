@@ -16,10 +16,25 @@ public class Computer extends UserHolder {
 	public Computer (long identification, boolean occupied) {
 		super(MAX_USERS, identification);
 		this.occupied = occupied;
+		printers = new Printer[0];
 	} //Computer constructor
   
 	public String toString () {
-		return "ID:" + id + "Currently Available:" + id;
+		String output =
+			super.toString() + "\n" +
+			"Printers:\t";
+		
+		for (int i = 0; i < printers.length; i++) {
+			if (printers[i] != null) {
+				output += printers[i].getId() + ",";
+			} //if structure
+		} //for loop
+		
+		if (output.charAt(output.length() - 1) == ',') {
+			output = output.substring(0, output.length() - 1);
+		} //if structure
+		
+		return output;
 	} //toString method
 	
 	public Printer[] getPrinters () {
@@ -44,7 +59,7 @@ public class Computer extends UserHolder {
 	public void addPrinter (Printer toAdd) {
 		Printer[] temp = new Printer[printers.length + 1];
 
-		for (int i = 0; i < temp.length; i++) {
+		for (int i = 0; i < printers.length; i++) {
 			temp[i] = printers[i];
 		} //for loop
 
