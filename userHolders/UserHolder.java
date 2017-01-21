@@ -34,7 +34,21 @@ public abstract class UserHolder {
 	} //getUsers method
 	
 	public String toString () {
-		return "ID:\t" + id;
+		String output =
+				"ID:\t" + id + "\n" +
+				"Users:\t";
+		
+		for (int i = 0; i < users.length; i++) {
+			if (users[i] != null) {
+				output += users[i].getId() + ",";
+			} //if structure
+		} //for loop
+		
+		if (output.charAt(output.length() - 1) == ',') {
+			output = output.substring(0, output.length() - 1);
+		} //if structure
+		
+		return output;
 	} //toString method
 	
 	//Adds user to the Userholder
