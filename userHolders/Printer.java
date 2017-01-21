@@ -4,6 +4,10 @@
  * Description:   This class defines a printer.
  *******************************************************************************/
 
+package librarySystem.userHolders;
+
+import librarySystem.users.*;
+
 public class Printer {
 	protected final double PRICE_BW = 0.15;         //Price of black & white paper per sheet
 	protected final double PRICE_COLOUR = 0.50;     //Price colour paper per sheet
@@ -38,6 +42,10 @@ public class Printer {
   
 	public int getNumPaper () {
 		return numPaper;
+	} //getPaper method
+	
+	public int getMaxPaper () {
+		return maxPaper;
 	} //getPaper method
   
 	//Checks if printing is possible and adds to amount due
