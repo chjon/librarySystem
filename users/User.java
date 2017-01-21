@@ -135,7 +135,7 @@ public class User {
 		for (int i = 0; i < count; i ++) {
 			//Add fine if item is overdue
 			if (items[i].isOverdue(curDate)) {
-				amountOwed += items[i].getDaysOverdue(curDate) * Item.OVERDUE_PRICE;
+				amountOwed += (-items[i].getDaysOverdue(curDate)) * Item.OVERDUE_PRICE;
 			} //if structure
 			
 			//Reset item properties
@@ -375,7 +375,7 @@ public class User {
 	//Check whether a User has an overdue Item
 	public boolean hasOverdue (Date curDate) {
 		for (int i = 0; i < items.length; i++) {
-			if (items[i].isOverdue(curDate)) {
+			if (items[i] != null && items[i].isOverdue(curDate)) {
 				return true;
 			} //if structure
 		} //for loop

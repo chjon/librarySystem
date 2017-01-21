@@ -58,7 +58,7 @@ public abstract class Item {
 	
 	//Checks if the item is overdue
 	public boolean isOverdue (Date curDate) {
-		return dayBorrowed.compareTo(curDate) > getMaxDaysOut();
+		return -(dayBorrowed.compareTo(curDate)) > getMaxDaysOut();
 	} //isOverdue method
 	
 	public String toString () {

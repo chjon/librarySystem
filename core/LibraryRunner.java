@@ -60,7 +60,7 @@ public class LibraryRunner {
 						break;
 
 					//Returning an item
-					case 4:             
+					case 4:
 						displayReturnItem();
 						break;
 
@@ -798,7 +798,7 @@ public class LibraryRunner {
 		System.out.println("Enter user ID: ");
 		id = sc.nextLong();
 		sc.nextLine();
-
+		
 		curUser = jurrLibrary.getUserById(id);
 		
 		if (curUser == null) {
@@ -810,13 +810,31 @@ public class LibraryRunner {
 			
 			try {
 				curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
-			
+				
+				System.out.println("Return all? (y/n)");
+				String input = sc.nextLine();
+				
+				if (input.equals("y")) {
+					curUser.takeBack(curDate);
+					exit = true;
+				} else if (!input.equals("n")) {
+					System.out.println("Invalid input.");
+					exit = true;
+				} //if structure
+				
 				while (!exit) {
 					System.out.print("Enter the ID of the item being returned (\"Exit\" to return to MAIN MENU): ");
 					id = sc.nextLong();
 					sc.nextLine();
 	            
-					curUser.takeBack(jurrLibrary.getItemById(id), curDate);           
+					Item chosenItem = jurrLibrary.getItemById(id);
+					
+					if (chosenItem == null) {
+						System.out.println("That item was not found.");
+						exit = true;
+					} else {
+						curUser.takeBack(chosenItem, curDate);
+					} //if structure      
 				} //while loop
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -999,7 +1017,7 @@ public class LibraryRunner {
 				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
-	}
+	} //displayRemoveFromRoomMenu method
 
 	public static void displayComputerMenu () {
 		//displayMainMenu selection 6
