@@ -59,7 +59,7 @@ public class LibraryRunner {
 						break;
 
 					//Returning an item
-					case 4:
+					case 4:             
 						displayReturnItem();
 						break;
 
@@ -111,12 +111,7 @@ public class LibraryRunner {
 		accNum = sc.nextLong();
 
 		curUser = jurrLibrary.getUserById(accNum);
-		
-		if (curUser == null) {
-			System.out.println("That user could not be found.");
-			exit = true;
-		} //if structure
-		
+
 		System.out.println();
 
 		while (!exit) {
@@ -180,8 +175,7 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						} //for loop
-						
+						}
 						break;
 
 					//Returning movies suggested that are closest to the number of minutes the user enters
@@ -191,11 +185,6 @@ public class LibraryRunner {
 
 						//returns a list of suggested movies whose time sum most closely to the target time
 						tempList = Library.suggestMovies(jurrLibrary.getMovies(), targetMinutes);
-						
-						for (int i = 0; i < tempList.length; i++) {
-							System.out.println(tempList[i]);
-						} //for loop
-						
 						break;
 
 					case 8:
@@ -342,9 +331,9 @@ public class LibraryRunner {
 							parameters[1] = (Integer)sc.nextInt();
 
 							System.out.print("Enter the Dewey Decimal Number: ");
-							parameters[2] = (Double)sc.nextDouble();
+							parameters[2] = (Long)sc.nextLong();
 
-							jurrLibrary.addItem("book", name, parameters);
+							jurrLibrary.addItem(type, name, parameters);
 
 						//If the item is of type VideoGame
 						} else if (type.equalsIgnoreCase("video game")) {
@@ -359,7 +348,7 @@ public class LibraryRunner {
 							System.out.print("Enter the age rating: ");
 							parameters[2] = (Integer)sc.nextInt();
 
-							jurrLibrary.addItem("video game", name, parameters);
+							jurrLibrary.addItem(type, name, parameters);
 
 						//If the item is of type Movie
 						} else if (type.equalsIgnoreCase("movie")) {
@@ -377,7 +366,7 @@ public class LibraryRunner {
 							System.out.print("Enter the age rating: ");
 							parameters[3] = (Integer)sc.nextInt();
 
-							jurrLibrary.addItem("movie", name, parameters);
+							jurrLibrary.addItem(type, name, parameters);
 						}
 
 						break;
@@ -719,20 +708,24 @@ public class LibraryRunner {
 
 		curUser = jurrLibrary.getUserById(id);
       System.out.println(curUser);
+      
+//
+for (int i = 0; i < curUser.getItems().length; i++) {
+   System.out.println(curUser.getItems()[i]);
+}      
 
 		System.out.print("Enter today's date (YYYY/MM/DD): ");
 		sc.nextLine();
 		dateTemp = sc.nextLine().split("/");
 
 		curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
-      System.out.println(curDate);
       
 		try {
 			while (!exit) {
 				System.out.print("Enter the ID of the item being returned (\"Exit\" to return to MAIN MENU): ");
 				id = sc.nextLong();
             
-				curUser.takeBack(jurrLibrary.getItemById(id), curDate);
+				curUser.takeBack(jurrLibrary.getItemById(id), curDate);           
 			}
 		} catch (java.util.InputMismatchException e) {
 			System.out.println("Invalid input");
