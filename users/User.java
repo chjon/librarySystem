@@ -146,14 +146,14 @@ public class User {
 	} //takeBack method
   
 	//Takes back the item according to the provided item
-	public void takeBack (Item returnItem, Date curDate) {
+	public boolean takeBack (Item returnItem, Date curDate) {
 		//Add fine if item is overdue
 		if (returnItem.isOverdue(curDate)) {
 			amountOwed += returnItem.getDaysOverdue(curDate) * Item.OVERDUE_PRICE;
 		} //if structure
 		
 		//Reset item properties
-    	returnItem.setIsOut(false);
+    		returnItem.setIsOut(false);
 		returnItem.setDayBorrowed(null);
 		returnItem.setIsOut(false);
 		
@@ -161,9 +161,12 @@ public class User {
 		for (int i = 0; i < items.length; i ++) {
 			if (items[i].getId() == returnItem.getId()) {
 				items[i] = null;
+				return true; // if successfuly returned
 			} //if structure
 		} //for loop
+		return false; // if item isn't in users posession
 	} //takeBack method
+
   
 	//Pay amount owed by the user
 	public void payFine () {
