@@ -41,6 +41,7 @@ public class LibraryRunner {
 
 			try {
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Entering account credentials
@@ -81,6 +82,9 @@ public class LibraryRunner {
 						exit = true;
 						System.out.println("EXITING PROGRAM");
 						break;
+						
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -109,11 +113,12 @@ public class LibraryRunner {
 
 		System.out.print("Enter account number: ");
 		accNum = sc.nextLong();
+		sc.nextLine();
 
 		curUser = jurrLibrary.getUserById(accNum);
 		
 		if (curUser == null) {
-			System.out.println("That user could not be found.");
+			System.out.println("That user was not found.");
 			exit = true;
 		} //if structure
 		
@@ -146,7 +151,7 @@ public class LibraryRunner {
 						Item chosenItem = jurrLibrary.getItemById(itemId);
 						
 						if (chosenItem == null) {
-							System.out.println("That item could not be found.");
+							System.out.println("That item was not found.");
 						} else {
 							//current user takes out item
 							curUser.takeOutItem(chosenItem);
@@ -186,6 +191,7 @@ public class LibraryRunner {
 						newName = sc.nextLine();
 						System.out.print("Enter age: ");
 						newAge = sc.nextInt();
+						sc.nextLine();
 						curUser.editUser(newName, newAge);
 						System.out.println("Account information changed");
 						break;
@@ -213,11 +219,19 @@ public class LibraryRunner {
 
 						//returns a list of suggested movies whose time sum most closely to the target time
 						tempList = Library.suggestMovies(jurrLibrary.getMovies(), targetMinutes);
+						
+						for (int i = 0; i < tempList.length; i++) {
+							System.out.println(tempList[i]);
+						} //for loop
+						
 						break;
 
 					case 8:
 						exit = true;
 						break;
+					
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -278,7 +292,7 @@ public class LibraryRunner {
 						
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
 
 						break;
 
@@ -286,12 +300,23 @@ public class LibraryRunner {
 					case 3:
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
-						System.out.println(jurrLibrary.getItemById(id));
+						
+						Item chosenItem = jurrLibrary.getItemById(id);
+						
+						if (chosenItem == null) {
+							System.out.println("That item was not found.");
+						} else {
+							System.out.println(chosenItem);
+						} //if structure
+						
 						break;
 
 					case 4:
 						exit = true;
 						break;
+						
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -361,6 +386,7 @@ public class LibraryRunner {
 
 							System.out.print("Enter the Dewey Decimal Number: ");
 							parameters[2] = (Long)sc.nextLong();
+							sc.nextLine();
 
 							jurrLibrary.addItem(type, name, parameters);
 
@@ -376,6 +402,7 @@ public class LibraryRunner {
 
 							System.out.print("Enter the age rating: ");
 							parameters[2] = (Integer)sc.nextInt();
+							sc.nextLine();
 
 							jurrLibrary.addItem(type, name, parameters);
 
@@ -394,9 +421,10 @@ public class LibraryRunner {
 
 							System.out.print("Enter the age rating: ");
 							parameters[3] = (Integer)sc.nextInt();
+							sc.nextLine();
 
 							jurrLibrary.addItem(type, name, parameters);
-						}
+						} //if structure
 
 						break;
 
@@ -426,6 +454,9 @@ public class LibraryRunner {
 					case 5:
 						exit = true;
 						break;
+					
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -445,7 +476,7 @@ public class LibraryRunner {
 		boolean exit = false;
 		String name;
 		String genre;
-		String type;;
+		String type;
 		String[] dateHold;
 		int year, month, day;
 		Date dueDate;
@@ -477,7 +508,7 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
 
 						break;
 
@@ -512,7 +543,14 @@ public class LibraryRunner {
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
 						sc.nextLine();
-						System.out.println(jurrLibrary.getItemById(id));
+						
+						Item chosenItem = jurrLibrary.getItemById(id);
+						
+						if (chosenItem == null) {
+							System.out.println("That item was not found.");
+						} else {
+							System.out.println(chosenItem);
+						} //if structure
 						
 						break;
 
@@ -532,6 +570,9 @@ public class LibraryRunner {
 					case 6:
 						exit = true;
 						break;
+						
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -597,20 +638,28 @@ public class LibraryRunner {
 						accNum = sc.nextLong();
 
 						curUser = jurrLibrary.getUserById(accNum);
-
-						System.out.print("Enter name: ");
-						newName = sc.nextLine();
-						System.out.print("Enter age: ");
-						newAge = sc.nextInt();
-
-						curUser.editUser(newName, newAge);
-
-						System.out.println("Account information changed");
+						
+						if (curUser == null) {
+							System.out.println("That user was not found.");
+						} else {
+							System.out.print("Enter name: ");
+							newName = sc.nextLine();
+							System.out.print("Enter age: ");
+							newAge = sc.nextInt();
+	
+							curUser.editUser(newName, newAge);
+	
+							System.out.println("Account information changed");
+						} //if structure
+						
 						break;
 
 					case 5:
 						exit = true;
 						break;
+						
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -646,6 +695,7 @@ public class LibraryRunner {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Lists users by ID
@@ -655,7 +705,7 @@ public class LibraryRunner {
 						for (int i = 0; i < tempUsers.length; i++) {
 							System.out.println(tempUsers[i]);
 							System.out.println();
-						}
+						} //for loop
 
 						break;
 
@@ -668,7 +718,7 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempUsers.length; i++) {
 							System.out.println(tempUsers[i]);
-						}
+						} //for loop
 
 						break;
 
@@ -676,12 +726,13 @@ public class LibraryRunner {
 					case 3:
 						System.out.print("Enter age: ");
 						age = sc.nextInt();
+						sc.nextLine();
 
 						tempUsers = User.searchByAge(jurrLibrary.getUsers(), age);
 
 						for (int i = 0; i < tempUsers.length; i++) {
 							System.out.println(tempUsers[i]);
-						}
+						} //for loop
 
 						break;
 
@@ -690,13 +741,17 @@ public class LibraryRunner {
 						System.out.println("Enter date (YYYY/MM/DD): ");
 						dateInfo = sc.nextLine().split("/");
 
-						curDate = new Date(Integer.parseInt(dateInfo[0]), Integer.parseInt(dateInfo[1]), Integer.parseInt(dateInfo[2]), jurrLibrary.getCal());
+						try {
+							curDate = new Date(Integer.parseInt(dateInfo[0]), Integer.parseInt(dateInfo[1]), Integer.parseInt(dateInfo[2]), jurrLibrary.getCal());
 
-						tempUsers = User.searchByOverdue(jurrLibrary.getUsers(), curDate);
-
-						for (int i = 0; i < tempUsers.length; i++) {
-							System.out.println(tempUsers[i]);
-						}
+							tempUsers = User.searchByOverdue(jurrLibrary.getUsers(), curDate);
+	
+							for (int i = 0; i < tempUsers.length; i++) {
+								System.out.println(tempUsers[i]);
+							} //for loop
+						} catch (Exception e) {
+							System.out.println("Invalid input.");
+						} //try-catch structure
 
 						break;
 
@@ -704,18 +759,22 @@ public class LibraryRunner {
 					case 5:
 						System.out.print("Enter number of items: ");
 						itemNum = sc.nextInt();
+						sc.nextLine();
 
 						tempUsers = User.searchByNumItemsOut(jurrLibrary.getUsers(), itemNum);
 
 						for (int i = 0; i < tempUsers.length; i++) {
 							System.out.println(tempUsers[i]);
-						}
+						} //for loop
 
 						break;
 						
 					case 6:
 						exit = true;
 						break;
+						
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -734,37 +793,37 @@ public class LibraryRunner {
 		boolean exit = false;
 		String[] dateTemp;
 		User curUser;
-		Date curDate;
+		Date curDate = null;
 
 		System.out.println("Enter user ID: ");
 		id = sc.nextLong();
+		sc.nextLine();
 
 		curUser = jurrLibrary.getUserById(id);
-      System.out.println(curUser);
-      
-//
-for (int i = 0; i < curUser.getItems().length; i++) {
-   System.out.println(curUser.getItems()[i]);
-}      
-
-		System.out.print("Enter today's date (YYYY/MM/DD): ");
-		sc.nextLine();
-		dateTemp = sc.nextLine().split("/");
-
-		curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
-      
-		try {
-			while (!exit) {
-				System.out.print("Enter the ID of the item being returned (\"Exit\" to return to MAIN MENU): ");
-				id = sc.nextLong();
-            
-				curUser.takeBack(jurrLibrary.getItemById(id), curDate);           
-			}
-		} catch (java.util.InputMismatchException e) {
-			System.out.println("Invalid input");
+		
+		if (curUser == null) {
+			System.out.println("That user was not found.");
 			exit = true;
-		}
-	} 
+		} else {
+			System.out.print("Enter today's date (YYYY/MM/DD): ");
+			dateTemp = sc.nextLine().split("/");
+			
+			try {
+				curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
+			
+				while (!exit) {
+					System.out.print("Enter the ID of the item being returned (\"Exit\" to return to MAIN MENU): ");
+					id = sc.nextLong();
+					sc.nextLine();
+	            
+					curUser.takeBack(jurrLibrary.getItemById(id), curDate);           
+				} //while loop
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input");
+				exit = true;
+			} //try-catch structure
+		} //if structure   
+	} //displayReturnItem method
 
 	public static void displayRoomMenu () {
 		//displayMainMenu selection 5
@@ -789,6 +848,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Displays a listing of all rooms
@@ -808,14 +868,23 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 2:
 						System.out.println("Enter room ID: ");
 						roomId = sc.nextLong();
-
-						System.out.println(UserHolder.searchById(jurrLibrary.getRooms(), roomId));
+						sc.nextLine();
+						
+						Room chosenRoom = UserHolder.searchById(jurrLibrary.getRooms(), roomId);
+						
+						if (chosenRoom == null) {
+							System.out.println("That room was not found.");
+						} else {
+							System.out.println(chosenRoom);
+						} //if structure
+						
 						break;
 
 					//Adds a user to a room
 					case 3:
 						System.out.print("Enter room ID: ");
 						roomId = sc.nextLong();
+						sc.nextLine();
 
 						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
 						
@@ -824,6 +893,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 						} else {
 							System.out.print("Enter user ID: ");
 							id = sc.nextLong();
+							sc.nextLine();
 	
 							curUser = jurrLibrary.getUserById(id);
 	
@@ -842,6 +912,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 4:
 						System.out.print("Enter room ID: ");
 						roomId = sc.nextLong();
+						sc.nextLine();
 
 						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
 						
@@ -856,6 +927,9 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 5:	
 						exit = true;
 						break;
+						
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -865,7 +939,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
-	}
+	} //displayRoomMenu method
 
 	public static void displayRemoveFromRoomMenu (Room curRoom) {
 		//displayRoomMenu selection 4
@@ -886,6 +960,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Removes all users from the room
@@ -899,6 +974,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 2:
 						System.out.print("Enter a user ID: ");
 						id = sc.nextLong();
+						sc.nextLine();
 
 						if (curRoom.remUser(id)) {
 							System.out.println("User removed");
@@ -911,7 +987,9 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 3:
 						exit = true;
 						break;
-
+					
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -946,6 +1024,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Displays a listing of all computers
@@ -964,14 +1043,23 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 2:
 						System.out.println("Enter Computer ID: ");
 						comId = sc.nextLong();
-
-						System.out.println(jurrLibrary.getComputerById(comId));
+						sc.nextLine();
+						
+						Computer chosenCom = jurrLibrary.getComputerById(comId);
+						
+						if (chosenCom == null) {
+							System.out.println("That computer was not found.");
+						} else {
+							System.out.println(chosenCom);
+						} //if structure
+						
 						break;
 
 					//Adds a user to a computer
 					case 3:
 						System.out.print("Enter Computer ID: ");
 						comId = sc.nextLong();
+						sc.nextLine();
 
 						curCom = jurrLibrary.getComputerById(comId);
 						
@@ -980,10 +1068,13 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 						} else {
 							System.out.print("Enter user ID: ");
 							id = sc.nextLong();
+							sc.nextLine();
 	
 							curUser = jurrLibrary.getUserById(id);
 	
-							if (curCom.addUser(curUser)) {
+							if (curUser == null) {
+								System.out.println("That user was not found.");
+							} else if (curCom.addUser(curUser)) {
 								System.out.println("Successfully added user to Computer");
 							} else {
 								System.out.println("That computer is occupied.");
@@ -996,6 +1087,7 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 4:
 						System.out.print("Enter Computer ID: ");
 						comId = sc.nextLong();
+						sc.nextLine();
 
 						curCom = jurrLibrary.getComputerById(comId);
 						
@@ -1015,6 +1107,9 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 					case 5:
 						exit = true;
 						break;
+						
+					default:
+						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
@@ -1024,5 +1119,5 @@ for (int i = 0; i < curUser.getItems().length; i++) {
 				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
-	}
-}
+	} //displayComputerMenu method
+} //LibraryRunner class

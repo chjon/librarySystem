@@ -97,7 +97,7 @@ public class Library {
 					//Construct Movie
 					items[i] = new Movie(id, isOut, title, dayBorrowed, director, genre, length, ageRating);
 				//VideoGame reader
-				} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)){
+				} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
 					//Parse object parameters
 					String title = itemIn.readLine();
 					long id = Long.parseLong(itemIn.readLine());
@@ -163,7 +163,7 @@ public class Library {
  			int printerAmount = Integer.parseInt(printerIn.readLine());
  			printers = new Printer[printerAmount];
  			
- 			for(int i = 0;i<printerAmount;i++){
+ 			for(int i = 0;i<printerAmount;i++) {
 				printerIn.readLine();
  				long id = Long.parseLong(printerIn.readLine());
  				int max = Integer.parseInt(printerIn.readLine());
@@ -204,10 +204,10 @@ public class Library {
 					roomList[roomCount] = new Room(id, maxUser);
 					
  					//Check if user exists
- 					for (int u = 0; u < userId.length; u++){
+ 					for (int u = 0; u < userId.length; u++) {
  						User found = User.searchById(users, userId[u]);
  						
- 						if (found != null){
+ 						if (found != null) {
 		 					roomList[roomCount].addUser(found);
  						} //if structure
  					} //for loop
@@ -872,11 +872,11 @@ public class Library {
  			
  			itemOut.write("" + items.length);
  			
- 			for (int i = 0; i < items.length; i ++){
+ 			for (int i = 0; i < items.length; i ++) {
  				itemOut.newLine();
  							
  				//Book writer
- 				if (items[i] instanceof Book){
+ 				if (items[i] instanceof Book) {
  					itemOut.write(Item.BOOK);
  					itemOut.newLine();
  					itemOut.write(items[i].getTitle());
@@ -958,7 +958,7 @@ public class Library {
 			} //for loop
 			
 			itemOut.close();
-		} catch (IOException e){
+		} catch (IOException e) {
 			System.err.println("There was a problem with the items file./t" + e.getMessage());
 		} //try-catch structure
 		
@@ -968,7 +968,7 @@ public class Library {
 			out.write(users.length + "");
 			out.newLine();
 			
-			for (int i = 0; i < users.length; i ++){
+			for (int i = 0; i < users.length; i ++) {
 				out.newLine();
 				out.write(users[i].getName());
 				out.newLine();
@@ -982,7 +982,7 @@ public class Library {
 				boolean noMoreItems = false;
 				
 				//Write the items in the user's inventory
-				for (int r = 0; r < users[i].getItems().length && !noMoreItems; r++){
+				for (int r = 0; r < users[i].getItems().length && !noMoreItems; r++) {
 					if (users[i].getItems()[r] != null) {
 						out.write(users[i].getItems()[r].getId() + ",");
 					} else {
@@ -994,7 +994,7 @@ public class Library {
 			} //for loop
 			
 			out.close();
-		} catch (IOException e){
+		} catch (IOException e) {
 			System.out.println("There was a problem with the users file.\t" + e.getMessage());
 		} //try-catch structure
 		
@@ -1006,15 +1006,15 @@ public class Library {
 			
 			boolean found = false;
 			
-			for (int i = 0; i < roomListSize; i ++){
+			for (int i = 0; i < roomListSize; i ++) {
 				usersInRoom = 0;
 				User[] countUsers = roomList[i].getUsers();
 				//Counting the number of users in the room
 				for (int k = 0; k < roomList[i].getMaxUsers(); k++) {
 					if (countUsers[k] != null) {
 						usersInRoom++;
-					}
-				}
+					} //if structure
+				} //for loop
 
 				out.write(UserHolder.ROOM);
 				out.newLine();
@@ -1024,8 +1024,8 @@ public class Library {
 				out.newLine();
 				
 				//Write the users in the room
-				for (int r = 0; r < usersInRoom && !found; r ++){
-					if (roomList[i].getUsers()[r] != null){
+				for (int r = 0; r < usersInRoom && !found; r ++) {
+					if (roomList[i].getUsers()[r] != null) {
 						out.write(roomList[i].getUsers()[r].getId() + ",");
 						found = false;
 					} else {
@@ -1037,7 +1037,7 @@ public class Library {
 				} //for loop
 			} //for loop
 				
-			for (int i = 0; i < computerListSize; i ++){
+			for (int i = 0; i < computerListSize; i ++) {
 
 				//Counting the number of printers the computer has
 				computerPrinterNum = 0;
@@ -1045,9 +1045,8 @@ public class Library {
 				for (int k = 0; k < tempPrinters.length; k++) {
 					if (tempPrinters[k] != null) {
 						computerPrinterNum ++;
-					}
-				}
-
+					} //if structure
+				} //for loop
 
 				out.write(UserHolder.COMPUTER);
 				out.newLine();
@@ -1062,7 +1061,7 @@ public class Library {
 				
 				out.newLine();
 				
-				for (int r = 0; r < computerList[i].getUsers().length && !found; r ++){
+				for (int r = 0; r < computerList[i].getUsers().length && !found; r ++) {
 					if (computerList[i].getUsers()[r] != null) {
 						out.write(computerList[i].getUsers()[r].getId() + "");
 						found = false;
@@ -1076,8 +1075,8 @@ public class Library {
 				
 				boolean printFound = false;
 				
-				for (int r = 0; r < computerPrinterNum && !printFound; r ++){
-					if (computerList[i].getPrinters()[r] != null){
+				for (int r = 0; r < computerPrinterNum && !printFound; r ++) {
+					if (computerList[i].getPrinters()[r] != null) {
 						out.write(computerList[i].getPrinters()[r].getId() + "");
 						printFound = false;
 					} else {
