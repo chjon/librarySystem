@@ -337,9 +337,9 @@ public class LibraryRunner {
 							parameters[1] = (Integer)sc.nextInt();
 
 							System.out.print("Enter the Dewey Decimal Number: ");
-							parameters[2] = (Long)sc.nextLong();
+							parameters[2] = (Double)sc.nextDouble();
 
-							jurrLibrary.addItem(type, name, parameters);
+							jurrLibrary.addItem("book", name, parameters);
 
 						//If the item is of type VideoGame
 						} else if (type.equalsIgnoreCase("video game")) {
@@ -354,7 +354,7 @@ public class LibraryRunner {
 							System.out.print("Enter the age rating: ");
 							parameters[2] = (Integer)sc.nextInt();
 
-							jurrLibrary.addItem(type, name, parameters);
+							jurrLibrary.addItem("video game", name, parameters);
 
 						//If the item is of type Movie
 						} else if (type.equalsIgnoreCase("movie")) {
@@ -372,7 +372,7 @@ public class LibraryRunner {
 							System.out.print("Enter the age rating: ");
 							parameters[3] = (Integer)sc.nextInt();
 
-							jurrLibrary.addItem(type, name, parameters);
+							jurrLibrary.addItem("movie", name, parameters);
 						}
 
 						break;
