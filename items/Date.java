@@ -69,7 +69,7 @@ public class Date {
 	public String toString () {
 		String output = year + "/";
 		output += pad(month, MONTH_FORMAT_LENGTH) + "/";
-		output += pad(day, DAY_FORMAT_LENGTH) + "/";
+		output += pad(day, DAY_FORMAT_LENGTH);
 		
 		return output;
 	} //toString method
