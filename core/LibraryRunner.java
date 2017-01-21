@@ -111,7 +111,12 @@ public class LibraryRunner {
 		accNum = sc.nextLong();
 
 		curUser = jurrLibrary.getUserById(accNum);
-
+		
+		if (curUser == null) {
+			System.out.println("That user could not be found.");
+			exit = true;
+		} //if structure
+		
 		System.out.println();
 
 		while (!exit) {

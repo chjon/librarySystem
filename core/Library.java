@@ -83,10 +83,10 @@ public class Library {
 				//Movie reader
 				} else if (type.equalsIgnoreCase(Item.MOVIE)) {
 					//Parse object parameters
-															String title = itemIn.readLine();
+					String title = itemIn.readLine();
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
-															String lineOfDate = itemIn.readLine();
+					String lineOfDate = itemIn.readLine();
 					int [] date = toIntFromString(lineOfDate.split("/"));
 					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					String director = itemIn.readLine();
@@ -254,9 +254,7 @@ public class Library {
                computerCount++;
  				} //if structure
  			} //for loop
-for (int n = 0; n < roomList.length; n++) {
-	System.out.println(roomList[n]);
-}
+
  			holderIn.close();
  		} catch (Exception e) {
  			System.err.println("There was a problem with the UserHolder file.\t" + e.getMessage());
