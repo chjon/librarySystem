@@ -1,7 +1,6 @@
 /*******************************************************************************
  * File Name:     LibraryRunner.java
  * Class:         ICS4U-01
- * Date:          2017/01/17
  * Description:   This class runs the Library and interacts with the user.
  *******************************************************************************/
 

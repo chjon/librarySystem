@@ -1,13 +1,13 @@
 /*******************************************************************************
  * File Name:     Calendar.java
  * Class:         ICS4U-01
- * Date:          2017/01/16
  * Description:   This class defines a calendar.
  *******************************************************************************/
 
 import java.io.*;
 
 public class Calendar {
+	private static final String DATA_FILE_DIRECTORY = "dataFiles";
 	private static final String MONTH_DAYS_REF_FILE = "Days at start of months";		//file used for calendar
 	private static final int NUM_MONTHS = 12;						//number of months in a year
 	private static final int DAYS_IN_YEAR = 365;						//number of days in a year
@@ -19,7 +19,7 @@ public class Calendar {
 		daysByMonth = new int[NUM_MONTHS];
 		
 		try { 
-			BufferedReader in = new BufferedReader(new FileReader(MONTH_DAYS_REF_FILE + ".txt"));
+			BufferedReader in = new BufferedReader(new FileReader(DATA_FILE_DIRECTORY + "/" + MONTH_DAYS_REF_FILE + ".txt"));
 			String input;
 			
 			for (int i = 0; i < NUM_MONTHS; i++) {
