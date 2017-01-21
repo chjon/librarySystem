@@ -245,9 +245,9 @@ public class Library {
  						if (foundPrinter != null) {
  							computerList[computerCount].addPrinter(foundPrinter);
  						} //if structure
- 						
- 						computerCount++;
  					} //for loop
+					
+					computerCount++;
  				} //if structure
  			} //for loop
  			holderIn.close();

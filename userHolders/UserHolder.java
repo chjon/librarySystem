@@ -60,7 +60,8 @@ public abstract class UserHolder {
 			swapped = false;
          
 			for (int j = userHolders.length - 1; j > i; j--) {
-				if (userHolders[j - 1] == null || userHolders[j].id < userHolders[j - 1].id) {
+				if ((userHolders[j - 1] == null && userHolders[j] != null) ||
+						(userHolders[j - 1] != null && userHolders[j] != null && userHolders[j].id < userHolders[j - 1].id)) {
 					temp = userHolders[j];
 					userHolders[j] = userHolders[j - 1];
 					userHolders[j - 1] = temp;

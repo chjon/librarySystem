@@ -754,6 +754,7 @@ public class LibraryRunner {
 						for (int i = 0; i < tempRooms.length; i++) {
 							if (tempRooms[i] != null) {
 								System.out.println(tempRooms[i]);
+								System.out.println();
 							} //if structure
 						} //for loop
 
