@@ -1,0 +1,27 @@
+Known Errors:
+
+   MAJOR. When entering a letter or non number into
+   a selection the menu doesnt stop loading. It
+   constantly re prints.
+
+	Computers:
+1. View All Computers is null
+2. Search for computers returns null
+3. When adding a user to computer, enter room id is displayed.
+4. Critical error for removing user from computer
+	
+	Rooms:
+1. View all rooms is null
+2. Search for rooms by id gives critical error
+3. Add / Remove users in room gives critical error
+
+	View User List:
+1. Critical error when entering account credentials
+
+	View Library Inventory: 
+1. All times can be displayed but books arent properly read in
+2. Critical error for adding items, regardless of type
+3. Removing items doesn't appear to do anything or any message is printed
+4.
+	Return item:
+1. Entering id gives critical error. 
