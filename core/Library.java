@@ -83,10 +83,10 @@ public class Library {
 				//Movie reader
 				} else if (type.equalsIgnoreCase(Item.MOVIE)) {
 					//Parse object parameters
-					String title = itemIn.readLine();
+															String title = itemIn.readLine();
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
-					String lineOfDate = itemIn.readLine();
+															String lineOfDate = itemIn.readLine();
 					int [] date = toIntFromString(lineOfDate.split("/"));
 					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					String director = itemIn.readLine();
@@ -200,20 +200,16 @@ public class Library {
  					long[] userId = toLongFromString(lineOfUser.split(","));
  					User[] arrayOfUser = new User[maxUser];
  					
+					//Construct room
+					roomList[roomCount] = new Room(id, maxUser);
+					
  					//Check if user exists
  					for (int u = 0; u < userId.length; u++){
  						User found = User.searchById(users, userId[u]);
  						
  						if (found != null){
- 							arrayOfUser[roomCount] = found;
+		 					roomList[roomCount].addUser(found);
  						} //if structure
- 					} //for loop
- 					
- 					roomList[roomCount] = new Room(id, maxUser);
- 					
- 					//Copy found users into array
- 					for(int u = 0; u < arrayOfUser.length; u++){
- 						roomList[roomCount].addUser(arrayOfUser[u]);
  					} //for loop
  					
  					roomCount++;
@@ -224,7 +220,7 @@ public class Library {
  					long userId = -1;
 					
 					//Construct Computer
- 					computerList[computerCount] = new Computer(id, occupied);
+ 					computerList[computerCount] = new Computer(id, false);
 					
 					//Check whether there are users listed
 					String input = holderIn.readLine();
@@ -236,7 +232,7 @@ public class Library {
 						//Add user to Computer
 	 					computerList[computerCount].addUser(foundUser);
 					} //if structure
-
+					
  					String lineOfPrinters = holderIn.readLine();
  					long[] printerId = toLongFromString(lineOfPrinters.split(","));
  					Printer[] printers = new Printer[printerId.length];
@@ -254,7 +250,6 @@ public class Library {
                computerCount++;
  				} //if structure
  			} //for loop
-
  			holderIn.close();
  		} catch (Exception e) {
  			System.err.println("There was a problem with the UserHolder file.\t" + e.getMessage());
@@ -459,7 +454,7 @@ public class Library {
  	public Computer getComputerById (long id) {
  		Computer[] computers = getComputers();
  		for (int i = 0; i < computers.length; i++) {
- 			if (computers[i].getId() == id) {
+ 			if (computers[i] != null && computers[i].getId() == id) {
  				return computers[i];
  			} //if structure
  		} //for loop
@@ -830,9 +825,13 @@ public class Library {
  	public void writeToFile () {
  		//Printer file writer
 
- 		int itemListSize = 0;
+ 		//Recording how many rooms and computers are in their respective lists, excluding null objects
  		int roomListSize = 0;
  		int computerListSize = 0;
+ 		//Records the number of users in a specific room
+ 		int usersInRoom;
+ 		//Records the number of printers associated with a computer
+ 		int computerPrinterNum;
 
  		for (int i = 0; i < roomList.length; i++) {
  			if (roomList[i] != null) {
@@ -1008,6 +1007,15 @@ public class Library {
 			boolean found = false;
 			
 			for (int i = 0; i < roomListSize; i ++){
+				usersInRoom = 0;
+				User[] countUsers = roomList[i].getUsers();
+				//Counting the number of users in the room
+				for (int k = 0; k < roomList[i].getMaxUsers(); k++) {
+					if (countUsers[k] != null) {
+						usersInRoom++;
+					}
+				}
+
 				out.write(UserHolder.ROOM);
 				out.newLine();
 				out.write(roomList[i].getId() + "");
@@ -1016,7 +1024,7 @@ public class Library {
 				out.newLine();
 				
 				//Write the users in the room
-				for (int r = 0; r < roomList[i].getUsers().length && !found; r ++){
+				for (int r = 0; r < usersInRoom && !found; r ++){
 					if (roomList[i].getUsers()[r] != null){
 						out.write(roomList[i].getUsers()[r].getId() + ",");
 						found = false;
@@ -1030,6 +1038,17 @@ public class Library {
 			} //for loop
 				
 			for (int i = 0; i < computerListSize; i ++){
+
+				//Counting the number of printers the computer has
+				computerPrinterNum = 0;
+				Printer[] tempPrinters = computerList[i].getPrinters();
+				for (int k = 0; k < tempPrinters.length; k++) {
+					if (tempPrinters[k] != null) {
+						computerPrinterNum ++;
+					}
+				}
+
+
 				out.write(UserHolder.COMPUTER);
 				out.newLine();
 				out.write(computerList[i].getId() + "");
@@ -1057,8 +1076,8 @@ public class Library {
 				
 				boolean printFound = false;
 				
-				for (int r = 0; r < computerList[i].getPrinters().length && !printFound; r ++){
-					if (computerList[i].getUsers()[r] !=null){
+				for (int r = 0; r < computerPrinterNum && !printFound; r ++){
+					if (computerList[i].getPrinters()[r] != null){
 						out.write(computerList[i].getPrinters()[r].getId() + "");
 						printFound = false;
 					} else {
