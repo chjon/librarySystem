@@ -200,16 +200,20 @@ public class Library {
  					long[] userId = toLongFromString(lineOfUser.split(","));
  					User[] arrayOfUser = new User[maxUser];
  					
-					//Construct room
-					roomList[roomCount] = new Room(id, maxUser);
-					
  					//Check if user exists
  					for (int u = 0; u < userId.length; u++){
  						User found = User.searchById(users, userId[u]);
  						
  						if (found != null){
-		 					roomList[roomCount].addUser(found);
+ 							arrayOfUser[roomCount] = found;
  						} //if structure
+ 					} //for loop
+ 					
+ 					roomList[roomCount] = new Room(id, maxUser);
+ 					
+ 					//Copy found users into array
+ 					for(int u = 0; u < arrayOfUser.length; u++){
+ 						roomList[roomCount].addUser(arrayOfUser[u]);
  					} //for loop
  					
  					roomCount++;
@@ -220,7 +224,7 @@ public class Library {
  					long userId = -1;
 					
 					//Construct Computer
- 					computerList[computerCount] = new Computer(id, false);
+ 					computerList[computerCount] = new Computer(id, occupied);
 					
 					//Check whether there are users listed
 					String input = holderIn.readLine();
@@ -232,7 +236,7 @@ public class Library {
 						//Add user to Computer
 	 					computerList[computerCount].addUser(foundUser);
 					} //if structure
-					
+
  					String lineOfPrinters = holderIn.readLine();
  					long[] printerId = toLongFromString(lineOfPrinters.split(","));
  					Printer[] printers = new Printer[printerId.length];
@@ -250,6 +254,9 @@ public class Library {
                computerCount++;
  				} //if structure
  			} //for loop
+for (int n = 0; n < roomList.length; n++) {
+	System.out.println(roomList[n]);
+}
  			holderIn.close();
  		} catch (Exception e) {
  			System.err.println("There was a problem with the UserHolder file.\t" + e.getMessage());
@@ -454,7 +461,7 @@ public class Library {
  	public Computer getComputerById (long id) {
  		Computer[] computers = getComputers();
  		for (int i = 0; i < computers.length; i++) {
- 			if (computers[i] != null && computers[i].getId() == id) {
+ 			if (computers[i].getId() == id) {
  				return computers[i];
  			} //if structure
  		} //for loop
@@ -509,12 +516,10 @@ public class Library {
  		} //for loop
  		
  		bookList = new Book[bookListSize];
- 		bookListSize = 0;
-		
+ 
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Book) {
- 				bookList[bookListSize] = (Book)items[i];
-				bookListSize++;
+ 				bookList[i] = (Book)items[i];
  			} //if structure
  		} //for loop
  		
@@ -653,7 +658,7 @@ public class Library {
  		return movieList;
  	} //getMoviesByDirector method
  	
- 	//returns all the movies in the library
+ 	// returns all the movies in the library
  	public Movie[] getMovies () {       
  		Movie[] movieList;
  		int movieListSize = 0;
@@ -665,12 +670,10 @@ public class Library {
  		} //for loop
  		
  		movieList = new Movie[movieListSize];
-		movieListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Movie) {
- 				movieList[movieListSize] = (Movie)items[i];
-				movieListSize++;
+ 				movieList[i] = (Movie)items[i];
  			} //if structure
  		} //for loop
  		
@@ -711,7 +714,7 @@ public class Library {
  	
  	public static Movie[] suggestMovies (Movie[] movies, int desired) {
  		//Check if there are no more movies
- 		if (movies.length <= 1) {
+ 		if (movies.length == 1) {
  			return movies;
  		} //if structure
  		
@@ -774,7 +777,7 @@ public class Library {
  	
  	public static Book[] suggestBooks (Book[] books, int desired) {
  		//Check if there are no more books
- 		if (books.length <= 1) {
+ 		if (books.length == 1) {
  			return books;
  		} //if structure
  		
@@ -828,6 +831,23 @@ public class Library {
  	//saves all items to different files.
  	public void writeToFile () {
  		//Printer file writer
+
+ 		int itemListSize = 0;
+ 		int roomListSize = 0;
+ 		int computerListSize = 0;
+
+ 		for (int i = 0; i < roomList.length; i++) {
+ 			if (roomList[i] != null) {
+ 				roomListSize ++;
+ 			}
+ 		}
+
+ 		for (int i = 0; i < computerList.length; i++) {
+ 			if (computerList[i] != null) {
+ 				computerListSize ++;
+ 			}
+ 		}
+
  		try {
  			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + PRINTER_FILE, true));
  			
@@ -981,6 +1001,7 @@ public class Library {
 			System.out.println("There was a problem with the users file.\t" + e.getMessage());
 		} //try-catch structure
 		
+		//UserHolder file writer
 		try {
 			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_HOLDER_FILE, true));
 			
@@ -988,7 +1009,7 @@ public class Library {
 			
 			boolean found = false;
 			
-			for (int i = 0; i < roomList.length; i ++){
+			for (int i = 0; i < roomListSize; i ++){
 				out.write(UserHolder.ROOM);
 				out.newLine();
 				out.write(roomList[i].getId() + "");
@@ -997,7 +1018,7 @@ public class Library {
 				out.newLine();
 				
 				//Write the users in the room
-				for (int r = 0; r < roomList[i].getUsers().length && !found; i ++){
+				for (int r = 0; r < roomList[i].getUsers().length && !found; r ++){
 					if (roomList[i].getUsers()[r] != null){
 						out.write(roomList[i].getUsers()[r].getId() + ",");
 						found = false;
@@ -1010,7 +1031,7 @@ public class Library {
 				} //for loop
 			} //for loop
 				
-			for (int i = 0; i < computerList.length; i ++){
+			for (int i = 0; i < computerListSize; i ++){
 				out.write(UserHolder.COMPUTER);
 				out.newLine();
 				out.write(computerList[i].getId() + "");
