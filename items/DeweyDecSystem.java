@@ -7,9 +7,9 @@
 package librarySystem.items;
 
 import java.io.*;
+import librarySystem.core.*;
 
 public class DeweyDecSystem {
-	private static final String DATA_FILE_DIRECTORY = "dataFiles";
 	private static final String DEWEY_DEC_REF_FILE = "Dewey Decimal Classes";	//Name of dewey decimal classes file
 	private static final int DEWEY_DEC_GENRE_CODE_LENGTH = 3;			//Genre code length
 	private static final int MAX_DEWEY_DEC_NUM = 1000;				//Static value of maximum dewey decimal numbers
@@ -26,7 +26,7 @@ public class DeweyDecSystem {
 		
 		//Load Dewey Decimal classes from file - File input
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(DATA_FILE_DIRECTORY + "/" + DEWEY_DEC_REF_FILE + ".txt"));
+			BufferedReader in = new BufferedReader(new FileReader(Library.DATA_FILE_DIRECTORY + "/" + DEWEY_DEC_REF_FILE + ".txt"));
 			String input;
 			
 			while ((input = in.readLine()) != null) {
@@ -59,7 +59,7 @@ public class DeweyDecSystem {
 		int lowerBound = 0, upperBound = curMaxDeweyDecNum, middle;
 		
 		//Binary search for genre
-		while (lowerBound <= upperBound) {
+		while (lowerBound < upperBound) {
 			middle = (lowerBound + upperBound) / 2;
 			
 			if (deweyDecNums[middle] == (int)deweyDecNum) {

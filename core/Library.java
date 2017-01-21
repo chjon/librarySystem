@@ -12,7 +12,7 @@ import librarySystem.userHolders.*;
 import librarySystem.users.*;
 
 public class Library {
-	private static final String DATA_FILE_DIRECTORY = "librarySystem/dataFiles";
+	public static final String DATA_FILE_DIRECTORY = "librarySystem/dataFiles";
 	private static final String ITEM_FILE = "items.txt";
 	private static final String USER_FILE = "users.txt";
 	private static final String USER_HOLDER_FILE = "userHolders.txt";
@@ -51,6 +51,8 @@ public class Library {
 	
 	//Library constructor - load from file
 	public Library () {
+		cal = new Calendar();
+		deweySystem = new DeweyDecSystem();
 		
 		//Item file reader
 		try {
