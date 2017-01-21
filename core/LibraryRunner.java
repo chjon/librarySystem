@@ -81,6 +81,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -293,6 +294,7 @@ public class LibraryRunner {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Displays the item list of the Library inventory
@@ -308,8 +310,6 @@ public class LibraryRunner {
 
 					//Add item to the list of items
 					case 2:
-						System.out.print("Enter item ID: ");
-						id = sc.nextLong();
 						System.out.print("Enter item name: ");
 						name = sc.nextLine();
 						System.out.print("Enter item type (book, video game, movie): ");
