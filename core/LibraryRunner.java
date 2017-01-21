@@ -190,6 +190,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -262,6 +263,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -394,6 +396,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -496,6 +499,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -574,6 +578,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -678,6 +683,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -795,6 +801,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -850,6 +857,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
@@ -942,6 +950,7 @@ public class LibraryRunner {
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
+				sc.nextLine();
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
