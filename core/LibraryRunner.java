@@ -111,7 +111,12 @@ public class LibraryRunner {
 		accNum = sc.nextLong();
 
 		curUser = jurrLibrary.getUserById(accNum);
-
+		
+		if (curUser == null) {
+			System.out.println("That user could not be found.");
+			exit = true;
+		} //if structure
+		
 		System.out.println();
 
 		while (!exit) {
@@ -129,30 +134,50 @@ public class LibraryRunner {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Signing out an item
 					case 1:
 						System.out.print("Enter item ID: ");
 						itemId = sc.nextInt();
-						//current user takes out item
-						curUser.takeOutItem(jurrLibrary.getItemById(itemId));
+						sc.nextLine();
+						
+						Item chosenItem = jurrLibrary.getItemById(itemId);
+						
+						if (chosenItem == null) {
+							System.out.println("That item could not be found.");
+						} else {
+							//current user takes out item
+							curUser.takeOutItem(chosenItem);
+							System.out.println("Item successfully signed out");
+						} //if structure
+						
 						break;
 
 					//Viewing current items in the account
 					case 2:
+						tempList = curUser.getItems();
+						
+						for (int i = 0; i < tempList.length; i++) {
+							if (tempList[i] != null) {
+								System.out.println(tempList[i]);
+								System.out.println();
+							} //if structure
+						} //for loop
+						
 						viewCurrentItemsMenu();
 						break;
 
 					//Displaying the amount owed to the Library
 					case 3:
-						System.out.println("Amount owed: "+curUser.getAmountOwed());
+						System.out.println("Amount owed: " + curUser.getAmountOwed());
 						break;
 
 					//Paying overdue fines
 					case 4:
 						curUser.payFine();
-						System.out.println("Transaction complete.  All fees have been paid");
+						System.out.println("Transaction complete. All fees have been paid");
 						break;
 
 					//Change information in the account
@@ -169,19 +194,22 @@ public class LibraryRunner {
 					case 6:
 						System.out.print("Enter a number of pages to read: ");
 						targetPages = sc.nextInt();
+						sc.nextLine();
 
 						//returns a list of suggested books whose number of pages sum most closely to the target number of pages
 						tempList = Library.suggestBooks(jurrLibrary.getBooks(), targetPages);
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
+						
 						break;
 
 					//Returning movies suggested that are closest to the number of minutes the user enters
 					case 7:
 						System.out.print("Enter number of minutes to watch: ");
 						targetMinutes = sc.nextInt();
+						sc.nextLine();
 
 						//returns a list of suggested movies whose time sum most closely to the target time
 						tempList = Library.suggestMovies(jurrLibrary.getMovies(), targetMinutes);
@@ -223,6 +251,7 @@ public class LibraryRunner {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Displays a list of items according to their title
@@ -234,7 +263,7 @@ public class LibraryRunner {
 						//printing information for all items found with matching title
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
 
 						break;
 
@@ -309,7 +338,7 @@ public class LibraryRunner {
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
                      System.out.println();
-						}
+						} //for loop
 
 						break;
 
