@@ -200,20 +200,16 @@ public class Library {
  					long[] userId = toLongFromString(lineOfUser.split(","));
  					User[] arrayOfUser = new User[maxUser];
  					
+					//Construct room
+					roomList[roomCount] = new Room(id, maxUser);
+					
  					//Check if user exists
  					for (int u = 0; u < userId.length; u++){
  						User found = User.searchById(users, userId[u]);
  						
  						if (found != null){
- 							arrayOfUser[roomCount] = found;
+		 					roomList[roomCount].addUser(found);
  						} //if structure
- 					} //for loop
- 					
- 					roomList[roomCount] = new Room(id, maxUser);
- 					
- 					//Copy found users into array
- 					for(int u = 0; u < arrayOfUser.length; u++){
- 						roomList[roomCount].addUser(arrayOfUser[u]);
  					} //for loop
  					
  					roomCount++;
@@ -224,7 +220,7 @@ public class Library {
  					long userId = -1;
 					
 					//Construct Computer
- 					computerList[computerCount] = new Computer(id, occupied);
+ 					computerList[computerCount] = new Computer(id, false);
 					
 					//Check whether there are users listed
 					String input = holderIn.readLine();
@@ -236,7 +232,7 @@ public class Library {
 						//Add user to Computer
 	 					computerList[computerCount].addUser(foundUser);
 					} //if structure
-
+					
  					String lineOfPrinters = holderIn.readLine();
  					long[] printerId = toLongFromString(lineOfPrinters.split(","));
  					Printer[] printers = new Printer[printerId.length];
