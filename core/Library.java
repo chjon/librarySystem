@@ -509,10 +509,12 @@ public class Library {
  		} //for loop
  		
  		bookList = new Book[bookListSize];
- 
+ 		bookListSize = 0;
+		
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Book) {
- 				bookList[i] = (Book)items[i];
+ 				bookList[bookListSize] = (Book)items[i];
+				bookListSize++;
  			} //if structure
  		} //for loop
  		
@@ -651,7 +653,7 @@ public class Library {
  		return movieList;
  	} //getMoviesByDirector method
  	
- 	// returns all the movies in the library
+ 	//returns all the movies in the library
  	public Movie[] getMovies () {       
  		Movie[] movieList;
  		int movieListSize = 0;
@@ -663,10 +665,12 @@ public class Library {
  		} //for loop
  		
  		movieList = new Movie[movieListSize];
+		movieListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Movie) {
- 				movieList[i] = (Movie)items[i];
+ 				movieList[movieListSize] = (Movie)items[i];
+				movieListSize++;
  			} //if structure
  		} //for loop
  		
@@ -707,7 +711,7 @@ public class Library {
  	
  	public static Movie[] suggestMovies (Movie[] movies, int desired) {
  		//Check if there are no more movies
- 		if (movies.length == 1) {
+ 		if (movies.length <= 1) {
  			return movies;
  		} //if structure
  		
@@ -770,7 +774,7 @@ public class Library {
  	
  	public static Book[] suggestBooks (Book[] books, int desired) {
  		//Check if there are no more books
- 		if (books.length == 1) {
+ 		if (books.length <= 1) {
  			return books;
  		} //if structure
  		

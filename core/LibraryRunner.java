@@ -175,7 +175,8 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
+						
 						break;
 
 					//Returning movies suggested that are closest to the number of minutes the user enters
@@ -185,6 +186,11 @@ public class LibraryRunner {
 
 						//returns a list of suggested movies whose time sum most closely to the target time
 						tempList = Library.suggestMovies(jurrLibrary.getMovies(), targetMinutes);
+						
+						for (int i = 0; i < tempList.length; i++) {
+							System.out.println(tempList[i]);
+						} //for loop
+						
 						break;
 
 					case 8:

@@ -27,3 +27,31 @@ James Cameron
 Science Fiction
 180
 133
+3
+video game
+Call of Duty
+1
+true
+16/2/12
+Treyarch
+Shooter
+17
+
+book
+The Great Gatsby
+2
+false
+12/6/12
+F. Scott Fitzgerald
+120
+213.0
+
+movie
+Avatar
+3
+false
+13/6/12
+James Cameron
+Science Fiction
+180
+133
