@@ -53,16 +53,14 @@ public abstract class UserHolder {
 	
 	//Adds user to the Userholder
 	public boolean addUser(User toAdd) {
-		boolean added = false;
-	
 		for (int i = 0; !isOccupied() && i < users.length; i++) {
 			if (users[i] == null) {
 				users[i] = toAdd;
-				added = true;
+				return true;
 			} //if structure
 		} //for loop
 		
-		return added;
+		return false;
 	} //addUser method
 	
 	//Sort a UserHolder array by ID
