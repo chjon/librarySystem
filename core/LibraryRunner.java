@@ -761,6 +761,7 @@ public class LibraryRunner {
 						for (int i = 0; i < tempRooms.length; i++) {
 							if (tempRooms[i] != null) {
 								System.out.println(tempRooms[i]);
+								System.out.println();
 							} //if structure
 						} //for loop
 
@@ -780,17 +781,21 @@ public class LibraryRunner {
 						roomId = sc.nextLong();
 
 						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
-
-						System.out.print("Enter user ID: ");
-						id = sc.nextLong();
-
-						curUser = jurrLibrary.getUserById(id);
-
-						if (curRoom.addUser(curUser)) {
-							System.out.println("User entered room");
+						
+						if (curRoom == null) {
+							System.out.println("That room does not exist.");
 						} else {
-							System.out.println("Room full");
-						}
+							System.out.print("Enter user ID: ");
+							id = sc.nextLong();
+	
+							curUser = jurrLibrary.getUserById(id);
+	
+							if (curRoom.addUser(curUser)) {
+								System.out.println("User entered room");
+							} else {
+								System.out.println("Room full");
+							} //if structure
+						} //if structure
 
 						break;
 
@@ -800,8 +805,13 @@ public class LibraryRunner {
 						roomId = sc.nextLong();
 
 						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
-
-						displayRemoveFromRoomMenu(curRoom);
+						
+						if (curRoom == null) {
+							System.out.println("That room does not exist.");
+						} else {
+							displayRemoveFromRoomMenu(curRoom);
+						} //if structure
+						
 						break;
 
 					case 5:	
@@ -855,7 +865,7 @@ public class LibraryRunner {
 							System.out.println("User removed");
 						} else {
 							System.out.println("User not found");
-						}
+						} //if structure
 
 						break;
 

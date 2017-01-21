@@ -44,7 +44,7 @@ public class Room extends UserHolder {
 		boolean found = false;
 		
 		for (int i = 0; i < users.length && !found; i++) {
-			if (users[i].getId() == id) {
+			if (users[i] != null && users[i].getId() == id) {
 				users[i] = null;
 				found = true;
 			} //if structure
