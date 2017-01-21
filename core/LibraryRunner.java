@@ -870,7 +870,7 @@ public class LibraryRunner {
 						roomId = sc.nextLong();
 						sc.nextLine();
 						
-						Room chosenRoom = UserHolder.searchById(jurrLibrary.getRooms(), roomId);
+						Room chosenRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
 						
 						if (chosenRoom == null) {
 							System.out.println("That room was not found.");
