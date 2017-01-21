@@ -783,14 +783,16 @@ public class LibraryRunner {
 						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
 						
 						if (curRoom == null) {
-							System.out.println("That room does not exist.");
+							System.out.println("That room was not found.");
 						} else {
 							System.out.print("Enter user ID: ");
 							id = sc.nextLong();
 	
 							curUser = jurrLibrary.getUserById(id);
 	
-							if (curRoom.addUser(curUser)) {
+							if (curUser == null) {
+								System.out.println("That user was not found.");
+							} else if (curRoom.addUser(curUser)) {
 								System.out.println("User entered room");
 							} else {
 								System.out.println("Room full");
@@ -807,7 +809,7 @@ public class LibraryRunner {
 						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
 						
 						if (curRoom == null) {
-							System.out.println("That room does not exist.");
+							System.out.println("That room was not found.");
 						} else {
 							displayRemoveFromRoomMenu(curRoom);
 						} //if structure
@@ -931,21 +933,25 @@ public class LibraryRunner {
 
 					//Adds a user to a computer
 					case 3:
-						System.out.print("Enter room ID: ");
+						System.out.print("Enter Computer ID: ");
 						comId = sc.nextLong();
 
 						curCom = jurrLibrary.getComputerById(comId);
-
-						System.out.print("Enter user ID: ");
-						id = sc.nextLong();
-
-						curUser = jurrLibrary.getUserById(id);
-
-						if (curCom.addUser(curUser)) {
-							System.out.println("User on computer");
+						
+						if (curCom == null) {
+							System.out.println("That Computer was not found.");
 						} else {
-							System.out.println("Adding to computer failed");
-						}
+							System.out.print("Enter user ID: ");
+							id = sc.nextLong();
+	
+							curUser = jurrLibrary.getUserById(id);
+	
+							if (curCom.addUser(curUser)) {
+								System.out.println("Successfully added user to Computer");
+							} else {
+								System.out.println("That computer is occupied.");
+							} //if structure
+						} //if structure
 
 						break;
 
@@ -955,13 +961,17 @@ public class LibraryRunner {
 						comId = sc.nextLong();
 
 						curCom = jurrLibrary.getComputerById(comId);
-
-						//A computer will only ever have one user at max
-						if (curCom.remUser()) {
-							System.out.println("User removed");
+						
+						if (curCom == null) {
+							System.out.println("That computer was not found.");
 						} else {
-							System.out.println("Computer unoccupied");
-						}
+							//A computer will only ever have one user at max
+							if (curCom.remUser()) {
+								System.out.println("User removed");
+							} else {
+								System.out.println("Computer unoccupied");
+							} //if structure
+						} //if structure
 
 						break;
 

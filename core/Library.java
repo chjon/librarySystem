@@ -454,7 +454,7 @@ public class Library {
  	public Computer getComputerById (long id) {
  		Computer[] computers = getComputers();
  		for (int i = 0; i < computers.length; i++) {
- 			if (computers[i].getId() == id) {
+ 			if (computers[i] != null && computers[i].getId() == id) {
  				return computers[i];
  			} //if structure
  		} //for loop
