@@ -12,11 +12,12 @@ public class Room extends UserHolder {
 
 	public Room (long id, int maxUsers) {
 		super(maxUsers, id);
-		maxUsers = maxUsers;
+		this.maxUsers = maxUsers;
 	} //Room constructor
 
 	public String toString () {
 		return
+			super.toString() + "\n" +
 			"Type: " + TYPE + "\n" +
 			"Max Users: " + maxUsers;
 	} //toString method

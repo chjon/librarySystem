@@ -180,12 +180,13 @@ public class Library {
  			
  			computerList = new Computer[userHolderAmount];
  			roomList = new Room[userHolderAmount];
+			
+			int computerCount = 0;
+ 			int roomCount = 0;
  			
  			for (int i = 0; i < userHolderAmount; i++) {
 				holderIn.readLine();
  				String type = holderIn.readLine();
- 				int computerCount = 0;
- 				int roomCount = 0;
  				
  				//Determine UserHolder type
  				if (type.equalsIgnoreCase(UserHolder.ROOM)) {
@@ -205,7 +206,7 @@ public class Library {
  						} //if structure
  					} //for loop
  					
- 					roomList[roomCount] = new Room(id,maxUser);
+ 					roomList[roomCount] = new Room(id, maxUser);
  					
  					//Copy found users into array
  					for(int u = 0; u < arrayOfUser.length; u++){
@@ -277,6 +278,10 @@ public class Library {
  	
  	public User[] getUsers () {
  		return users;
+ 	} //getUsers method
+	
+	public Room[] getRooms () {
+ 		return roomList;
  	} //getUsers method
  	
  	private long genUserId () {
@@ -433,34 +438,13 @@ public class Library {
  	
  	//finds user with specific id
  	public User getUserById (long id) {
- 		User.sortById(users);
  		return User.searchById(users, id);
  	} //getUserById method
  
  	//searches for user by name
  	public User[] getUserByName (String name) {
- 		User.sortByName(users);
  		return User.searchByName(users, name);
  	} //getUserByName method
- 
- 	public Room[] getRooms () {
- 		return roomList;
- 	} //getRooms method
- 
- 	//Search for a room by ID
- 	public Room getRoomById (long id) {
- 		
- 		Room[] rooms = getRooms();
- 		
- 		for (int i = 0; i < rooms.length; i++) {
- 			if (rooms[i].getId() == id) {
- 				return rooms[i];
- 			} //if structure
- 		} //for loop
- 		
- 		//return null if room not found
- 		return null;
- 	} //getRoomById method
  
  	public Computer[] getComputers () {
  		return computerList;
@@ -505,13 +489,11 @@ public class Library {
  	
  	//searches for item with given id
  	public Item getItemById (long id) {
- 		Item.sortById(items);
  		return Item.searchById(items, id);
  	} //getItemById method
  	
  	//Search for items by title
  	public Item[] getItemsByTitle (String title) {
- 		Item.sortByTitle(items);
  		return Item.searchByTitle(items, title);
  	} //getItemsByTitle method
  	
@@ -843,7 +825,7 @@ public class Library {
  	public void writeToFile () {
  		//Printer file writer
  		try {
- 			BufferedWriter out = new BufferedWriter (new FileWriter (PRINTER_FILE, true));
+ 			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + PRINTER_FILE, true));
  			
  			out.write("" + printers.length);
  			

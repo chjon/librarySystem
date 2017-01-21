@@ -750,10 +750,12 @@ public class LibraryRunner {
 					//Displays a listing of all rooms
 					case 1:
 						tempRooms = jurrLibrary.getRooms();
-
+						
 						for (int i = 0; i < tempRooms.length; i++) {
-							System.out.println(tempRooms[i]);
-						}
+							if (tempRooms[i] != null) {
+								System.out.println(tempRooms[i]);
+							} //if structure
+						} //for loop
 
 						break;
 
@@ -762,7 +764,7 @@ public class LibraryRunner {
 						System.out.println("Enter room ID: ");
 						roomId = sc.nextLong();
 
-						System.out.println(jurrLibrary.getRoomById(roomId));
+						System.out.println(UserHolder.searchById(jurrLibrary.getRooms(), roomId));
 						break;
 
 					//Adds a user to a room
@@ -770,7 +772,7 @@ public class LibraryRunner {
 						System.out.print("Enter room ID: ");
 						roomId = sc.nextLong();
 
-						curRoom = jurrLibrary.getRoomById(roomId);
+						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
 
 						System.out.print("Enter user ID: ");
 						id = sc.nextLong();
@@ -790,12 +792,12 @@ public class LibraryRunner {
 						System.out.print("Enter room ID: ");
 						roomId = sc.nextLong();
 
-						curRoom = jurrLibrary.getRoomById(roomId);
+						curRoom = (Room)UserHolder.searchById(jurrLibrary.getRooms(), roomId);
 
 						displayRemoveFromRoomMenu(curRoom);
 						break;
 
-					case 5:
+					case 5:	
 						exit = true;
 						break;
 				} //switch structure to display sub menus

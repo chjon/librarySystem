@@ -33,6 +33,10 @@ public abstract class UserHolder {
 		return users;
 	} //getUsers method
 	
+	public String toString () {
+		return "ID:\t" + id;
+	} //toString method
+	
 	//Adds user to the Userholder
 	public boolean addUser(User toAdd) {
 		boolean added = false;
@@ -49,14 +53,14 @@ public abstract class UserHolder {
 	
 	//Sort a UserHolder array by ID
 	public static void sortById (UserHolder[] userHolders) {
-      		UserHolder temp;
+      UserHolder temp;
 		boolean swapped = true;
       
 		for (int i = 0; i < userHolders.length && swapped; i++) {
 			swapped = false;
          
 			for (int j = userHolders.length - 1; j > i; j--) {
-				if (userHolders[j].id < userHolders[j - 1].id) {
+				if (userHolders[j - 1] == null || userHolders[j].id < userHolders[j - 1].id) {
 					temp = userHolders[j];
 					userHolders[j] = userHolders[j - 1];
 					userHolders[j - 1] = temp;
@@ -65,4 +69,17 @@ public abstract class UserHolder {
 			} //for loop
 		} //for loop
 	} //sortById method
+	
+	//Search an UserHolder array by ID
+	public static UserHolder searchById (UserHolder[] userHolders, long id) {
+		sortById(userHolders);
+	
+		for (int i = 0; i < userHolders.length && userHolders[i] != null; i++) {
+			if (userHolders[i].getId() == id) {
+				return userHolders[i];
+			} //if structure
+		} //for loop
+		
+		return null;
+	} //searchById method
 } //UserHolder class
