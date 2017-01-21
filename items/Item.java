@@ -109,8 +109,8 @@ public abstract class Item {
 	public static Item searchById (Item[] items, long id) {
 		sortById(items);
 	
-		int bottom = 0, top = items.length, middle;
-		while (bottom < top) {
+		int bottom = 0, top = items.length - 1, middle;
+		while (bottom <= top) {
 			middle = (bottom + top) / 2;
 			
 			if (items[middle].getId() == id) {
@@ -129,8 +129,8 @@ public abstract class Item {
 	public static int indexOfId (Item[] items, long id) {
 		sortById(items);
 	
-		int bottom = 0, top = items.length, middle;
-		while (bottom < top) {
+		int bottom = 0, top = items.length - 1, middle;
+		while (bottom <= top) {
 			middle = (bottom + top) / 2;
 			
 			if (items[middle].getId() == id) {
@@ -220,7 +220,7 @@ public abstract class Item {
 	public static Item[] searchByTitle (Item[] items, String title) {
 		sortByTitle(items);
 	
-		int bottom = 0, top = items.length, middle;
+		int bottom = 0, top = items.length - 1, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching item
@@ -269,7 +269,7 @@ public abstract class Item {
 	public static Item[] searchByGenre (Item[] items, String genre) {
 		sortByGenre(items);
 	
-		int bottom = 0, top = items.length, middle;
+		int bottom = 0, top = items.length - 1, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching item
@@ -318,7 +318,7 @@ public abstract class Item {
 	public static Item[] searchByOverdue (Item[] items, Date curDate) {
 		sortByOverdue(items);
 	
-		int bottom = 0, top = items.length, middle;
+		int bottom = 0, top = items.length - 1, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching item

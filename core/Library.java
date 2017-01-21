@@ -134,11 +134,13 @@ public class Library {
  				String unparsedItemIds = userIn.readLine();
  				long[] itemIds = toLongFromString(unparsedItemIds.split(","));
  				Item[] itemList =  new Item[itemIds.length];
+            Item foundItem;
  				
+ 				int itemCount = 0;
+
  				//Check if item exists
  				for (int j = 0; j < itemIds.length; j++) {
- 					Item foundItem  = Item.searchById(items,itemIds[j]);
- 					int itemCount = 0;
+ 					foundItem  = Item.searchById(items,itemIds[j]);
  					
  					//Insert item into user inventory
  					if (foundItem != null) {
@@ -148,6 +150,7 @@ public class Library {
  				} //for loop
 				
 				users[i] = new User(name, id, age, amountOwed, itemList);
+            
  			} //for loop
  			userIn.close();
  		} catch (Exception e) {
@@ -245,9 +248,10 @@ public class Library {
  						if (foundPrinter != null) {
  							computerList[computerCount].addPrinter(foundPrinter);
  						} //if structure
+ 						
  					} //for loop
-					
-					computerCount++;
+               
+               computerCount++;
  				} //if structure
  			} //for loop
  			holderIn.close();

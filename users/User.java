@@ -22,6 +22,7 @@ public class User {
 		this.id = id;
 		this.age = age;
 		amountOwed = amountOwed;
+		items = itemList;
 	} //User constructor
 	
 	//Constructor for a new user
@@ -253,9 +254,9 @@ public class User {
 	public static User searchById (User[] users, long id) {
 		sortById(users);
 	
-		int bottom = 0, top = users.length, middle;
+		int bottom = 0, top = users.length - 1, middle;
       
-		while (bottom < top) {
+		while (bottom <= top) {
 			middle = (bottom + top) / 2;
 			
 			if (users[middle].getId() == id) {
@@ -274,7 +275,7 @@ public class User {
 	public static User[] searchByName (User[] users, String name) {
 		sortByName(users);
 	
-		int bottom = 0, top = users.length, middle;
+		int bottom = 0, top = users.length - 1, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching user
@@ -323,7 +324,7 @@ public class User {
 	public static User[] searchByAge (User[] users, int age) {
 		sortByAge(users);
 	
-		int bottom = 0, top = users.length, middle;
+		int bottom = 0, top = users.length - 1, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching user
@@ -443,7 +444,7 @@ public class User {
 	public static User[] searchByNumItemsOut (User[] users, int target) {
 		sortByNumItemsOut(users);
 
-		int bottom = 0, top = users.length, middle;
+		int bottom = 0, top = users.length - 1, middle;
 		int foundIndex = -1;
       
 		//find the index of a matching user

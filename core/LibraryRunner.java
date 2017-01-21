@@ -75,6 +75,9 @@ public class LibraryRunner {
 
 					//Exit
 					case 7:
+						//Writes and saves information to text files immediately prior to program exit
+						jurrLibrary.writeToFile();
+
 						exit = true;
 						System.out.println("EXITING PROGRAM");
 						break;
@@ -704,20 +707,24 @@ public class LibraryRunner {
 		id = sc.nextLong();
 
 		curUser = jurrLibrary.getUserById(id);
+      System.out.println(curUser);
 
 		System.out.print("Enter today's date (YYYY/MM/DD): ");
+		sc.nextLine();
 		dateTemp = sc.nextLine().split("/");
 
 		curDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
-
+      System.out.println(curDate);
+      
 		try {
 			while (!exit) {
 				System.out.print("Enter the ID of the item being returned (\"Exit\" to return to MAIN MENU): ");
 				id = sc.nextLong();
-
+            
 				curUser.takeBack(jurrLibrary.getItemById(id), curDate);
 			}
 		} catch (java.util.InputMismatchException e) {
+			System.out.println("Invalid input");
 			exit = true;
 		}
 	} 
@@ -754,7 +761,6 @@ public class LibraryRunner {
 						for (int i = 0; i < tempRooms.length; i++) {
 							if (tempRooms[i] != null) {
 								System.out.println(tempRooms[i]);
-								System.out.println();
 							} //if structure
 						} //for loop
 
