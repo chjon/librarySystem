@@ -41,7 +41,11 @@ public class Library {
 	//Parse a String array to long values
 	private long[] toLongFromString (String[] stringValues) {
 		long[] values = new long[stringValues.length];
-	
+		
+		if (stringValues.length == 1 && stringValues[0].isEmpty()) {
+			return new long[0];
+		} //if structure
+		
 		for (int i = 0; i < stringValues.length; i++) {
 			values[i] = Long.parseLong(stringValues[i]);
 		} //for loop
