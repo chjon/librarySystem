@@ -90,7 +90,7 @@ public class LibraryRunner {
 				System.out.println("Invalid input");
 				sc.nextLine();
 			} catch (Exception e) {
-				System.out.println("Critical error");
+				System.out.println("Runner Critical error");
 				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
@@ -385,7 +385,7 @@ public class LibraryRunner {
 							parameters[1] = (Integer)sc.nextInt();
 
 							System.out.print("Enter the Dewey Decimal Number: ");
-							parameters[2] = (Double)sc.nextDouble();
+							parameters[2] = (Long)sc.nextLong();
 							sc.nextLine();
 
 							jurrLibrary.addItem(type, name, parameters);
