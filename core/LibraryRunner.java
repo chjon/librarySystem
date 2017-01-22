@@ -297,7 +297,7 @@ public class LibraryRunner {
 							for (int i = 0; i < tempList.length; i++) {
 								System.out.println(tempList[i]);
 							} //for loop
-						catch (Exception e) {
+						} catch (Exception e) {
 							System.out.println("Invalid input");
 						} //try-catch structure
 
