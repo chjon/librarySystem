@@ -1,6 +1,6 @@
 20
 
-Video Game
+video game
 Call of Duty
 1
 true
@@ -9,16 +9,16 @@ Treyarch
 Shooter
 17
 
-Book
+book
 The Great Gatsby
 2
 true
 2016/5/1
 F. Scott Fitzgerald
 120
-213
+213.0
 
-Movie
+movie
 Avatar
 3
 true
@@ -28,16 +28,16 @@ Science Fiction
 180
 133
 
-Book
+book
 Diary Of A Wimpy Kid
 4
 true
 2016/5/1
 Umer Nadeem
 123
-200
+200.0
 
-Video Game
+video game
 CS: GO
 5
 true
@@ -46,7 +46,7 @@ Valve
 Shooter
 15
 
-Movie
+movie
 Superman
 6
 true
@@ -56,7 +56,7 @@ Action
 99
 15
 
-Video Game
+video game
 Halo: Reach
 7
 true
@@ -65,34 +65,34 @@ true
 Shooter
 17
 
-Book
+book
 Hamlet
 8
 true
 2016/5/16
 Raymond Guo
 99
-87
+87.0
 
-Book
+book
 Romeo And Juliet
 9
 true
 2016/5/16
 Shakespaear
 995
-25
+25.0
 
-Book
+book
 Jeronimo Stilton
 10
 true
 2016/5/1
 Dr. Seuss
 888
-56
+56.0
 
-Video Game
+video game
 Call of Duty: Black Ops 4
 11
 true
@@ -101,16 +101,16 @@ Treyarch
 Shooter
 17
 
-Book
+book
 Cat in the Hat
 12
 true
 2016/5/1
 F. Scott Fitzgerald
 120
-213
+213.0
 
-Movie
+movie
 Assasin's Creed
 13
 true
@@ -120,16 +120,16 @@ Science Fiction
 180
 133
 
-Book
+book
 Diary Of A Wimpy Kid: Dog Days
 14
 true
 2016/5/1
 Umer Nadeem
 123
-200
+200.0
 
-Video Game
+video game
 CS Portable
 15
 true
@@ -138,7 +138,7 @@ Valve
 Shooter
 15
 
-Movie
+movie
 Iron Man
 16
 true
@@ -148,7 +148,7 @@ Action
 99
 15
 
-Video Game
+video game
 Halo 7
 17
 true
@@ -157,32 +157,29 @@ true
 Shooter
 17
 
-Book
+book
 Macbeth
 18
 true
 2016/5/16
 Raymond Guo
 99
-87
+87.0
 
-Book
+book
 Charlie and the Chocolate Factory
 19
 true
 2016/5/16
 Shakespaear
 995
-25
+25.0
 
-Book
+book
 This Summative is killing me slowly
 20
 true
 2016/5/1
 JURR Library
 888
-56
-
-
-
+56.0
