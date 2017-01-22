@@ -44,6 +44,10 @@ public class Computer extends UserHolder {
 	public boolean isOccupied () {
 		return occupied;
 	} //isOccupied method
+	
+	public void setIsOccupied (boolean occupied) {
+		this.occupied = occupied;
+	} //isOccupied method
   
 	public boolean remUser () {
 		if (users[0] != null) {
