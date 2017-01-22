@@ -705,7 +705,7 @@ public class Library {
  		return movieList;
  	} //getMoviesByDirector method
  	
- 	// returns all the movies in the library
+ 	//returns all the movies in the library
  	public Movie[] getMovies () {       
  		Movie[] movieList;
  		int movieListSize = 0;
@@ -948,9 +948,9 @@ public class Library {
  					
  					itemOut.newLine();
  					if (items[i].getDayBorrowed() != null) {
- 						itemOut.write(items[i].getDayBorrowed().getDay() + "/");
+ 						itemOut.write(items[i].getDayBorrowed().getYear() + "/");
  						itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
-						itemOut.write(items[i].getDayBorrowed().getYear() + "");
+						itemOut.write(items[i].getDayBorrowed().getDay() + "");
 					} else {
 						itemOut.write("");
 					} //if structure
