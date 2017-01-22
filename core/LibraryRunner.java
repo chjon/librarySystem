@@ -385,7 +385,7 @@ public class LibraryRunner {
 							parameters[1] = (Integer)sc.nextInt();
 
 							System.out.print("Enter the Dewey Decimal Number: ");
-							parameters[2] = (Long)sc.nextLong();
+							parameters[2] = (Double)sc.nextDouble();
 							sc.nextLine();
 
 							jurrLibrary.addItem(type, name, parameters);

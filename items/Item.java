@@ -95,7 +95,7 @@ public abstract class Item {
          swapped = false;
          
          for (int j = items.length - 1; j > i; j--) {
-            if (items[j].id < items[j - 1].id) {
+            if ((items[j - 1] == null && items[j] != null) || items[j].id < items[j - 1].id) {
                temp = items[j];
                items[j] = items[j - 1];
                items[j - 1] = temp;
