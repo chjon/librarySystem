@@ -929,7 +929,7 @@ public class LibraryRunner {
 							} else if (curRoom.addUser(curUser)) {
 								System.out.println("User entered room");
 							} else {
-								System.out.println("Room full");
+								System.out.println("Could not add user to room");
 							} //if structure
 						} //if structure
 

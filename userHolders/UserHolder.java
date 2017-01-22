@@ -52,14 +52,16 @@ public abstract class UserHolder {
 	} //toString method
 	
 	//Adds user to the Userholder
-	public boolean addUser(User toAdd) {
+	public boolean addUser(User toAdd) {	
 		for (int i = 0; !isOccupied() && i < users.length; i++) {
-			if (users[i] == null) {
+			if (users[i] == toAdd) {
+				return false;
+			} else if (users[i] == null) {
 				users[i] = toAdd;
 
 				if (this instanceof Computer) {
 					((Computer)this).setIsOccupied(true);
-				}
+				} //if structure
 
 				return true;
 			} //if structure

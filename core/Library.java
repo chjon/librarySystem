@@ -937,7 +937,7 @@ public class Library {
 						itemOut.write(items[i].getDayBorrowed().getYear() + "");
 					} else {
 						itemOut.write("");
-					}
+					} //if structure
 
  					itemOut.newLine();
  					itemOut.write(((Book)(items[i])).getAuthor());
@@ -965,12 +965,12 @@ public class Library {
  					itemOut.newLine();
 
  					if (items[i].getDayBorrowed() != null) {
- 						itemOut.write(items[i].getDayBorrowed().getDay() + "/");
+ 						itemOut.write(items[i].getDayBorrowed().getYear() + "/");
  						itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
-						itemOut.write(items[i].getDayBorrowed().getYear() + "");
+						itemOut.write(items[i].getDayBorrowed().getDay() + "");
 					} else {
 						itemOut.write("");
-					}
+					} //if structure
 
  					itemOut.newLine();
  					itemOut.write(((Movie)(items[i])).getDirector());
@@ -1003,7 +1003,7 @@ public class Library {
 						itemOut.write(items[i].getDayBorrowed().getYear() + "");
 					} else {
 						itemOut.write("");
-					}
+					} //if structure
 
 					itemOut.newLine();
 					itemOut.write(((VideoGame)(items[i])).getDeveloper());
