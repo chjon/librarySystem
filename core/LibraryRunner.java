@@ -502,7 +502,7 @@ public class LibraryRunner {
 				switch (sel) {
 					//Displays items that are overdue
 					case 1:
-						System.out.print("Enter the overdue date (DD/MM/YYYY): ");
+						System.out.print("Enter the overdue date (YYYY/MM/DD): ");
 						dateHold = sc.nextLine().split("/");
 
 						dueDate = new Date(Integer.parseInt(dateHold[0]), Integer.parseInt(dateHold[1]), Integer.parseInt(dateHold[2]), jurrLibrary.getCal());
@@ -1045,7 +1045,8 @@ public class LibraryRunner {
 			System.out.println("2. Search for computer by ID");
 			System.out.println("3. Add user");
 			System.out.println("4. Remove user");
-			System.out.println("5. Return to MAIN MENU");
+			System.out.println("5. View printer options");
+			System.out.println("6. Return to MAIN MENU");
 			System.out.println();
 
 			try {
@@ -1132,6 +1133,119 @@ public class LibraryRunner {
 						break;
 
 					case 5:
+						displayPrinterMenu();
+						break;
+
+					case 6:
+						exit = true;
+						
+					default:
+						System.out.println("Invalid choice.");
+				} //switch structure to display sub menus
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input");
+				sc.nextLine();
+			} catch (Exception e) {
+				System.out.println("Critical error");
+				System.out.println(e.getMessage());
+			} //try and catch structure
+		} //while loop
+	} //displayComputerMenu method
+
+	public static void displayPrinterMenu () {
+		int sel;
+		int sheets;
+		long id;
+		long comId;
+		long printerId;
+		boolean exit = false;
+		boolean colour = false;
+		boolean valid;
+		String colourOption;
+		User curUser;
+		Computer curCom;
+		Printer curPrinter;
+
+		while (!exit) {
+			System.out.println("\nPRINTER MENU\n");
+			System.out.println("1. Print");
+			System.out.println("2. Add paper");
+			System.out.println("3. Return to COMPUTER MENU");
+			System.out.println();
+         
+         
+			System.out.print("Enter a user ID: ");
+			id = sc.nextLong();
+			System.out.print("Enter a computer ID: ");
+			comId = sc.nextLong();
+
+			curUser = jurrLibrary.getUserById(id);
+			curCom = jurrLibrary.getComputerById(comId);
+         
+         System.out.println();
+
+			try {
+				System.out.println("\nEnter a selection");
+				sel = sc.nextInt();
+				sc.nextLine();
+
+				switch (sel) {
+					
+					case 1:
+						try {
+							System.out.print("Colour print? (y/n) :");
+							colourOption = sc.nextLine();
+
+							if (colourOption.equalsIgnoreCase("y")) {
+								colour = true;
+								valid = true;
+							} else if (colourOption.equalsIgnoreCase("n")) {
+								colour = false;
+								valid = true;
+							} else {
+								System.out.println("Invalid input");
+								valid = false;
+							}
+
+							if (valid) {
+								System.out.print("Enter number of sheets to be printed: ");
+								sheets = sc.nextInt();
+
+								if (curCom.print(colour, sheets, curUser)) {
+									System.out.println("Print successful");
+								} else {
+									System.out.println("Problem printing paper");
+								}
+							}
+
+						} catch (java.util.InputMismatchException e) {
+							System.out.println("Invalid input");
+						}
+                  
+                  break;
+
+					case 2:
+						try {
+							System.out.print("Enter printer ID: ");
+							printerId = sc.nextInt();
+							System.out.print("Enter the number of sheets to add");
+							sheets = sc.nextInt();
+
+							curPrinter = jurrLibrary.getPrinterById(printerId);
+
+							if (curPrinter.addPaper(sheets)) {
+								System.out.println("Paper added");
+							} else {
+								System.out.println("Problem adding paper");
+							}
+
+						} catch (java.util.InputMismatchException e) {
+							System.out.println("Invalid input");
+						}
+                  
+                  break;
+
+					case 3:
 						exit = true;
 						break;
 						
@@ -1146,5 +1260,5 @@ public class LibraryRunner {
 				System.out.println(e.getMessage());
 			} //try and catch structure
 		} //while loop
-	} //displayComputerMenu method
+	} //displayPrinterMenu method
 } //LibraryRunner class
