@@ -234,7 +234,7 @@ public abstract class Item {
          
 			if (itemTitle.equals(title)) {
 				foundIndex = middle;
-			} else if (itemTitle.compareTo(title) > 0) {
+			} else if (itemTitle.compareTo(title) < 0) {
 				top = middle - 1;
 			} else {
 				bottom = middle + 1;
@@ -283,7 +283,7 @@ public abstract class Item {
          
 			if (itemGenre.equals(genre)) {
 				foundIndex = middle;
-			} else if (itemGenre.compareTo(genre) > 0) {
+			} else if (itemGenre.compareTo(genre) < 0) {
 				top = middle - 1;
 			} else {
 				bottom = middle + 1;

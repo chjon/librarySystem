@@ -1,13 +1,13 @@
 20
 
-video game
-Call of Duty
-1
+book
+This Summative is killing me slowly
+20
 true
 2016/5/1
-Treyarch
-Shooter
-17
+JURR Library
+888
+56.0
 
 book
 The Great Gatsby
@@ -19,34 +19,6 @@ F. Scott Fitzgerald
 213.0
 
 movie
-Avatar
-3
-true
-2016/5/1
-James Cameron
-Science Fiction
-180
-133
-
-book
-Diary Of A Wimpy Kid
-4
-true
-2016/5/1
-Umer Nadeem
-123
-200.0
-
-video game
-CS: GO
-5
-true
-2016/5/1
-Valve
-Shooter
-15
-
-movie
 Superman
 6
 true
@@ -55,24 +27,6 @@ Ziyad Gunner
 Action
 99
 15
-
-video game
-Halo: Reach
-7
-true
-2016/5/1
-343 Industries
-Shooter
-17
-
-book
-Hamlet
-8
-true
-2016/5/16
-Raymond Guo
-99
-87.0
 
 book
 Romeo And Juliet
@@ -84,6 +38,15 @@ Shakespaear
 25.0
 
 book
+Macbeth
+18
+true
+2016/5/16
+Raymond Guo
+99
+87.0
+
+book
 Jeronimo Stilton
 10
 true
@@ -91,52 +54,6 @@ true
 Dr. Seuss
 888
 56.0
-
-video game
-Call of Duty: Black Ops 4
-11
-true
-2016/5/1
-Treyarch
-Shooter
-17
-
-book
-Cat in the Hat
-12
-true
-2016/5/1
-F. Scott Fitzgerald
-120
-213.0
-
-movie
-Assasin's Creed
-13
-true
-2016/5/1
-James Cameron
-Science Fiction
-180
-133
-
-book
-Diary Of A Wimpy Kid: Dog Days
-14
-true
-2016/5/1
-Umer Nadeem
-123
-200.0
-
-video game
-CS Portable
-15
-true
-2016/5/1
-Valve
-Shooter
-15
 
 movie
 Iron Man
@@ -148,23 +65,50 @@ Action
 99
 15
 
-video game
-Halo 7
-17
-true
-2016/5/1
-343 Industries
-Shooter
-17
-
 book
-Macbeth
-18
+Hamlet
+8
 true
 2016/5/16
 Raymond Guo
 99
 87.0
+
+video game
+Halo: Reach
+7
+true
+1/5/2016
+343 Industries
+Shooter
+17
+
+video game
+Halo 7
+17
+true
+1/5/2016
+343 Industries
+Shooter
+17
+
+book
+Diary Of A Wimpy Kid: Dog Days
+14
+true
+2016/5/1
+Umer Nadeem
+123
+200.0
+
+book
+Diary Of A Wimpy Kid
+4
+true
+2016/5/1
+Umer Nadeem
+123
+200.0
 
 book
 Charlie and the Chocolate Factory
@@ -176,10 +120,66 @@ Shakespaear
 25.0
 
 book
-This Summative is killing me slowly
-20
+Cat in the Hat
+12
 true
 2016/5/1
-JURR Library
-888
-56.0
+F. Scott Fitzgerald
+120
+213.0
+
+video game
+Call of Duty: Black Ops 4
+11
+true
+1/5/2016
+Treyarch
+Shooter
+17
+
+video game
+Call of Duty
+1
+true
+1/5/2016
+Treyarch
+Shooter
+17
+
+video game
+CS: GO
+5
+true
+1/5/2016
+Valve
+Shooter
+15
+
+video game
+CS Portable
+15
+true
+1/5/2016
+Valve
+Shooter
+15
+
+movie
+Avatar
+3
+true
+2016/5/1
+James Cameron
+Science Fiction
+180
+133
+
+movie
+Assasin's Creed
+13
+true
+2016/5/1
+James Cameron
+Science Fiction
+180
+133
