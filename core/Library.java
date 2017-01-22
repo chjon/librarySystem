@@ -76,8 +76,14 @@ public class Library {
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 	
 					String lineOfDate = itemIn.readLine();
-					int [] date = toIntFromString(lineOfDate.split("/"));
-					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
+               Date dayBorrowed;
+					if (lineOfDate.isEmpty()) {
+						int [] date = toIntFromString(lineOfDate.split("/"));
+						dayBorrowed = new Date(date[0],date[1],date[2],cal);
+					} else {
+						dayBorrowed = null;
+					}
+
 					String author = itemIn.readLine();
 					int pages = Integer.parseInt(itemIn.readLine());
 					double deweyDecNum = Double.parseDouble(itemIn.readLine());
@@ -87,12 +93,19 @@ public class Library {
 				//Movie reader
 				} else if (type.equalsIgnoreCase(Item.MOVIE)) {
 					//Parse object parameters
-															String title = itemIn.readLine();
+					String title = itemIn.readLine();
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
-															String lineOfDate = itemIn.readLine();
-					int [] date = toIntFromString(lineOfDate.split("/"));
-					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
+					String lineOfDate = itemIn.readLine();
+										
+					Date dayBorrowed;
+					if (lineOfDate.isEmpty()) {
+						int [] date = toIntFromString(lineOfDate.split("/"));
+						dayBorrowed = new Date(date[0],date[1],date[2],cal);
+					} else {
+						dayBorrowed = null;
+					}
+
 					String director = itemIn.readLine();
 					String genre = itemIn.readLine();
 					int length = Integer.parseInt(itemIn.readLine());
@@ -107,8 +120,15 @@ public class Library {
 					long id = Long.parseLong(itemIn.readLine());
 					boolean isOut = Boolean.parseBoolean(itemIn.readLine());
 					String lineOfDate = itemIn.readLine();
-					int [] date = toIntFromString(lineOfDate.split("/"));
-					Date dayBorrowed = new Date(date[0],date[1],date[2],cal);
+					
+					Date dayBorrowed;
+					if (lineOfDate.isEmpty()) {
+						int [] date = toIntFromString(lineOfDate.split("/"));
+						dayBorrowed = new Date(date[0],date[1],date[2],cal);
+					} else {
+						dayBorrowed = null;
+					}
+					
 					String developer =  itemIn.readLine();
 					String genre = itemIn.readLine();
  					int ageRating = Integer.parseInt(itemIn.readLine()); 
@@ -911,9 +931,14 @@ public class Library {
  					} //if structure
  					
  					itemOut.newLine();
- 					itemOut.write(items[i].getDayBorrowed().getDay() + "/");
- 					itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
- 					itemOut.write(items[i].getDayBorrowed().getYear() + "");
+ 					if (items[i].getDayBorrowed() != null) {
+ 						itemOut.write(items[i].getDayBorrowed().getDay() + "/");
+ 						itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
+						itemOut.write(items[i].getDayBorrowed().getYear() + "");
+					} else {
+						itemOut.write("");
+					}
+
  					itemOut.newLine();
  					itemOut.write(((Book)(items[i])).getAuthor());
  					itemOut.newLine();
@@ -938,9 +963,15 @@ public class Library {
  					} //if structure
  					
  					itemOut.newLine();
- 					itemOut.write(items[i].getDayBorrowed().getDay() + "/");
- 					itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
- 					itemOut.write(items[i].getDayBorrowed().getYear() + "");
+
+ 					if (items[i].getDayBorrowed() != null) {
+ 						itemOut.write(items[i].getDayBorrowed().getDay() + "/");
+ 						itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
+						itemOut.write(items[i].getDayBorrowed().getYear() + "");
+					} else {
+						itemOut.write("");
+					}
+
  					itemOut.newLine();
  					itemOut.write(((Movie)(items[i])).getDirector());
  					itemOut.newLine();
@@ -965,9 +996,15 @@ public class Library {
  						itemOut.write("false");
  					} //if structure
  					itemOut.newLine();
- 					itemOut.write(items[i].getDayBorrowed().getDay() + "/");
- 					itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
-					itemOut.write(items[i].getDayBorrowed().getYear() + "");
+
+ 					if (items[i].getDayBorrowed() != null) {
+ 						itemOut.write(items[i].getDayBorrowed().getDay() + "/");
+ 						itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
+						itemOut.write(items[i].getDayBorrowed().getYear() + "");
+					} else {
+						itemOut.write("");
+					}
+
 					itemOut.newLine();
 					itemOut.write(((VideoGame)(items[i])).getDeveloper());
 					itemOut.newLine();
