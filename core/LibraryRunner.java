@@ -1175,18 +1175,9 @@ public class LibraryRunner {
 			System.out.println("1. Print");
 			System.out.println("2. Add paper");
 			System.out.println("3. Return to COMPUTER MENU");
-			System.out.println();
+			System.out.println();                  	
          
          
-			System.out.print("Enter a user ID: ");
-			id = sc.nextLong();
-			System.out.print("Enter a computer ID: ");
-			comId = sc.nextLong();
-
-			curUser = jurrLibrary.getUserById(id);
-			curCom = jurrLibrary.getComputerById(comId);
-         
-         System.out.println();
 
 			try {
 				System.out.println("\nEnter a selection");
@@ -1197,6 +1188,16 @@ public class LibraryRunner {
 					
 					case 1:
 						try {
+							System.out.print("Enter a user ID: ");
+							id = sc.nextLong();
+							System.out.print("Enter a computer ID: ");
+							comId = sc.nextLong();
+
+							curUser = jurrLibrary.getUserById(id);
+							curCom = jurrLibrary.getComputerById(comId);
+							System.out.println();
+
+							sc.nextLine();
 							System.out.print("Colour print? (y/n) :");
 							colourOption = sc.nextLine();
 
@@ -1232,7 +1233,7 @@ public class LibraryRunner {
 						try {
 							System.out.print("Enter printer ID: ");
 							printerId = sc.nextInt();
-							System.out.print("Enter the number of sheets to add");
+							System.out.print("Enter the number of sheets to add: ");
 							sheets = sc.nextInt();
 
 							curPrinter = jurrLibrary.getPrinterById(printerId);
