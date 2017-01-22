@@ -114,8 +114,12 @@ public class Library {
  				} //if structure
  			} //for loop
  			itemIn.close();
+ 		} catch (IOException e) {
+ 			System.out.println("There was a problem with the item file.\t" + e.getMessage());
+ 		} catch (NullPointerException e) {
+ 			System.out.println("Null error.\t" + e.getMessage());
  		} catch (Exception e) {
- 			System.err.println("There was a problem with the item file.\t" + e.getMessage());
+ 			System.err.println("There was a critical error.\t" + e.getMessage());
  		} //try-catch structure
  		
  		//User file reader
@@ -147,14 +151,18 @@ public class Library {
  						itemList[itemCount] = foundItem;
  						itemCount++;
  					} //if structure
- 				} //for loop
+ 				} //for loop            
 				
 				users[i] = new User(name, id, age, amountOwed, itemList);
             
  			} //for loop
  			userIn.close();
+ 		} catch (IOException e) {
+ 			System.out.println("There was a problem with the user file.\t" + e.getMessage());
+ 		} catch (NullPointerException e) {
+ 			System.out.println("Null error.\t" + e.getMessage());
  		} catch (Exception e) {
- 			System.err.println("There was a problem with the user file.\t" + e.getMessage());
+ 			System.err.println("There was a critical error.\t" + e.getMessage());
  		} //try-catch structure
  		
 		//Printer file reader
@@ -171,8 +179,12 @@ public class Library {
  				printers [i] = new Printer(id,max,num);
  			} //for loop
  			printerIn.close();
+ 		} catch (IOException e) {
+ 			System.out.println("There was a problem with the printer file.\t" + e.getMessage());
+ 		} catch (NullPointerException e) {
+ 			System.out.println("Null error.\t" + e.getMessage());
  		} catch (Exception e) {
- 			System.err.println("There was a problem with the printer file.\t" + e.getMessage());
+ 			System.err.println("There was a critical error.\t" + e.getMessage());
  		} //try-catch structure
 		
  		//UserHolder file reader
@@ -220,7 +232,7 @@ public class Library {
  					long userId = -1;
 					
 					//Construct Computer
- 					computerList[computerCount] = new Computer(id, false);
+ 					computerList[computerCount] = new Computer(id, occupied);
 					
 					//Check whether there are users listed
 					String input = holderIn.readLine();
@@ -251,9 +263,13 @@ public class Library {
  				} //if structure
  			} //for loop
  			holderIn.close();
+ 		} catch (IOException e) {
+ 			System.out.println("There was a problem with the userholder file.\t" + e.getMessage());
+ 		} catch (NullPointerException e) {
+ 			System.out.println("Null error.\t" + e.getMessage());
  		} catch (Exception e) {
- 			System.err.println("There was a problem with the UserHolder file.\t" + e.getMessage());
- 		} //try-catch structure					
+ 			System.err.println("There was a critical error.\t" + e.getMessage());
+ 		} //try-catch structure	
  	} //Library constructor - loading from file
  	
  	//New Library constructor
@@ -372,7 +388,7 @@ public class Library {
  		Item newItem;
  		
  		//Create new item
- 		if (type.equalsIgnoreCase(Item.BOOK)) {
+ 		if (title.equalsIgnoreCase(Item.BOOK)) {
  			newItem = new Book(
  				genItemId(),                        //Item ID
  				false,                              //Whether the Item is out
@@ -382,7 +398,7 @@ public class Library {
  				(int)(Integer)objectParameters[1],           //Number of pages
  				(double)(Double)objectParameters[2],        //Dewey Decimal number
  				deweySystem);          //The Library's Dewey Decimal system
- 		} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
+ 		} else if (title.equalsIgnoreCase(Item.VIDEO_GAME)) {
  			newItem = new VideoGame(genItemId(),   //Item ID
  				false,          //Whether the Item is out
  				title,                              //Title of VideoGame
@@ -390,7 +406,7 @@ public class Library {
  				(String)objectParameters[0],        //Name of developer
  				(String)objectParameters[1],        //Genre
  				(int)(Integer)objectParameters[2]);          //Age rating
- 		} else if (type.equalsIgnoreCase(Item.MOVIE)) {
+ 		} else if (title.equalsIgnoreCase(Item.MOVIE)) {
  			newItem = new Movie(genItemId(),       //Item ID
  				false,                              //Whether the Item is out
  				title,                              //Title of Movie
@@ -509,12 +525,10 @@ public class Library {
  		} //for loop
  		
  		bookList = new Book[bookListSize];
-		bookListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Book) {
- 				bookList[bookListSize] = (Book)items[i];
-				bookListSize++;
+ 				bookList[i] = (Book)items[i];
  			} //if structure
  		} //for loop
  		
@@ -555,12 +569,10 @@ public class Library {
  		} //for loop
  		
  		gameList = new VideoGame[gameListSize];
-		gameListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof VideoGame) {
- 				gameList[gameListSize] = (VideoGame)items[i];
-				gameListSize++;
+ 				gameList[i] = (VideoGame)items[i];
  			} //if structure
  		} //for loop
  		
@@ -667,12 +679,10 @@ public class Library {
  		} //for loop
  		
  		movieList = new Movie[movieListSize];
-		movieListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Movie) {
- 				movieList[movieListSize] = (Movie)items[i];
-				movieListSize ++;
+ 				movieList[i] = (Movie)items[i];
  			} //if structure
  		} //for loop
  		
@@ -855,7 +865,8 @@ public class Library {
  			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + PRINTER_FILE));
  			
  			out.write("" + printers.length);
- 			
+         out.newLine();
+          			
  			for (int i = 0; i < printers.length; i ++) {
  				out.newLine();
  				out.write("" + printers[i].getId());  
@@ -863,7 +874,6 @@ public class Library {
  				out.write("" + printers[i].getMaxPaper());
  				out.newLine();
  				out.write("" + printers[i].getNumPaper());
- 				out.newLine();
  				out.newLine();
  			} //for loop
  			
@@ -877,6 +887,7 @@ public class Library {
  			BufferedWriter itemOut = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + ITEM_FILE));
  			
  			itemOut.write("" + items.length);
+ 			itemOut.newLine();
  			
  			for (int i = 0; i < items.length; i ++) {
  				itemOut.newLine();
@@ -965,8 +976,12 @@ public class Library {
 			
 			itemOut.close();
 		} catch (IOException e) {
-			System.err.println("There was a problem with the items file./t" + e.getMessage());
-		} //try-catch structure
+ 			System.out.println("There was a problem with the items file.\t" + e.getMessage());
+ 		} catch (NullPointerException e) {
+ 			System.out.println("Null error.\t" + e.getMessage());
+ 		} catch (Exception e) {
+ 			System.err.println("There was a critical error.\t" + e.getMessage());
+ 		} //try-catch structure
 		
 		//User file writer
 		try {
@@ -985,7 +1000,7 @@ public class Library {
 				out.write(users[i].getAmountOwed() + "");
 				out.newLine();
 							
-				boolean noMoreItems = false;
+				boolean noMoreItems = false;           
 				
 				//Write the items in the user's inventory
 				for (int r = 0; r < users[i].getItems().length && !noMoreItems; r++) {
@@ -993,25 +1008,30 @@ public class Library {
 						out.write(users[i].getItems()[r].getId() + ",");
 					} else {
 						noMoreItems = true;
-					} //if structure
-					
-					out.newLine();
+					} //if structure										
 				} //for loop
+            out.newLine();
 			} //for loop
 			
 			out.close();
 		} catch (IOException e) {
-			System.out.println("There was a problem with the users file.\t" + e.getMessage());
-		} //try-catch structure
+ 			System.out.println("There was a problem with the users file.\t" + e.getMessage());
+ 		} catch (NullPointerException e) {
+ 			System.out.println("Null error.\t" + e.getMessage());
+ 		} catch (Exception e) {
+ 			System.err.println("There was a critical error.\t" + e.getMessage());
+ 		} //try-catch structure
 		
 		//UserHolder file writer
 		try {
 			BufferedWriter out = new BufferedWriter (new FileWriter (DATA_FILE_DIRECTORY + "/" + USER_HOLDER_FILE));
 			
-			out.write((computerList.length + roomList.length) + "");
+			out.write((computerListSize + roomListSize) + "");        
+         out.newLine();
 			
 			boolean found = false;
 			
+         //Writing rooms
 			for (int i = 0; i < roomListSize; i ++) {
 				usersInRoom = 0;
 				User[] countUsers = roomList[i].getUsers();
@@ -1022,6 +1042,7 @@ public class Library {
 					} //if structure
 				} //for loop
 
+            out.newLine();
 				out.write(UserHolder.ROOM);
 				out.newLine();
 				out.write(roomList[i].getId() + "");
@@ -1037,12 +1058,12 @@ public class Library {
 					} else {
 						found = true;
 						out.newLine();
-					} //if structure
-					
-					out.newLine();
+					} //if structure										
 				} //for loop
+            out.newLine();
 			} //for loop
 				
+         //Writing computers
 			for (int i = 0; i < computerListSize; i ++) {
 
 				//Counting the number of printers the computer has
@@ -1054,6 +1075,7 @@ public class Library {
 					} //if structure
 				} //for loop
 
+            out.newLine();
 				out.write(UserHolder.COMPUTER);
 				out.newLine();
 				out.write(computerList[i].getId() + "");
@@ -1069,34 +1091,36 @@ public class Library {
 				
 				for (int r = 0; r < computerList[i].getUsers().length && !found; r ++) {
 					if (computerList[i].getUsers()[r] != null) {
-						out.write(computerList[i].getUsers()[r].getId() + "");
+						out.write(computerList[i].getUsers()[r].getId() + ",");
 						found = false;
 					} else {
 						found = true;
-						out.newLine();
-					} //if structure
-					
-					out.newLine();
+					} //if structure										
 				} //for loop
+            
+            out.newLine();
 				
 				boolean printFound = false;
 				
 				for (int r = 0; r < computerPrinterNum && !printFound; r ++) {
 					if (computerList[i].getPrinters()[r] != null) {
-						out.write(computerList[i].getPrinters()[r].getId() + "");
+						out.write(computerList[i].getPrinters()[r].getId() + ",");
 						printFound = false;
 					} else {
 						printFound = true;
 						out.newLine();
-					} //if structure
-					
-					out.newLine();
+					} //if structure										
 				} //for loop
+            out.newLine();
 			} //for loop
 			
 			out.close();
 		} catch (IOException e) {
-			System.err.println("The was a problem with the userHolders file.\t" + e.getMessage());
-		} //try-catch structure
+ 			System.out.println("There was a problem with the item file.\t" + e.getMessage());
+ 		} catch (NullPointerException e) {
+ 			System.out.println("Null error.\t" + e.getMessage());
+ 		} catch (Exception e) {
+ 			System.err.println("There was a critical error.\t" + e.getMessage());
+ 		} //try-catch structure
 	} //writeToFile method
 } //Library class
