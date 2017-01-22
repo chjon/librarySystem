@@ -56,6 +56,11 @@ public abstract class UserHolder {
 		for (int i = 0; !isOccupied() && i < users.length; i++) {
 			if (users[i] == null) {
 				users[i] = toAdd;
+
+				if (this instanceof Computer) {
+					((Computer)this).setIsOccupied(true);
+				}
+
 				return true;
 			} //if structure
 		} //for loop
