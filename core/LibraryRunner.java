@@ -1197,29 +1197,38 @@ public class LibraryRunner {
 							curCom = jurrLibrary.getComputerById(comId);
 							System.out.println();
 
-							sc.nextLine();
-							System.out.print("Colour print? (y/n) :");
-							colourOption = sc.nextLine();
-
-							if (colourOption.equalsIgnoreCase("y")) {
-								colour = true;
-								valid = true;
-							} else if (colourOption.equalsIgnoreCase("n")) {
-								colour = false;
-								valid = true;
+							if (curUser == null && curCom == null) {
+								System.out.println("User and computer not found");
+							} else if (curUser == null) {
+								System.out.println("User not found");
+							} else if (curCom == null) {
+								System.out.println("Computer not found");
 							} else {
-								System.out.println("Invalid input");
-								valid = false;
-							}
 
-							if (valid) {
-								System.out.print("Enter number of sheets to be printed: ");
-								sheets = sc.nextInt();
+								sc.nextLine();
+								System.out.print("Colour print? (y/n) :");
+								colourOption = sc.nextLine();
 
-								if (curCom.print(colour, sheets, curUser)) {
-									System.out.println("Print successful");
+								if (colourOption.equalsIgnoreCase("y")) {
+									colour = true;
+									valid = true;
+								} else if (colourOption.equalsIgnoreCase("n")) {
+									colour = false;
+									valid = true;
 								} else {
-									System.out.println("Problem printing paper");
+									System.out.println("Invalid input");
+									valid = false;
+								}
+
+								if (valid) {
+									System.out.print("Enter number of sheets to be printed: ");
+									sheets = sc.nextInt();
+
+									if (curCom.print(colour, sheets, curUser)) {
+										System.out.println("Print successful");
+									} else {
+										System.out.println("Problem printing paper");
+									}
 								}
 							}
 
@@ -1238,10 +1247,14 @@ public class LibraryRunner {
 
 							curPrinter = jurrLibrary.getPrinterById(printerId);
 
-							if (curPrinter.addPaper(sheets)) {
-								System.out.println("Paper added");
+							if (curPrinter == null) {
+								System.out.println("Printer not found");
 							} else {
-								System.out.println("Problem adding paper");
+								if (curPrinter.addPaper(sheets)) {
+									System.out.println("Paper added");
+								} else {
+									System.out.println("Problem adding paper");
+								}
 							}
 
 						} catch (java.util.InputMismatchException e) {
