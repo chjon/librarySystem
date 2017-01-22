@@ -104,20 +104,24 @@ public class User {
         			return true;
       		} else {
         			return false;
-      		}
-    		}
+      		} //if structure
+    		} else {
+				return false;
+			} //if structure
     	} else if (libraryItem instanceof Movie) {
       	if (age >= (((Movie)(libraryItem)).getAgeRating())) {
       		if (!libraryItem.getIsOut() && currentItems() < MAX_ITEMS_OUT) {
         			return true;
       		} else {
         			return false;
-      		}
-    		}
-    	}
+      		} //if structure
+    		} else {
+				return false;
+			} //if structure
+    	} //if structure
+		
       return (!libraryItem.getIsOut()) && (currentItems() < MAX_ITEMS_OUT);
 	}//canBorrow method
-
 
 	//Adds item to the user's item list
 	public boolean takeOutItem (Item checkOut) {   

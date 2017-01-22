@@ -154,8 +154,11 @@ public class LibraryRunner {
 							System.out.println("That item was not found.");
 						} else {
 							//current user takes out item
-							curUser.takeOutItem(chosenItem);
-							System.out.println("Item successfully signed out");
+							if (curUser.takeOutItem(chosenItem)) {
+								System.out.println("Item successfully signed out");
+							} else {
+								System.out.println("Item cannot be signed out");
+							} //if structure
 						} //if structure
 						
 						break;
