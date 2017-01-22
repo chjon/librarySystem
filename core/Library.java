@@ -255,8 +255,8 @@ public class Library {
  					boolean occupied = Boolean.parseBoolean(holderIn.readLine());
  					long userId = -1;
 					
-					//Construct Computer
- 					computerList[computerCount] = new Computer(id, occupied);
+					//Construct Computer - initially not occupied so that a user can be added 
+ 					computerList[computerCount] = new Computer(id, false);
 					
 					//Check whether there are users listed
 					String input = holderIn.readLine();
