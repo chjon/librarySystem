@@ -149,11 +149,11 @@ public class User {
 	public boolean takeBack (Item returnItem, Date curDate) {
 		//Add fine if item is overdue
 		if (returnItem.isOverdue(curDate)) {
-			amountOwed += returnItem.getDaysOverdue(curDate) * Item.OVERDUE_PRICE;
+			amountOwed += -returnItem.getDaysOverdue(curDate) * Item.OVERDUE_PRICE;
 		} //if structure
 		
 		//Reset item properties
-    		returnItem.setIsOut(false);
+    	returnItem.setIsOut(false);
 		returnItem.setDayBorrowed(null);
 		returnItem.setIsOut(false);
 		
