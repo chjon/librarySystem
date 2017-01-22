@@ -817,8 +817,9 @@ public class LibraryRunner {
 				if (input.equals("y")) {
 					curUser.takeBack(curDate);
 					exit = true;
+					System.out.println("New amount owed: " + curUser.getAmountOwed());
 				} else if (!input.equals("n")) {
-					System.out.println("Invalid input.");
+					System.out.println("Invalid input");
 					exit = true;
 				} //if structure
 				
@@ -838,7 +839,7 @@ public class LibraryRunner {
 				} //while loop
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Invalid input");
-				exit = true;
+				System.out.println("New amount owed: " + curUser.getAmountOwed());
 			} //try-catch structure
 		} //if structure   
 	} //displayReturnItem method
