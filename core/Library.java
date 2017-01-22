@@ -412,7 +412,7 @@ public class Library {
  		Item newItem;
  		
  		//Create new item
- 		if (title.equalsIgnoreCase(Item.BOOK)) {
+ 		if (type.equalsIgnoreCase(Item.BOOK)) {
  			newItem = new Book(
  				genItemId(),                        //Item ID
  				false,                              //Whether the Item is out
@@ -422,7 +422,7 @@ public class Library {
  				(int)(Integer)objectParameters[1],           //Number of pages
  				(double)(Double)objectParameters[2],        //Dewey Decimal number
  				deweySystem);          //The Library's Dewey Decimal system
- 		} else if (title.equalsIgnoreCase(Item.VIDEO_GAME)) {
+ 		} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
  			newItem = new VideoGame(genItemId(),   //Item ID
  				false,          //Whether the Item is out
  				title,                              //Title of VideoGame
@@ -430,7 +430,7 @@ public class Library {
  				(String)objectParameters[0],        //Name of developer
  				(String)objectParameters[1],        //Genre
  				(int)(Integer)objectParameters[2]);          //Age rating
- 		} else if (title.equalsIgnoreCase(Item.MOVIE)) {
+ 		} else if (type.equalsIgnoreCase(Item.MOVIE)) {
  			newItem = new Movie(genItemId(),       //Item ID
  				false,                              //Whether the Item is out
  				title,                              //Title of Movie

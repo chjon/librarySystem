@@ -375,7 +375,7 @@ public class LibraryRunner {
 						type = sc.nextLine();
 
 						//If the item is of type Book
-						if (type.equalsIgnoreCase("book")) {
+						if (type.equalsIgnoreCase(Item.BOOK)) {
 							parameters = new Object[BOOKPARAMETERS];
 
 							System.out.print("Enter author name: ");
@@ -385,13 +385,13 @@ public class LibraryRunner {
 							parameters[1] = (Integer)sc.nextInt();
 
 							System.out.print("Enter the Dewey Decimal Number: ");
-							parameters[2] = (Long)sc.nextLong();
+							parameters[2] = (Double)sc.nextDouble();
 							sc.nextLine();
 
 							jurrLibrary.addItem(type, name, parameters);
 
 						//If the item is of type VideoGame
-						} else if (type.equalsIgnoreCase("video game")) {
+						} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
 							parameters = new Object[VIDEOGAMEPARAMETERS];
 
 							System.out.print("Enter developer name: ");
@@ -407,7 +407,7 @@ public class LibraryRunner {
 							jurrLibrary.addItem(type, name, parameters);
 
 						//If the item is of type Movie
-						} else if (type.equalsIgnoreCase("movie")) {
+						} else if (type.equalsIgnoreCase(Item.MOVIE)) {
 							parameters = new Object[MOVIEPARAMETERS];
 
 							System.out.print("Enter director name: ");
