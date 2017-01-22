@@ -77,7 +77,7 @@ public class Library {
 	
 					String lineOfDate = itemIn.readLine();
                Date dayBorrowed;
-					if (lineOfDate.isEmpty()) {
+					if (!lineOfDate.isEmpty()) {
 						int [] date = toIntFromString(lineOfDate.split("/"));
 						dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					} else {
@@ -99,7 +99,7 @@ public class Library {
 					String lineOfDate = itemIn.readLine();
 										
 					Date dayBorrowed;
-					if (lineOfDate.isEmpty()) {
+					if (!lineOfDate.isEmpty()) {
 						int [] date = toIntFromString(lineOfDate.split("/"));
 						dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					} else {
@@ -122,7 +122,7 @@ public class Library {
 					String lineOfDate = itemIn.readLine();
 					
 					Date dayBorrowed;
-					if (lineOfDate.isEmpty()) {
+					if (!lineOfDate.isEmpty()) {
 						int [] date = toIntFromString(lineOfDate.split("/"));
 						dayBorrowed = new Date(date[0],date[1],date[2],cal);
 					} else {
