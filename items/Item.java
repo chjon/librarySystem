@@ -266,7 +266,7 @@ public abstract class Item {
 		} //if structure
 		
 		//return null if no match is found
-		return null;
+		return new Item[0];
 	} //searchByTitle method
 	
 	//Search an item array by genre alphabetically

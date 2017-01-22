@@ -276,7 +276,7 @@ public class LibraryRunner {
 						System.out.print("Enter a title: ");
 						name = sc.nextLine();
 						tempList = jurrLibrary.getItemsByTitle(name);
-
+						
 						//printing information for all items found with matching title
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
@@ -288,14 +288,18 @@ public class LibraryRunner {
 					case 2:
 						System.out.print("Enter an expiry date (YYYY/MM/DD): ");
 						dateTemp = sc.nextLine().split("/");
-
-						expDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
-
-						tempList = jurrLibrary.getOverdue(expDate);
 						
-						for (int i = 0; i < tempList.length; i++) {
-							System.out.println(tempList[i]);
-						} //for loop
+						try {
+							expDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
+
+							tempList = jurrLibrary.getOverdue(expDate);
+							
+							for (int i = 0; i < tempList.length; i++) {
+								System.out.println(tempList[i]);
+							} //for loop
+						catch (Exception e) {
+							System.out.println("Invalid input");
+						} //try-catch structure
 
 						break;
 
