@@ -549,10 +549,12 @@ public class Library {
  		} //for loop
  		
  		bookList = new Book[bookListSize];
+		bookListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Book) {
- 				bookList[i] = (Book)items[i];
+ 				bookList[bookListSize] = (Book)items[i];
+				bookListSize++;
  			} //if structure
  		} //for loop
  		
@@ -571,10 +573,12 @@ public class Library {
  		} //for loop
  		
  		bookList = new Book[bookListSize];
+		bookListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Book && ((Book)items[i]).getAuthor().equals(author)) {
- 				bookList[i] = (Book)items[i];
+ 				bookList[bookListSize] = (Book)items[i];
+				bookListSize++;
  			} //if structure
  		} //for loop
  		
@@ -593,10 +597,12 @@ public class Library {
  		} //for loop
  		
  		gameList = new VideoGame[gameListSize];
+		gameListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof VideoGame) {
- 				gameList[i] = (VideoGame)items[i];
+ 				gameList[gameListSize] = (VideoGame)items[i];
+				gameListSize++;
  			} //if structure
  		} //for loop
  		
@@ -615,10 +621,12 @@ public class Library {
  		} //for loop
  		
  		gameList = new VideoGame[gameListSize];
+		gameListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof VideoGame && ((VideoGame)items[i]).getDeveloper().equals(dev)) {
- 				gameList[i] = (VideoGame)items[i];
+ 				gameList[gameListSize] = (VideoGame)items[i];
+				gameListSize++;
  			} //if structure
  		} //for loop
  		
@@ -637,10 +645,12 @@ public class Library {
  		} //for loop
  		
  		gameList = new VideoGame[gameListSize];
+		gameListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof VideoGame && items[i].getGenre().equals(genre)) {
- 				gameList[i] = (VideoGame)items[i];
+ 				gameList[gameListSize] = (VideoGame)items[i];
+				gameListSize++;
  			} //if structure
  		} //for loop
  		
@@ -659,10 +669,12 @@ public class Library {
  		} //for loop
  		
  		gameList = new VideoGame[gameListSize];
+		gameListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof VideoGame && ((VideoGame)items[i]).getAgeRating() == rating) {
- 				gameList[i] = (VideoGame)items[i];
+ 				gameList[gameListSize] = (VideoGame)items[i];
+				gameListSize++;
  			} //if structure
  		} //for loop
  		
@@ -681,10 +693,12 @@ public class Library {
  		} //for loop
  		
  		movieList = new Movie[movieListSize];
+		movieListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Movie && ((Movie)items[i]).getDirector().equals(director)) {
- 				movieList[i] = (Movie)items[i];
+ 				movieList[movieListSize] = (Movie)items[i];
+				movieListSize++;
  			} //if structure
  		} //for loop
  		
@@ -703,10 +717,12 @@ public class Library {
  		} //for loop
  		
  		movieList = new Movie[movieListSize];
+		movieListSize = 0;
  
  		for (int i = 0; i < items.length; i++) {
  			if (items[i] instanceof Movie) {
- 				movieList[i] = (Movie)items[i];
+ 				movieList[movieListSize] = (Movie)items[i];
+				movieListSize++;
  			} //if structure
  		} //for loop
  		
