@@ -95,7 +95,9 @@ public abstract class Item {
          swapped = false;
          
          for (int j = items.length - 1; j > i; j--) {
-            if ((items[j - 1] == null && items[j] != null) || items[j].id < items[j - 1].id) {
+            if (items[j] == null) {
+					swapped = true;
+				} else if (items[j - 1] == null || items[j].id < items[j - 1].id) {
                temp = items[j];
                items[j] = items[j - 1];
                items[j - 1] = temp;
@@ -113,7 +115,9 @@ public abstract class Item {
 		while (bottom <= top) {
 			middle = (bottom + top) / 2;
 			
-			if (items[middle].getId() == id) {
+			if (items[middle] == null) {
+				top = middle - 1;
+			} else if (items[middle].getId() == id) {
 				return items[middle];
 			} else if (items[middle].getId() > id) {
 				top = middle - 1;

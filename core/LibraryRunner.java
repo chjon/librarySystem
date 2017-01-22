@@ -828,7 +828,7 @@ public class LibraryRunner {
 					id = sc.nextLong();
 					sc.nextLine();
 	            
-					Item chosenItem = jurrLibrary.getItemById(id);
+					Item chosenItem = Item.searchById(curUser.getItems(), id);
 					
 					if (chosenItem == null) {
 						System.out.println("That item was not found.");
@@ -838,8 +838,13 @@ public class LibraryRunner {
 					} //if structure      
 				} //while loop
 			} catch (java.util.InputMismatchException e) {
+				if (sc.nextLine().equalsIgnoreCase("exit")) {
+					System.out.println("New amount owed: " + curUser.getAmountOwed());
+				} else {
+					System.out.println("Invalid input");
+				} //if structure
+			} catch (ArrayIndexOutOfBoundsException e) {
 				System.out.println("Invalid input");
-				System.out.println("New amount owed: " + curUser.getAmountOwed());
 			} //try-catch structure
 		} //if structure   
 	} //displayReturnItem method
