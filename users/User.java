@@ -228,7 +228,7 @@ public class User {
 		for (int i = 0; i < users.length && swapped; i++) {
 			swapped = false;
 			for (int j = users.length - 1; j > i; j--) {
-				if (users[j].getName().compareTo(users[j - 1].getName()) > 1) {
+				if (users[j].getName().compareTo(users[j - 1].getName()) < 0) {
 					temp = users[j];
 					users[j] = users[j - 1];
 					users[j - 1] = temp;
@@ -292,7 +292,7 @@ public class User {
          
 			if (userName.equals(name)) {
 				foundIndex = middle;
-			} else if (userName.compareTo(name) > 0) {
+			} else if (userName.compareTo(name) < 0) {
 				top = middle - 1;
 			} else {
 				bottom = middle + 1;

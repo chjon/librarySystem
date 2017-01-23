@@ -662,6 +662,8 @@ public class LibraryRunner {
 						age = sc.nextInt();
 
 						jurrLibrary.addUser(name, age);
+						
+						System.out.println("User successfully added");
 						break;
 
 					//Removes a user from the library user list
@@ -669,13 +671,19 @@ public class LibraryRunner {
 						System.out.print("Enter an ID: ");
 						id = sc.nextInt();
 
-						jurrLibrary.remUser(id);
+						if (jurrLibrary.remUser(id)) {
+							System.out.println("User successfully removed");
+						} else {
+							System.out.println("That user was not found");
+						} //if structure
+						
 						break;
 
 					//Changes user information
 					case 4:
 						System.out.print("Enter account number: ");
 						accNum = sc.nextLong();
+						sc.nextLine();
 
 						curUser = jurrLibrary.getUserById(accNum);
 						
