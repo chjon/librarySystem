@@ -8,7 +8,7 @@ package librarySystem.userHolders;
 
 public class Room extends UserHolder {
 	private static final String TYPE = "Room";
-	private int maxUsers;		//maximum amount of users allowed
+	private int maxUsers;									//maximum amount of users allowed
 
 	public Room (long id, int maxUsers) {
 		super(maxUsers, id);
@@ -53,9 +53,10 @@ public class Room extends UserHolder {
 		return found;
 	} //remUser method
 	
+	//removes all the users from the room
 	public void remAllUsers () {
 		for (int i = 0; i < users.length; i++) {
 			users[i] = null;
 		}
-	}
+	}//remAllUsers method
 } //Room class
