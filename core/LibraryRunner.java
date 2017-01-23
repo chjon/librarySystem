@@ -363,14 +363,9 @@ public class LibraryRunner {
 				sc.nextLine();
 
 				switch (sel) {
-					//Displays the item list of the Library inventory
+					//Displays the item list menu of the Library inventory
 					case 1:
-						tempList = jurrLibrary.getItems();
-                  
-						for (int i = 0; i < tempList.length; i++) {
-							System.out.println(tempList[i]);
-                     System.out.println();
-						} //for loop
+						displayItemMenu();
 
 						break;
 
@@ -491,12 +486,13 @@ public class LibraryRunner {
 
 		while (!exit) {
 			System.out.println("\nDISPLAY ITEM MENU\n");
-			System.out.println("1. Display by overdue");
-			System.out.println("2. Display by type");
-			System.out.println("3. Display by name");
-			System.out.println("4. Display by ID");
-			System.out.println("5. Display by genre");
-			System.out.println("6. Return to INVENTORY MENU");
+			System.out.println("1. Display all items");
+			System.out.println("2. Display by overdue");
+			System.out.println("3. Display by type");
+			System.out.println("4. Display by name");
+			System.out.println("5. Display by ID");
+			System.out.println("6. Display by genre");
+			System.out.println("7. Return to INVENTORY MENU");
 			System.out.println();
 
 			try {
@@ -504,8 +500,18 @@ public class LibraryRunner {
 				sel = sc.nextInt();
 
 				switch (sel) {
-					//Displays items that are overdue
 					case 1:
+						tempList = jurrLibrary.getItems();
+
+						for (int i = 0; i < tempList.length; i++) {
+							System.out.println(tempList[i]);
+						}
+
+						break;
+
+					//Displays items that are overdue
+					case 2:
+						sc.nextLine();
 						System.out.print("Enter the overdue date (YYYY/MM/DD): ");
 						dateHold = sc.nextLine().split("/");
 
@@ -513,40 +519,52 @@ public class LibraryRunner {
 
 						tempList = jurrLibrary.getOverdue(dueDate);
 
-						for (int i = 0; i < tempList.length; i++) {
-							System.out.println(tempList[i]);
-						} //for loop
+						if (tempList != null) {
+							for (int i = 0; i < tempList.length; i++) {
+								System.out.println(tempList[i]);
+							} //for loop
+						} else {
+							System.out.println("No items found with given overdue date");
+						}
 
 						break;
 
 					//Displays item by the selected type (Book, VideoGame, Movie)
-					case 2:
+					case 3:
 						System.out.print("Enter an item type (book / video game / movie): ");
 						type = sc.nextLine();
 
 						tempList = Item.searchByType(jurrLibrary.getItems(), type);
 
-						for (int i = 0; i < tempList.length; i++) {
-							System.out.println(tempList[i]);
-						} //for loop
+						if (tempList != null) {
+							for (int i = 0; i < tempList.length; i++) {
+								System.out.println(tempList[i]);
+							} //for loop
+						} else {
+							System.out.println("No item found with specified type:");
+						}
 						
 						break;
 
 					//Displays items by their title
-					case 3:
+					case 4:
 						System.out.print("Enter a title: ");
 						name = sc.nextLine();
 						tempList = jurrLibrary.getItemsByTitle(name);
 
-						//printing information for all items found with matching title
-						for (int i = 0; i < tempList.length; i++) {
-							System.out.println(tempList[i]);
-						} //for loop
+						if (tempList != null) {
+							//printing information for all items found with matching title
+							for (int i = 0; i < tempList.length; i++) {
+								System.out.println(tempList[i]);
+							} //for loop
+						} else {
+							System.out.println("No item found with given title");
+						}
 						
 						break;
 
 					//Displays an item with the entered ID
-					case 4:
+					case 5:
 						System.out.print("Enter item ID: ");
 						id = sc.nextLong();
 						sc.nextLine();
@@ -562,19 +580,23 @@ public class LibraryRunner {
 						break;
 
 					//Displays items by genre
-					case 5:
+					case 6:
 						System.out.print("Enter a genre: ");
 						genre = sc.nextLine();
 
 						tempList = Item.searchByGenre(jurrLibrary.getItems(), genre);
 
-						for (int i = 0; i < tempList.length; i++) {
-							System.out.println(tempList[i]);
-						} //for loop
+						if (tempList != null) {
+							for (int i = 0; i < tempList.length; i++) {
+								System.out.println(tempList[i]);
+							} //for loop
+						} else {
+							System.out.println("No item found with given genre");
+						}
 
 						break;
 
-					case 6:
+					case 7:
 						exit = true;
 						break;
 						
@@ -614,6 +636,7 @@ public class LibraryRunner {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					//Enters menu to display users
@@ -723,9 +746,13 @@ public class LibraryRunner {
 
 						tempUsers = jurrLibrary.getUserByName(name);
 
-						for (int i = 0; i < tempUsers.length; i++) {
-							System.out.println(tempUsers[i]);
-						} //for loop
+						if (tempUsers != null) {
+							for (int i = 0; i < tempUsers.length; i++) {
+								System.out.println(tempUsers[i]);
+							} //for loop
+						} else {
+							System.out.println("No users found with given name");
+						}						
 
 						break;
 
@@ -737,9 +764,13 @@ public class LibraryRunner {
 
 						tempUsers = User.searchByAge(jurrLibrary.getUsers(), age);
 
-						for (int i = 0; i < tempUsers.length; i++) {
-							System.out.println(tempUsers[i]);
-						} //for loop
+						if (tempUsers != null) {
+							for (int i = 0; i < tempUsers.length; i++) {
+								System.out.println(tempUsers[i]);
+							} //for loop
+						} else {
+							System.out.println("No users found with given age");
+						}
 
 						break;
 
@@ -752,10 +783,15 @@ public class LibraryRunner {
 							curDate = new Date(Integer.parseInt(dateInfo[0]), Integer.parseInt(dateInfo[1]), Integer.parseInt(dateInfo[2]), jurrLibrary.getCal());
 
 							tempUsers = User.searchByOverdue(jurrLibrary.getUsers(), curDate);
-	
-							for (int i = 0; i < tempUsers.length; i++) {
-								System.out.println(tempUsers[i]);
-							} //for loop
+
+							if (tempUsers != null) {
+								for (int i = 0; i < tempUsers.length; i++) {
+									System.out.println(tempUsers[i]);
+								} //for loop
+							} else {
+								System.out.println("No users found with given overdue date");
+							}
+
 						} catch (Exception e) {
 							System.out.println("Invalid input.");
 						} //try-catch structure
@@ -770,9 +806,13 @@ public class LibraryRunner {
 
 						tempUsers = User.searchByNumItemsOut(jurrLibrary.getUsers(), itemNum);
 
-						for (int i = 0; i < tempUsers.length; i++) {
-							System.out.println(tempUsers[i]);
-						} //for loop
+						if (tempUsers != null) {
+							for (int i = 0; i < tempUsers.length; i++) {
+								System.out.println(tempUsers[i]);
+							} //for loop
+						} else {
+							System.out.println("No users found with the given number of items");
+						}
 
 						break;
 						
@@ -1142,6 +1182,7 @@ public class LibraryRunner {
 
 					case 6:
 						exit = true;
+                  break;
 						
 					default:
 						System.out.println("Invalid choice.");
@@ -1179,7 +1220,7 @@ public class LibraryRunner {
          
          
 
-			try {
+			try {				
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
 				sc.nextLine();
@@ -1233,6 +1274,7 @@ public class LibraryRunner {
 							}
 
 						} catch (java.util.InputMismatchException e) {
+							sc.nextLine();
 							System.out.println("Invalid input");
 						}
                   
@@ -1258,6 +1300,7 @@ public class LibraryRunner {
 							}
 
 						} catch (java.util.InputMismatchException e) {
+                     sc.nextLine();
 							System.out.println("Invalid input");
 						}
                   
@@ -1271,8 +1314,8 @@ public class LibraryRunner {
 						System.out.println("Invalid choice.");
 				} //switch structure to display sub menus
 			} catch (java.util.InputMismatchException e) {
-				System.out.println("Invalid input");
 				sc.nextLine();
+				System.out.println("Invalid input");
 			} catch (Exception e) {
 				System.out.println("Critical error");
 				System.out.println(e.getMessage());
