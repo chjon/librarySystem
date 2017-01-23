@@ -1002,11 +1002,11 @@ public class Library {
  					itemOut.newLine();
  				//VideoGame writer
  				} else if (items[i] instanceof VideoGame) {
- 					itemOut.write(Item.VIDEO_GAME);
+					itemOut.write(Item.VIDEO_GAME);
+					itemOut.newLine();
+ 					itemOut.write(items[i].getTitle());
  					itemOut.newLine();
- 															itemOut.write(items[i].getTitle());
- 					itemOut.newLine();
- 															itemOut.write(items[i].getId()+"");
+					itemOut.write(items[i].getId()+ "");
  					itemOut.newLine();
  					
  					if (items[i].getIsOut()) {
@@ -1017,9 +1017,9 @@ public class Library {
  					itemOut.newLine();
 
  					if (items[i].getDayBorrowed() != null) {
- 						itemOut.write(items[i].getDayBorrowed().getDay() + "/");
+ 						itemOut.write(items[i].getDayBorrowed().getYear() + "/");
  						itemOut.write(items[i].getDayBorrowed().getMonth() + "/");
-						itemOut.write(items[i].getDayBorrowed().getYear() + "");
+						itemOut.write(items[i].getDayBorrowed().getDay() + "");
 					} else {
 						itemOut.write("");
 					} //if structure
