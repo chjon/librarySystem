@@ -11,10 +11,10 @@ public abstract class Item {
 	public static final String VIDEO_GAME = "video game";
 	public static final String MOVIE = "movie";
 	public static final double OVERDUE_PRICE = 0.25;				//Price per day overdue
-	private long id;              							//Item identification number
-	private boolean isOut;        							//Whether the item is out of the library or not
-	private String title;         							//Title of the item
-	private Date dayBorrowed;     							//Day item was borrowed
+	private long id;              										//Item identification number
+	private boolean isOut;        										//Whether the item is out of the library or not
+	private String title;         										//Title of the item
+	private Date dayBorrowed;     										//Day item was borrowed
 	
 	public Item (long id, boolean isOut, String title, Date dayBorrowed) {
 		this.id = id;
