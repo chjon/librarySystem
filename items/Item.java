@@ -58,6 +58,10 @@ public abstract class Item {
 	
 	//Checks if the item is overdue
 	public boolean isOverdue (Date curDate) {
+		if (dayBorrowed == null) {
+			return false;
+		} //if structure
+	
 		return -(dayBorrowed.compareTo(curDate)) > getMaxDaysOut();
 	} //isOverdue method
 	
