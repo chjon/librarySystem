@@ -371,69 +371,67 @@ public class LibraryRunner {
 
 					//Add item to the list of items
 					case 2:
-						boolean canAdd = false;
 						System.out.print("Enter item name: ");
 						name = sc.nextLine();
 						System.out.print("Enter item type (book, video game, movie): ");
 						type = sc.nextLine();
-
-						//If the item is of type Book
-						if (type.equalsIgnoreCase(Item.BOOK)) {
-							parameters = new Object[BOOKPARAMETERS];
-
-							System.out.print("Enter author name: ");
-							parameters[0] = sc.nextLine();
-
-							System.out.print("Enter the number of pages in the book: ");
-							parameters[1] = (Integer)sc.nextInt();
-
-							System.out.print("Enter the Dewey Decimal Number: ");
-							parameters[2] = (Double)sc.nextDouble();
-							sc.nextLine();
-
-							canAdd = jurrLibrary.addItem(type, name, parameters);
-
-						//If the item is of type VideoGame
-						} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
-							parameters = new Object[VIDEOGAMEPARAMETERS];
-
-							System.out.print("Enter developer name: ");
-							parameters[0] = sc.nextLine();
-
-							System.out.print("Enter the genre: ");
-							parameters[1] = sc.nextLine();
-
-							System.out.print("Enter the age rating: ");
-							parameters[2] = (Integer)sc.nextInt();
-							sc.nextLine();
-
-							canAdd = jurrLibrary.addItem(type, name, parameters);
-
-						//If the item is of type Movie
-						} else if (type.equalsIgnoreCase(Item.MOVIE)) {
-							parameters = new Object[MOVIEPARAMETERS];
-
-							System.out.print("Enter director name: ");
-							parameters[0] = sc.nextLine();
-
-							System.out.print("Enter the genre: ");
-							parameters[1] = sc.nextLine();
-
-							System.out.print("Enter the length of the movie (in minutes): ");
-							parameters[2] = (Integer)sc.nextInt();
-
-							System.out.print("Enter the age rating: ");
-							parameters[3] = (Integer)sc.nextInt();
-							sc.nextLine();
-
-							canAdd = jurrLibrary.addItem(type, name, parameters);
-						} //if structure
-						if (canAdd){
+						
+						try {
+							//If the item is of type Book
+							if (type.equalsIgnoreCase(Item.BOOK)) {
+								parameters = new Object[BOOKPARAMETERS];
+	
+								System.out.print("Enter author name: ");
+								parameters[0] = sc.nextLine();
+	
+								System.out.print("Enter the number of pages in the book: ");
+								parameters[1] = (Integer)sc.nextInt();
+	
+								System.out.print("Enter the Dewey Decimal Number: ");
+								parameters[2] = (Double)sc.nextDouble();
+								sc.nextLine();
+	
+								jurrLibrary.addItem(type, name, parameters);
+	
+							//If the item is of type VideoGame
+							} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
+								parameters = new Object[VIDEOGAMEPARAMETERS];
+	
+								System.out.print("Enter developer name: ");
+								parameters[0] = sc.nextLine();
+	
+								System.out.print("Enter the genre: ");
+								parameters[1] = sc.nextLine();
+	
+								System.out.print("Enter the age rating: ");
+								parameters[2] = (Integer)sc.nextInt();
+								sc.nextLine();
+	
+								jurrLibrary.addItem(type, name, parameters);
+							//If the item is of type Movie
+							} else if (type.equalsIgnoreCase(Item.MOVIE)) {
+								parameters = new Object[MOVIEPARAMETERS];
+	
+								System.out.print("Enter director name: ");
+								parameters[0] = sc.nextLine();
+	
+								System.out.print("Enter the genre: ");
+								parameters[1] = sc.nextLine();
+	
+								System.out.print("Enter the length of the movie (in minutes): ");
+								parameters[2] = (Integer)sc.nextInt();
+	
+								System.out.print("Enter the age rating: ");
+								parameters[3] = (Integer)sc.nextInt();
+								sc.nextLine();
+								
+								jurrLibrary.addItem(type, name, parameters);
+							} //if structure
+							
 							System.out.println("Item was successfully added.");
-						}
-						else{
+						} catch (Exception e) {
 							System.out.println("Item removing failed.");
-						}
+						} //try-catch structure
 
 						break;
 
@@ -444,12 +442,12 @@ public class LibraryRunner {
 						id = sc.nextLong();
 						sc.nextLine();
 
-						canRemove = jurrLibrary.remItem(id);
-						if (canRemove)
+						if (jurrLibrary.remItem(id)) {
 							System.out.println("Item removed successfully.");
-						else
+						} else {
 							System.out.println("Item removing failed.");
-
+						} //if structure
+						
 						break;
 
 					//Checks to see if an item is in the library or not

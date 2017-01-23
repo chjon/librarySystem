@@ -408,10 +408,9 @@ public class Library {
  	} //remUser method
  	
  	//Add new item
- 	public boolean addItem (String type, String title, Object[] objectParameters) throws Exception {
+ 	public void addItem (String type, String title, Object[] objectParameters) throws Exception {
  		Item newItem;
-		boolean canAdd;
- 		
+
  		//Create new item
  		if (type.equalsIgnoreCase(Item.BOOK)) {
  			newItem = new Book(
@@ -444,9 +443,7 @@ public class Library {
  				(int)(Integer)objectParameters[3]);          //Age rating
 				
  		} else {
-			canAdd = false;
  			throw new Exception("Invalid item type: " + type);
-			
  		} //if structure
  		
  		//Copy items to larger array
@@ -458,8 +455,6 @@ public class Library {
  		
  		temp[items.length] = newItem;
  		items = temp;
-		canAdd = true;
-		return canAdd;
  	} //addUser method
  	
  	public boolean remItem (long id) {
