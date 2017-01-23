@@ -430,7 +430,7 @@ public class LibraryRunner {
 							
 							System.out.println("Item was successfully added.");
 						} catch (Exception e) {
-							System.out.println("Item removing failed.");
+							System.out.println("Item addition failed.");
 						} //try-catch structure
 
 						break;
