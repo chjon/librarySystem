@@ -408,8 +408,9 @@ public class Library {
  	} //remUser method
  	
  	//Add new item
- 	public void addItem (String type, String title, Object[] objectParameters) throws Exception {
+ 	public boolean addItem (String type, String title, Object[] objectParameters) throws Exception {
  		Item newItem;
+		boolean canAdd;
  		
  		//Create new item
  		if (type.equalsIgnoreCase(Item.BOOK)) {
@@ -422,6 +423,7 @@ public class Library {
  				(int)(Integer)objectParameters[1],           //Number of pages
  				(double)(Double)objectParameters[2],        //Dewey Decimal number
  				deweySystem);          //The Library's Dewey Decimal system
+				
  		} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
  			newItem = new VideoGame(genItemId(),   //Item ID
  				false,          //Whether the Item is out
@@ -430,6 +432,7 @@ public class Library {
  				(String)objectParameters[0],        //Name of developer
  				(String)objectParameters[1],        //Genre
  				(int)(Integer)objectParameters[2]);          //Age rating
+				
  		} else if (type.equalsIgnoreCase(Item.MOVIE)) {
  			newItem = new Movie(genItemId(),       //Item ID
  				false,                              //Whether the Item is out
@@ -439,8 +442,11 @@ public class Library {
  				(String)objectParameters[1],        //Genre
  				(int)(Integer)objectParameters[2],           //Length of Movie in minutes
  				(int)(Integer)objectParameters[3]);          //Age rating
+				
  		} else {
+			canAdd = false;
  			throw new Exception("Invalid item type: " + type);
+			
  		} //if structure
  		
  		//Copy items to larger array
@@ -452,6 +458,8 @@ public class Library {
  		
  		temp[items.length] = newItem;
  		items = temp;
+		canAdd = true;
+		return canAdd;
  	} //addUser method
  	
  	public boolean remItem (long id) {

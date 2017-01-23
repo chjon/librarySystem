@@ -371,6 +371,7 @@ public class LibraryRunner {
 
 					//Add item to the list of items
 					case 2:
+						boolean canAdd = false;
 						System.out.print("Enter item name: ");
 						name = sc.nextLine();
 						System.out.print("Enter item type (book, video game, movie): ");
@@ -390,7 +391,7 @@ public class LibraryRunner {
 							parameters[2] = (Double)sc.nextDouble();
 							sc.nextLine();
 
-							jurrLibrary.addItem(type, name, parameters);
+							canAdd = jurrLibrary.addItem(type, name, parameters);
 
 						//If the item is of type VideoGame
 						} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
@@ -406,7 +407,7 @@ public class LibraryRunner {
 							parameters[2] = (Integer)sc.nextInt();
 							sc.nextLine();
 
-							jurrLibrary.addItem(type, name, parameters);
+							canAdd = jurrLibrary.addItem(type, name, parameters);
 
 						//If the item is of type Movie
 						} else if (type.equalsIgnoreCase(Item.MOVIE)) {
@@ -425,18 +426,29 @@ public class LibraryRunner {
 							parameters[3] = (Integer)sc.nextInt();
 							sc.nextLine();
 
-							jurrLibrary.addItem(type, name, parameters);
+							canAdd = jurrLibrary.addItem(type, name, parameters);
 						} //if structure
+						if (canAdd){
+							System.out.println("Item was successfully added.");
+						}
+						else{
+							System.out.println("Item removing failed.");
+						}
 
 						break;
 
 					//Removes an item from the list by ID
 					case 3:
+						boolean canRemove;
 						System.out.print("Enter an ID: ");
 						id = sc.nextLong();
 						sc.nextLine();
 
-						jurrLibrary.remItem(id);
+						canRemove = jurrLibrary.remItem(id);
+						if (canRemove)
+							System.out.println("Item removed successfully.");
+						else
+							System.out.println("Item removing failed.");
 
 						break;
 
