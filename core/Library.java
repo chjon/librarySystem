@@ -17,15 +17,15 @@ public class Library {
 	private static final String USER_FILE = "users.txt";
 	private static final String USER_HOLDER_FILE = "userHolders.txt";
 	private static final String PRINTER_FILE = "printers.txt";
-	private static final long MAX_ID = 99999999;   //maximum allowed ID number
-	private String name;       //name of library
-	private User[] users;      //list of users
-	private Computer[] computerList;        //list of computers
-	private Room[] roomList;     //list of rooms
-	private Printer[] printers;     //list of printers
-	private Item[] items;      //list of items in library
-	private Calendar cal;      //library calendar system
-	private DeweyDecSystem deweySystem;    //library Dewey Decimal system
+	private static final long MAX_ID = 99999999;   						//maximum allowed ID number
+	private String name;       												//name of library
+	private User[] users;     													//list of users
+	private Computer[] computerList;        								//list of computers
+	private Room[] roomList;     												//list of rooms
+	private Printer[] printers;     											//list of printers
+	private Item[] items;      												//list of items in library
+	private Calendar cal;      												//library calendar system
+	private DeweyDecSystem deweySystem;    								//library Dewey Decimal system
 	
 	//Parse a String array to integer values
 	private int[] toIntFromString (String[] stringValues) {
@@ -394,7 +394,7 @@ public class Library {
  			User[] temp = new User[users.length - 1];
  			
  			//Copy only the users that are not targeted for removal
- 			for (int i = 0; i < temp.length; i++) {
+ 			for (int i = 0; i < users.length; i++) {
  				if (users[i].getId() != id) {
  					temp[currentIndex] = users[i];
  					currentIndex++;
@@ -414,31 +414,31 @@ public class Library {
  		//Create new item
  		if (type.equalsIgnoreCase(Item.BOOK)) {
  			newItem = new Book(
- 				genItemId(),                        //Item ID
- 				false,                              //Whether the Item is out
- 				title,                              //Title of Book
- 				null,                               //Date Book was borrowed
- 				(String)objectParameters[0],        //Name of author
+ 				genItemId(),                        			//Item ID
+ 				false,                              			//Whether the Item is out
+ 				title,                              			//Title of Book
+ 				null,                               			//Date Book was borrowed
+ 				(String)objectParameters[0],        			//Name of author
  				(int)(Integer)objectParameters[1],           //Number of pages
- 				(double)(Double)objectParameters[2],        //Dewey Decimal number
- 				deweySystem);          //The Library's Dewey Decimal system
+ 				(double)(Double)objectParameters[2],        	//Dewey Decimal number
+ 				deweySystem);          								//The Library's Dewey Decimal system
 				
  		} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
- 			newItem = new VideoGame(genItemId(),   //Item ID
- 				false,          //Whether the Item is out
- 				title,                              //Title of VideoGame
- 				null,                               //Date VideoGame was borrowed
- 				(String)objectParameters[0],        //Name of developer
- 				(String)objectParameters[1],        //Genre
+ 			newItem = new VideoGame(genItemId(), 			  	//Item ID
+ 				false,          										//Whether the Item is out
+ 				title,                             	 			//Title of VideoGame
+ 				null,                               			//Date VideoGame was borrowed
+ 				(String)objectParameters[0],       				//Name of developer
+ 				(String)objectParameters[1],        			//Genre
  				(int)(Integer)objectParameters[2]);          //Age rating
 				
  		} else if (type.equalsIgnoreCase(Item.MOVIE)) {
- 			newItem = new Movie(genItemId(),       //Item ID
- 				false,                              //Whether the Item is out
- 				title,                              //Title of Movie
- 				null,                               //Date VideoGame was borrowed
- 				(String)objectParameters[0],        //Name of director
- 				(String)objectParameters[1],        //Genre
+ 			newItem = new Movie(genItemId(),       			//Item ID
+ 				false,                              			//Whether the Item is out
+ 				title,                              			//Title of Movie
+ 				null,                               			//Date VideoGame was borrowed
+ 				(String)objectParameters[0],        			//Name of director
+ 				(String)objectParameters[1],        			//Genre
  				(int)(Integer)objectParameters[2],           //Length of Movie in minutes
  				(int)(Integer)objectParameters[3]);          //Age rating
 				
@@ -457,6 +457,7 @@ public class Library {
  		items = temp;
  	} //addUser method
  	
+	//removes item from library
  	public boolean remItem (long id) {
  		Item.sortById(items);
  		
@@ -489,6 +490,7 @@ public class Library {
  		return User.searchByName(users, name);
  	} //getUserByName method
  
+ 	//accessor for computerList
  	public Computer[] getComputers () {
  		return computerList;
  	} //getComputers method
@@ -526,6 +528,7 @@ public class Library {
  		return null;
  	} //getPrinterById method
  
+	//accessor  
  	public Item[] getItems () {
  		return items;
  	} //getItems method
@@ -754,6 +757,7 @@ public class Library {
  		return overdueItems;
  	} //getOverdue method
  	
+	//returns the total length for all of the movies in minutes
  	private static int totalLength (Movie[] movies) {
  		int sum = 0;
  		
@@ -764,6 +768,8 @@ public class Library {
  		return sum;
  	} //totalLength method
  	
+	//rescursive method that returns a list of movies with the approximated time
+	//length given
  	public static Movie[] suggestMovies (Movie[] movies, int desired) {
  		//Check if there are no more movies
  		if (movies.length == 1) {
@@ -817,6 +823,7 @@ public class Library {
  		return closestMovies;
  	} //suggestMovies method
  	
+	//total amount of pages of books in the library
  	private static int totalPages (Book[] books) {
  		int sum = 0;
  		
@@ -827,6 +834,8 @@ public class Library {
  		return sum;
  	} //totalPages method
  	
+	//recursive method that returns a list of books with the
+	//amount of pages that the user wants to read
  	public static Book[] suggestBooks (Book[] books, int desired) {
  		//Check if there are no more books
  		if (books.length == 1) {
