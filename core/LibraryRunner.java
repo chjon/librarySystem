@@ -17,6 +17,7 @@ public class LibraryRunner {
 	private static Library jurrLibrary = new Library();
 
 	public static void main (String[] args) {
+      //Enters the main menu
 		displayMainMenu();
 	} // main method
 
@@ -125,6 +126,7 @@ public class LibraryRunner {
 		System.out.println();
 
 		while (!exit) {
+         //Menu options for interacting with a User's information
 			System.out.println("\nACCOUNT MENU\n");
 			System.out.println("1. Sign out item");
 			System.out.println("2. View current items");
@@ -229,6 +231,7 @@ public class LibraryRunner {
 						
 						break;
 
+               //Returning to the MAIN MENU
 					case 8:
 						exit = true;
 						break;
@@ -258,6 +261,7 @@ public class LibraryRunner {
 		Date expDate;
 
 		while (!exit) {
+         //Display options to view options involving items
 			System.out.println("\nVIEW CURRENT ITEMS MENU\n");
 			System.out.println("1. Search for items by name");
 			System.out.println("2. Search for item by expiry date");
@@ -290,8 +294,10 @@ public class LibraryRunner {
 						dateTemp = sc.nextLine().split("/");
 						
 						try {
+                     //Creating the Date object in which items may expire
 							expDate = new Date(Integer.parseInt(dateTemp[0]), Integer.parseInt(dateTemp[1]), Integer.parseInt(dateTemp[2]), jurrLibrary.getCal());
 
+                     //Retrieves an array of Items that expire on the given Date
 							tempList = jurrLibrary.getOverdue(expDate);
 							
 							for (int i = 0; i < tempList.length; i++) {
@@ -349,6 +355,7 @@ public class LibraryRunner {
 		Item[] tempList;
 
 		while (!exit) {
+         //Display options to interact with the Library's lists of Item objects
 			System.out.println("\nINVENTORY MENU\n");
 			System.out.println("1. Display item list");
 			System.out.println("2. Add item");
@@ -379,6 +386,7 @@ public class LibraryRunner {
 						try {
 							//If the item is of type Book
 							if (type.equalsIgnoreCase(Item.BOOK)) {
+                        //Creating an object array to store the parameters of a Book object
 								parameters = new Object[BOOKPARAMETERS];
 	
 								System.out.print("Enter author name: ");
@@ -395,6 +403,7 @@ public class LibraryRunner {
 	
 							//If the item is of type VideoGame
 							} else if (type.equalsIgnoreCase(Item.VIDEO_GAME)) {
+                        //Creating an object array to store the parameters of a VideoGame object
 								parameters = new Object[VIDEOGAMEPARAMETERS];
 	
 								System.out.print("Enter developer name: ");
@@ -410,6 +419,7 @@ public class LibraryRunner {
 								jurrLibrary.addItem(type, name, parameters);
 							//If the item is of type Movie
 							} else if (type.equalsIgnoreCase(Item.MOVIE)) {
+                        //Creating an object array to store the parameters of a Movie object
 								parameters = new Object[MOVIEPARAMETERS];
 	
 								System.out.print("Enter director name: ");
@@ -435,7 +445,7 @@ public class LibraryRunner {
 
 						break;
 
-					//Removes an item from the list by ID
+					//Removes an item from the list with the specified ID
 					case 3:
 						boolean canRemove;
 						System.out.print("Enter an ID: ");
@@ -527,6 +537,7 @@ public class LibraryRunner {
 
 						dueDate = new Date(Integer.parseInt(dateHold[0]), Integer.parseInt(dateHold[1]), Integer.parseInt(dateHold[2]), jurrLibrary.getCal());
 
+                  //Retrieving an array of the items with the given overdue Date
 						tempList = jurrLibrary.getOverdue(dueDate);
 
 						if (tempList != null) {
@@ -544,6 +555,7 @@ public class LibraryRunner {
 						System.out.print("Enter an item type (book / video game / movie): ");
 						type = sc.nextLine();
 
+                  //Retrieving a list of the items with the given type
 						tempList = Item.searchByType(jurrLibrary.getItems(), type);
 
 						if (tempList != null) {
@@ -579,6 +591,7 @@ public class LibraryRunner {
 						id = sc.nextLong();
 						sc.nextLine();
 						
+                  //Finds the item with the given ID
 						Item chosenItem = jurrLibrary.getItemById(id);
 						
 						if (chosenItem == null) {
@@ -1252,6 +1265,7 @@ public class LibraryRunner {
 							System.out.print("Enter a computer ID: ");
 							comId = sc.nextLong();
 
+                     //Finding the user and computer specified by their IDs
 							curUser = jurrLibrary.getUserById(id);
 							curCom = jurrLibrary.getComputerById(comId);
 							System.out.println();
@@ -1263,11 +1277,11 @@ public class LibraryRunner {
 							} else if (curCom == null) {
 								System.out.println("Computer not found");
 							} else {
-
 								sc.nextLine();
 								System.out.print("Colour print? (y/n) :");
 								colourOption = sc.nextLine();
 
+                        //determining whether colour printing variable is valid, yes, or no
 								if (colourOption.equalsIgnoreCase("y")) {
 									colour = true;
 									valid = true;
@@ -1289,7 +1303,7 @@ public class LibraryRunner {
 										System.out.println("Problem printing paper");
 									}
 								}
-							}
+							} //if structure
 
 						} catch (java.util.InputMismatchException e) {
 							sc.nextLine();
@@ -1305,6 +1319,7 @@ public class LibraryRunner {
 							System.out.print("Enter the number of sheets to add: ");
 							sheets = sc.nextInt();
 
+                     //finds the printer specified by ID
 							curPrinter = jurrLibrary.getPrinterById(printerId);
 
 							if (curPrinter == null) {
