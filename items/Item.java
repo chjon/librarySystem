@@ -162,7 +162,7 @@ public abstract class Item {
 			swapped = false;
          
 			for (int j = items.length - 1; j > i; j--) {
-				if (items[j].getTitle().compareTo(items[j - 1].getTitle()) > 0) {
+				if (items[j].getTitle().compareTo(items[j - 1].getTitle()) < 0) {
 					temp = items[j];
 					items[j] = items[j - 1];
 					items[j - 1] = temp;
@@ -181,7 +181,7 @@ public abstract class Item {
 			swapped = false;
          
 			for (int j = items.length - 1; j > i; j--) {
-				if (items[j].getGenre().compareTo(items[j - 1].getGenre()) > 0) {
+				if (items[j].getGenre().compareTo(items[j - 1].getGenre()) < 0) {
 					temp = items[j];
 					items[j] = items[j - 1];
 					items[j - 1] = temp;
