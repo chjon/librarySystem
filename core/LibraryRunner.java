@@ -518,6 +518,7 @@ public class LibraryRunner {
 			try {
 				System.out.println("\nEnter a selection");
 				sel = sc.nextInt();
+				sc.nextLine();
 
 				switch (sel) {
 					case 1:
@@ -525,28 +526,31 @@ public class LibraryRunner {
 
 						for (int i = 0; i < tempList.length; i++) {
 							System.out.println(tempList[i]);
-						}
+						} //for loop
 
 						break;
 
 					//Displays items that are overdue
 					case 2:
-						sc.nextLine();
 						System.out.print("Enter the overdue date (YYYY/MM/DD): ");
 						dateHold = sc.nextLine().split("/");
-
-						dueDate = new Date(Integer.parseInt(dateHold[0]), Integer.parseInt(dateHold[1]), Integer.parseInt(dateHold[2]), jurrLibrary.getCal());
-
-                  //Retrieving an array of the items with the given overdue Date
-						tempList = jurrLibrary.getOverdue(dueDate);
-
-						if (tempList != null) {
-							for (int i = 0; i < tempList.length; i++) {
-								System.out.println(tempList[i]);
-							} //for loop
-						} else {
-							System.out.println("No items found with given overdue date");
-						}
+						
+						try {
+							dueDate = new Date(Integer.parseInt(dateHold[0]), Integer.parseInt(dateHold[1]), Integer.parseInt(dateHold[2]), jurrLibrary.getCal());
+							
+	                  //Retrieving an array of the items with the given overdue Date
+							tempList = jurrLibrary.getOverdue(dueDate);
+	
+							if (tempList != null) {
+								for (int i = 0; i < tempList.length; i++) {
+									System.out.println(tempList[i]);
+								} //for loop
+							} else {
+								System.out.println("No items found with given overdue date");
+							} //if structure
+						} catch (Exception e) {
+							System.out.println("Invalid input.");
+						} //try-catch structure
 
 						break;
 
